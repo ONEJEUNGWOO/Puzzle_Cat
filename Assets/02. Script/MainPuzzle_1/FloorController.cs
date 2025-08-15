@@ -12,11 +12,11 @@ public class FloorController : MonoBehaviour
     private Vector2 curMovementInput;
     private Vector3 changeZValue;
 
-    //private void Start()
-    //{
-    //Debug.Log(Physics.gravity);
-    //Physics.gravity = new Vector3(0f, -20f, 0f);  //중력변경 로직 씬 전체 중력이 변해서 사용 안 할 것 같지만 우선 만들어 놨습니다.
-    //}
+    private void Start()
+    {
+        //Debug.Log(Physics.gravity);
+        //Physics.gravity = new Vector3(0f, -20f, 0f);  
+    }
 
     private void FixedUpdate()
     {
