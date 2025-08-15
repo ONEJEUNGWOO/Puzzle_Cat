@@ -12,12 +12,11 @@ public class FloorController : MonoBehaviour
     private Vector2 curMovementInput;
     private Vector3 changeZValue;
 
-    private void Start()
-    {
-        Debug.Log(Physics.gravity);
-        Physics.gravity = new Vector3(0f, -20f, 0f);
-
-    }
+    //private void Start()
+    //{
+    //Debug.Log(Physics.gravity);
+    //Physics.gravity = new Vector3(0f, -20f, 0f);  //중력변경 로직 씬 전체 중력이 변해서 사용 안 할 것 같지만 우선 만들어 놨습니다.
+    //}
 
     private void FixedUpdate()
     {
@@ -40,25 +39,25 @@ public class FloorController : MonoBehaviour
 
     public void MoveFloor()
     {
-        Vector3 currentRotation = transform.eulerAngles;
+        //Vector3 currentRotation = transform.eulerAngles;      //회전 각 제한 하는 로직 굳이 사용 하지 않아도 될 것 같지만 일단 만들어 놨습니다.
 
-        // X축 처리
-        float x = currentRotation.x;
-        if (x > 180f) x -= 360f;
-        x += changeZValue.x * moveSpeed * Time.deltaTime; // X축 회전 입력
-        x = Mathf.Clamp(x, minNUm, maxNUm);
-        if (x < 0f) x += 360f;
+        //// X축 처리
+        //float x = currentRotation.x;
+        //if (x > 180f) x -= 360f;
+        //x += changeZValue.x * moveSpeed * Time.deltaTime; // X축 회전 입력
+        //x = Mathf.Clamp(x, minNUm, maxNUm);
+        //if (x < 0f) x += 360f;
 
-        // Z축 처리
-        float z = currentRotation.z;
-        if (z > 180f) z -= 360f;
-        z += changeZValue.z * moveSpeed * Time.deltaTime; // Z축 회전 입력
-        z = Mathf.Clamp(z, minNUm, maxNUm);
-        if (z < 0f) z += 360f;
+        //// Z축 처리
+        //float z = currentRotation.z;
+        //if (z > 180f) z -= 360f;
+        //z += changeZValue.z * moveSpeed * Time.deltaTime; // Z축 회전 입력
+        //z = Mathf.Clamp(z, minNUm, maxNUm);
+        //if (z < 0f) z += 360f;
 
-        // 최종 적용 (Y축은 그대로 유지)
-        transform.eulerAngles = new Vector3(x, currentRotation.y, z);
+        //// 최종 적용 (Y축은 그대로 유지)
+        //transform.eulerAngles = new Vector3(x, currentRotation.y, z);
 
-        //transform.Rotate(changeZValue, moveSpeed * Time.deltaTime);
+        transform.Rotate(changeZValue, moveSpeed * Time.deltaTime);
     }
 }
