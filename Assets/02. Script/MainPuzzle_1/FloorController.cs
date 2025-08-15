@@ -6,20 +6,23 @@ using UnityEngine.InputSystem;
 public class FloorController : MonoBehaviour
 {
     public int moveSpeed;
-    public float maxNUm;
-    public float minNUm;
+    //public float maxNUm;
+    //public float minNUm;
 
     private Vector2 curMovementInput;
     private Vector3 changeZValue;
 
-    private void Start()
+    private void Update()
     {
-        //Debug.Log(Physics.gravity);
-        //Physics.gravity = new Vector3(0f, -20f, 0f);  
+        if (MainPuzzle_UIManager.Instance.gameClearUI.activeSelf)       //게임 클리어 하면 0,0,0 로테이션으로 정렬
+
+        RotateReSet();
     }
 
     private void FixedUpdate()
     {
+        if (!MainPuzzle_UIManager.Instance.gameClearUI.activeSelf)      //게임 클리어 하면 움직이지 않게
+
         MoveFloor();
     }
 
@@ -59,5 +62,10 @@ public class FloorController : MonoBehaviour
         //transform.eulerAngles = new Vector3(x, currentRotation.y, z);
 
         transform.Rotate(changeZValue, moveSpeed * Time.deltaTime);
+    }
+
+    void RotateReSet()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 }
