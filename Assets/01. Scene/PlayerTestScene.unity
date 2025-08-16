@@ -497,6 +497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterBody: {fileID: 6020308598483770394}
   cameraContainer: {fileID: 1443095121}
+  lookSensitivity: 0.1
 --- !u!65 &1883585670
 BoxCollider:
   m_ObjectHideFlags: 0

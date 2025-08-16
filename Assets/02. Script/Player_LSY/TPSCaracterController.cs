@@ -66,6 +66,12 @@ public class TPSCaracterController : MonoBehaviour
             // 2. 캐릭터가 카메라와 같은 정면을 바라보지않고 이동해야하는 방향으로 바라보는 방법:
             CharacterBody.forward = moveDir;
 
+            //var angle = CharacterBody.eulerAngles;
+            //for (var i = 0f; i <= 1f; i += Time.deltaTime)
+            //{
+            //    CharacterBody.eulerAngles = Vector3.Lerp(angle, cameraContainer.rotation.eulerAngles, i);
+            //}
+
             transform.position += moveDir * Time.deltaTime * 5f;
             // 캐릭터의 위치를 이동 방향으로 업데이트합니다. Time.deltaTime을 곱하여 프레임 독립적인 이동을 보장합니다.
             // 5f는 이동 속도를 나타냅니다. 이 값을 조정하여 캐릭터의 이동 속도를 변경할 수 있습니다.
@@ -92,6 +98,8 @@ public class TPSCaracterController : MonoBehaviour
         Vector2 mouseDelta = new Vector2(curMouseX, curMouseY);
         // 마우스 델타를 저장할 Vector2를 만듭니다. 안에는 마우스 수평 및 수직 이동 값이 들어갑니다.
         // 프로그래밍에서는 "델타"라는 용어가 변화량을 나타내는 데 사용됩니다. (이전과 현제 값의 차이를 나타낸다.)
+
+
         Vector3 camAngle = cameraContainer.rotation.eulerAngles;
         // camAngl이라는 Vector3 값에 cameraContainer의 회전 값을 저장합니다.
         // rotation은 4차원 값으로 인간이 이해하기 쉬운 x, y, z 축의 회전 값을 나타내기 위해 eulerAngle을 사용해 변환합니다.

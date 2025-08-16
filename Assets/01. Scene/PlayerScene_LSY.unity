@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kittyTransform: {fileID: 3897034476702918638}
-  moveSpeed: 5
+  moveSpeed: 3
   runSpeed: 5
   jumpPower: 100
   groundLayerMask:
