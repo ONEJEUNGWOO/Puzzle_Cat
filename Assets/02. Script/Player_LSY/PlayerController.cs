@@ -7,22 +7,25 @@ using static UnityEngine.GraphicsBuffer;
 public class PlayerController : MonoBehaviour
 {
     [Header("Moverment")]
-    public float moveSpeed;
-    public float runSpeed;
-    public float jumpPower;
-    private Vector2 curMovementInput;
+    public Transform kittyTransform; // 고양이의 Transform 컴포넌트를 저장하는 변수입니다.
+    public float moveSpeed;  // 이동 속도를 나타내는 변수입니다. 이 값은 Rigidbody 컴포넌트의 속도로 사용됩니다.
+    public float runSpeed; // 달릴 때의 속도를 나타내는 변수입니다. 이 값은 이동 속도에 추가로 적용됩니다.
+    public float jumpPower; // 점프할 때의 힘을 나타내는 변수입니다. 이 값은 Rigidbody 컴포넌트의 힘으로 사용됩니다.
+    private Vector2 curMovementInput; // 현재 이동 입력을 저장하는 변수입니다. Vector2는 2차원 벡터로, x축과 y축의 이동 값을 나타냅니다.
     public LayerMask groundLayerMask;
 
     [Header("Look")]
-    public Transform cameraContainer;
-    public float minXLook;
-    public float maxXLook;
-    private float camCurXRot;
-    public float lookSensitivity;
-    private Vector2 mouseDelta;
+    public Transform cameraContainer; 
+    public float lookSensitivity; 
+    //public float minXLook;
+    //public float maxXLook;
+    private float camCurXRot; 
+    private float camCurYRot;
+    private Vector2 mouseDelta; 
+    private Vector3 cameraAngle; 
 
-    private Rigidbody _rigidbody;
-    private Animator animator;
+    private Rigidbody _rigidbody; 
+    private Animator animator; 
 
     private void Awake()
     {
@@ -52,10 +55,20 @@ public class PlayerController : MonoBehaviour
 
     void CameraLook()
     {
-        camCurXRot += mouseDelta.y * lookSensitivity;
-        camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
-        cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
-        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+        cameraAngle = cameraContainer.rotation.eulerAngles;
+        camCurYRot = cameraAngle.y + mouseDelta.x * lookSensitivity;
+        camCurXRot = cameraAngle.x - mouseDelta.y * lookSensitivity;
+
+        if (camCurXRot < 180) 
+        {
+            camCurXRot = Mathf.Clamp(camCurXRot, -1f, 70f);
+        }
+        else 
+        {
+            camCurXRot = Mathf.Clamp(camCurXRot, 335f, 361f);
+        }
+
+        cameraContainer.rotation = Quaternion.Euler(camCurXRot, camCurYRot, 0);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -92,5 +105,4 @@ public class PlayerController : MonoBehaviour
     }
 }
 
-// Quaternion.LookRotation
-// Quaternion.RotateTowards(transform.rotation, target, turnSpeed * Time.deltaTime);
+
