@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BallSpawner : MonoBehaviour
+public class BallSpawner : Singleton<BallSpawner>
 {
     public GameObject ballPrefab;
     private GameObject ballSpawnUI;      //UI별로 부모 오브젝트를 만들어서 setactive를 껐다 켰다 하는걸로 관리 할 예정입니다

@@ -12,7 +12,7 @@ public class CollisionDetector : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        Physics.gravity = new Vector3(0f, -20f, 0f);    //기본 20
+        Physics.gravity = new Vector3(0f, -20f, 0f);    //게임매니저에서 관리해야 함
     }
 
     private void Update()

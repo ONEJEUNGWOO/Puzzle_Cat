@@ -6,11 +6,22 @@ using UnityEngine.InputSystem;
 public class FloorController : MonoBehaviour
 {
     public int moveSpeed;
+    private PlayerInput input;
+    private InputAction ballSpawn;
     //public float maxNUm;
     //public float minNUm;
 
     private Vector2 curMovementInput;
     private Vector3 changeZValue;
+
+    private void Awake()
+    {
+        input = GetComponent<PlayerInput>();
+
+        ballSpawn = input.actions["UseKey"];
+
+        ballSpawn.performed += BallSpawner.Instance.OnSpawnBall;
+    }
 
     private void Update()
     {
