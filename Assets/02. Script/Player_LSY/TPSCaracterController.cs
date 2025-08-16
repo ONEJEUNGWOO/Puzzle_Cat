@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 
 public class TPSCaracterController : MonoBehaviour
 {
-    [SerializeField] private Transform CharacterBody; 
+    [SerializeField] private Transform CharacterBody;
     // 캐릭터의 몸체를 나타내는 Transform 컴포넌트입니다.
+    private Vector2 curMovementInput; // 현재 이동 입력을 저장하는 변수입니다. Vector2는 2차원 벡터로, x축과 y축의 이동 값을 나타냅니다.
     [SerializeField] private Transform cameraContainer;
     // 카메라를 담고 있는 컨테이너의 Transform 컴포넌트입니다. 이 컨테이너는 카메라의 회전을 관리합니다.
     private float camCurXRot; // 카메라의 현재 x축 회전을 저장하는 변수입니다. 이 값은 카메라의 수직 회전을 제한하는 데 사용됩니다.
@@ -154,6 +155,30 @@ public class TPSCaracterController : MonoBehaviour
 
         // 이제 cameraContainer의 새로운 회전 값을 계산해 봅시다.
         cameraContainer.rotation = Quaternion.Euler(camCurXRot, camCurYRot, 0);
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            animator.SetBool("isWalking", true);
+            curMovementInput = context.ReadValue<Vector2>();
+            // 키보드에 입력되는 값을 읽어서 curMovementInput 변수에 저장합니다.
+
+            // 기존에 키보드 입력 값을 읽어오는 방법은 다음과 같았습니다:
+
+            // float curMoveX = Input.GetAxis("Horizontal"); // 수평 이동 입력을 가져옵니다.
+            // float curMoveY = Input.GetAxis("Vertical"); // 수직 이동 입력을 가져옵니다.
+            // Vector2 curMovementInput = new Vector2(curMoveX, curMoveY);
+            // 변화하는 이동 값을 저장할 Vector2를 만듭니다. 안에는 수평 및 수직 이동 값이 들어갑니다.
+            // 하지만 Input 시스템을 사용하면 변수를 따라 선언해서 입력 값을 읽어올 필요가 없이 
+            // context.ReadValue<Vector2>();를 이용해 curMovementInput에 저장해 줍니다. 
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            animator.SetBool("isWalking", false);
+            curMovementInput = Vector2.zero;
+        }
     }
     public void OnLook(InputAction.CallbackContext context)
     {

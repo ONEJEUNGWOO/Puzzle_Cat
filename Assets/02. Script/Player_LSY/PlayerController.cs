@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
         dir *= moveSpeed;
         dir.y = _rigidbody.velocity.y;
         _rigidbody.velocity = dir;
+
+        Debug.DrawRay(cameraContainer.position, new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized, Color.red);
     }
 
     void CameraLook()
@@ -76,7 +78,7 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             animator.SetBool("isWalking", true);
-            curMovementInput = context.ReadValue<Vector2>();                                                                                                                                                                      
+            curMovementInput = context.ReadValue<Vector2>();
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
