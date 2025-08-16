@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class TPSCaracterController : MonoBehaviour
 {
-    [SerializeField] private Transform CharacterBody;
-    [SerializeField] private Transform cameraContainer;
+    [SerializeField] private Transform CharacterBody; 
+    // 캐릭터의 몸체를 나타내는 Transform 컴포넌트입니다.
+    [SerializeField] private Transform cameraContainer; 
+    // 카메라를 담고 있는 컨테이너의 Transform 컴포넌트입니다. 이 컨테이너는 카메라의 회전을 관리합니다.
 
     private float curMouseX;
+    // 현재 마우스의 수평 이동 값을 저장하는 변수입니다.
     private float curMouseY;
+    // 현재 마우스의 수직 이동 값을 저장하는 변수입니다.
+    private float curMoveX;
+    // 현재 캐릭터의 수평 이동 값을 저장하는 변수입니다.
+    private float curMoveY;
+    // 현재 캐릭터의 수직 이동 값을 저장하는 변수입니다.
 
     Animator animator;
 
@@ -19,11 +27,61 @@ public class TPSCaracterController : MonoBehaviour
     private void Update()
     {
         LookAround(); // LookAround 메서드를 반복 호출하여 카메라 회전을 처리합니다.
+        Move();
+        // Move 메서드를 반복 호출하여 캐릭터의 이동을 처리합니다.
     }
-    private void LookAround()
+
+    private void Move() // 캐릭터의 이동을 처리하는 메서드입니다.
+    {
+        // 이동 기능을 구현하는 코드 작성하기.
+        curMoveX = Input.GetAxis("Horizontal"); // 수평 이동 입력을 가져옵니다.
+        curMoveY = Input.GetAxis("Vertical"); // 수직 이동 입력을 가져옵니다.
+        Vector2 moveInput = new Vector2(curMoveX, curMoveY);
+        // 변화하는 이동 값을 저장할 Vector2를 만듭니다. 안에는 수평 및 수직 이동 값이 들어갑니다.
+
+        bool isMove = moveInput.magnitude != 0f;
+        // 이동 입력의 크기가 0이 아닌 경우 이동 중임을 나타내는 bool 변수를 만듭니다. (길리가 0이면 이동 입력을 받고있지 않는 겁니다.)
+        if (isMove)
+        {
+            Vector3 lookForward = new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized;
+            // 카메라의 전방 방향을 캐릭터가 바라보는 방향으로 저장합니다.
+            Vector3 lookRight = new Vector3(cameraContainer.right.x, 0f, cameraContainer.right.z).normalized;
+            // 카메라의 오른쪽 방향을 캐릭터가 바라보는 방향으로 저장합니다.
+            Vector3 moveDir = lookForward * moveInput.y + lookRight * moveInput.x;
+            // lookForward와 lookRight를 moveInput에 곱하고 더하면 바라보고 있는 방향을 기준으로 이동 방향을 구할 수 있습니다.
+            // moveInput.y는 수직 이동을, moveInput.x는 수평 이동을 나타냅니다.
+
+
+            // 캐릭터가 바라보는 방향을 정하는 방법:
+            // 1.캐릭터가 움직일 때 시선을 고정 시키는 방법:
+            //CharacterBody.forward = lookForward;
+
+            // 2. 캐릭터가 카메라와 같은 정면을 바라보지않고 이동해야하는 방향으로 바라보는 방법:
+            CharacterBody.forward = moveDir;
+
+            transform.position += moveDir * Time.deltaTime * 5f;
+            // 캐릭터의 위치를 이동 방향으로 업데이트합니다. Time.deltaTime을 곱하여 프레임 독립적인 이동을 보장합니다.
+            // 5f는 이동 속도를 나타냅니다. 이 값을 조정하여 캐릭터의 이동 속도를 변경할 수 있습니다.
+        }
+
+
+        Debug.DrawRay(cameraContainer.position, new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized, Color.red);
+        // 카메라의 전방 방향을 시각적으로 나타내는 레이저를 그립니다.
+        // DrawRay는 Unity에서 디버깅용으로 사용되는 메서드로, 주어진 위치에서 주어진 방향으로 레이저를 그립니다.
+        // cameraContainer.position은 레이저의 시작 위치를 나타내고
+        // Color.red는 색갈을 설정합니다
+        // 두번째는 레이저의 방향을 나타내며, cameraContainer.forward는 카메라의 전방 방향을 나타냅니다.
+        // (이렇게 하면 카메라가 바라보는 방얗으로 레이저가 나가지만 위아래도 같이 움직입니다.)
+        // new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized 를 쓴 이유는
+        // 카메라의 전방 방향에서 y축(수직 방향)을 제거하여 수평 평면에서의 방향을 나타내기 위함입니다.
+        // 즉 new Vector3에 y 값만 없에고 x와 z값을 forward로 가져와서 수평 평면에서의 방향만 나오게 합니다.
+        // normalized는 벡터의 길이를 1로 맞춰줍니다.
+    }
+    private void LookAround() // 카메라 회전을 처리하는 메서드입니다.
     {
         curMouseX = Input.GetAxis("Mouse X"); // 마우스의 수평 이동 입력을 가져옵니다.
         curMouseY = Input.GetAxis("Mouse Y"); // 마우스의 수직 이동 입력을 가져옵니다.
+        
         Vector2 mouseDelta = new Vector2(curMouseX, curMouseY);
         // 마우스 델타를 저장할 Vector2를 만듭니다. 안에는 마우스 수평 및 수직 이동 값이 들어갑니다.
         // 프로그래밍에서는 "델타"라는 용어가 변화량을 나타내는 데 사용됩니다. (이전과 현제 값의 차이를 나타낸다.)
