@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float runSpeed; // 달릴 때의 속도를 나타내는 변수입니다. 이 값은 이동 속도에 추가로 적용됩니다.
     public float jumpPower; // 점프할 때의 힘을 나타내는 변수입니다. 이 값은 Rigidbody 컴포넌트의 힘으로 사용됩니다.
     private Vector2 curMovementInput; // 현재 이동 입력을 저장하는 변수입니다. Vector2는 2차원 벡터로, x축과 y축의 이동 값을 나타냅니다.
-    public LayerMask groundLayerMask;
+    public LayerMask groundLayerMask; // 지면 레이어 마스크를 저장하는 변수입니다. 이 레이어 마스크는 캐릭터가 지면에 있는지 확인하는 데 사용됩니다.
 
     [Header("Look")]
     public Transform cameraContainer; 
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 cameraAngle; 
 
     private Rigidbody _rigidbody; 
+    // Rigidbody 컴포넌트를 저장하는 변수입니다.PlayerController 스크립트가 상속된 오브켁트의 rigidbody를 저장합니다. 
     private Animator animator; 
 
     private void Awake()
@@ -47,10 +48,35 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= moveSpeed;
-        dir.y = _rigidbody.velocity.y;
-        _rigidbody.velocity = dir;
+        // curMovementInput 는 InputAction에서 입력된 값을 저장합니다. (OnMove 함수에서 이미 받고있는 값) 
+        Vector3 lookForward = new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized;
+        Vector3 lookRight = new Vector3(cameraContainer.right.x, 0f, cameraContainer.right.z).normalized;
+
+        Vector3 dir = lookForward * curMovementInput.y + lookRight * curMovementInput.x;
+
+        if (dir != Vector3.zero)
+        {
+            //kittyTransform.forward = lookForward;
+
+
+            //kittyTransform.forward = dir; // 즉가회전
+            
+            Quaternion targetRotation = Quaternion.LookRotation(dir);
+
+            // 서서히 회전 (slerp는 부드럽게, especially 뒤돌 때 자연스러움)
+            kittyTransform.rotation = Quaternion.Slerp
+            (
+                kittyTransform.rotation,
+                targetRotation,
+                5f * Time.deltaTime   
+                // 숫자 조정 가능 (작을수록 느리고, 클수록 빠름)
+            );
+
+            _rigidbody.MovePosition(_rigidbody.position + dir * moveSpeed * Time.fixedDeltaTime);
+            // 이동하는 코드
+        }
+            
+        //_rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
 
         Debug.DrawRay(cameraContainer.position, new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized, Color.red);
     }
