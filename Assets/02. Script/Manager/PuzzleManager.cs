@@ -30,4 +30,9 @@ public class PuzzleManager : Singleton<PuzzleManager>
     {
         GameManager.Instance.isGameCleared(true, miniGame.GameIndex);
     }
+
+    //public bool isMain(bool main)
+    //{
+        
+    //}
 }

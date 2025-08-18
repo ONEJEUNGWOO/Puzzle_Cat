@@ -6,6 +6,8 @@ public class MiniGameData : MonoBehaviour
 {
     public MiniGame games;
 
+    [SerializeField] bool isMain;
+
     [SerializeField] int level;
 
     private void OnTriggerEnter(Collider other)
