@@ -49,29 +49,21 @@ public class PlayerController : MonoBehaviour
         Vector3 lookRight = new Vector3(cameraContainer.right.x, 0f, cameraContainer.right.z).normalized;
 
         Vector3 dir = lookForward * curMovementInput.y + lookRight * curMovementInput.x;
-
-        if (lookForward != Vector3.zero)
-        {
-            kittyTransform.forward = lookForward * Time.deltaTime;
-        }
-
+        
         if (dir != Vector3.zero)
         {
-            //kittyTransform.forward = dir; // 즉가회전
-            
-            //Quaternion targetRotation = Quaternion.LookRotation(dir);
+            Quaternion targetRotation = Quaternion.LookRotation(dir);
 
-            //// 서서히 회전 (slerp는 부드럽게, especially 뒤돌 때 자연스러움)
-            //kittyTransform.rotation = Quaternion.Slerp
-            //(
-            //    kittyTransform.rotation,
-            //    targetRotation,
-            //    5f * Time.deltaTime   
-            //    // 숫자 조정 가능 (작을수록 느리고, 클수록 빠름)
-            //);
+            // 서서히 회전 (slerp는 부드럽게, especially 뒤돌 때 자연스러움)
+            kittyTransform.rotation = Quaternion.Slerp
+            (
+                kittyTransform.rotation,
+                targetRotation,
+                5f * Time.deltaTime
+            // 숫자 조정 가능 (작을수록 느리고, 클수록 빠름)
+            );
 
             _rigidbody.MovePosition(_rigidbody.position + dir * moveSpeed * Time.fixedDeltaTime);
-            // 이동하는 코드
         }
                 
         Debug.DrawRay(cameraContainer.position, new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized, Color.red);
@@ -93,6 +85,8 @@ public class PlayerController : MonoBehaviour
         }
 
         cameraContainer.rotation = Quaternion.Euler(camCurXRot, camCurYRot, 0);
+        //Vector3 lookForward = new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized;
+        //kittyTransform.forward = lookForward;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -101,11 +95,22 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isWalking", true);
             curMovementInput = context.ReadValue<Vector2>();
+            if (curMovementInput.y < 0)
+            {
+                //animator.SetFloat("speed", -1f);
+                animator.speed = 0.5f; // 뒤로 걷는 속도는 0.5로 설정
+            }
+            else
+            {
+                //animator.SetFloat("speed", 1f);
+                animator.speed = 1f; // 앞으로 걷는 속도는 1로 설정
+            }
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             animator.SetBool("isWalking", false);
             curMovementInput = Vector2.zero;
+            animator.speed = 1f; // 걷기 애니메이션 속도를 기본값으로 되돌립니다.
         }
     }
 
