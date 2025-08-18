@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -40,7 +40,9 @@ public class HackingMiniManager : MonoBehaviour
     [SerializeField] private float mistakePenaltySeconds = 5f;
     [SerializeField] private float minTimerAfterPenalty = 0f;
 
-    private readonly List<string> hexCodes = new() { "E9", "1C", "BD", "7A", "55" };
+    private readonly List<string> hexCodes = new() { "낚시대", "쥐", "실타래", "츄르", "캣닢" };
+    [Header("Image Settings")]
+    [SerializeField] private List<Sprite> hexSprites; // 🚨 이미지 리스트 추가
 
     private GameState currentState;
     private string[,] gridData;
@@ -59,6 +61,13 @@ public class HackingMiniManager : MonoBehaviour
         if (gridPanel == null || cellPrefab == null)
         {
             Debug.LogError("[HackingMiniManager] UI 또는 CellPrefab이 연결되지 않았습니다!");
+            return;
+        }
+
+        // 🚨 이미지 리스트가 비어있는지 확인합니다.
+        if (hexSprites == null || hexSprites.Count != hexCodes.Count)
+        {
+            Debug.LogError("Hex Sprites 리스트가 비어있거나, 개수가 올바르지 않습니다. 인스펙터에 이미지를 5개 모두 연결해주세요!");
             return;
         }
 
@@ -118,7 +127,7 @@ public class HackingMiniManager : MonoBehaviour
         if (newDaemon || daemonSequence.Count == 0)
             daemonSequence = GenerateDaemon();
 
-        infoText.text = "Daemon: " + string.Join(" ", daemonSequence);
+        infoText.text = "아이템 순서: " + string.Join(" ", daemonSequence);
 
         timer = gameTime;
         timerText.text = timer.ToString("F2");
@@ -182,18 +191,23 @@ public class HackingMiniManager : MonoBehaviour
         {
             for (int c = 0; c < gridCols; c++)
             {
-                string code = hexCodes[URandom.Range(0, hexCodes.Count)];
+                int hexIndex = URandom.Range(0, hexCodes.Count);
+                string code = hexCodes[hexIndex];
+
                 gridData[r, c] = code;
 
                 GameObject cellObj = Instantiate(cellPrefab, gridPanel.transform);
                 var cell = cellObj.GetComponent<GridCell>();
                 int lr = r, lc = c;
-                cell.Setup(code, lr, lc, () => OnCellClick(lr, lc));
+
+                // 🚨 스프라이트를 넘겨주는 코드로 수정
+                cell.Setup(code, lr, lc, hexSprites[hexIndex], () => OnCellClick(lr, lc));
                 cell.SetState(CellState.Normal, normalColor);
                 cells[r, c] = cell;
             }
         }
     }
+
     List<string> GenerateDaemon()
     {
         var seq = new List<string>();
@@ -201,6 +215,7 @@ public class HackingMiniManager : MonoBehaviour
             seq.Add(hexCodes[URandom.Range(0, hexCodes.Count)]);
         return seq;
     }
+
     void OnCellClick(int row, int col)
     {
         if (currentState == GameState.Finished) return;
@@ -242,12 +257,14 @@ public class HackingMiniManager : MonoBehaviour
         if (TryComplete()) return;
         UpdateCrossHighlights();
     }
+
     void SelectCell(int row, int col)
     {
         cells[row, col].SetState(CellState.Selected, selectedColor);
         logText.text += gridData[row, col] + "\n";
         lastRow = row; lastCol = col;
     }
+
     void UpdateCrossHighlights()
     {
         for (int r = 0; r < gridRows; r++)
@@ -261,6 +278,7 @@ public class HackingMiniManager : MonoBehaviour
             }
         }
     }
+
     bool TryComplete()
     {
         if (matchIndex >= daemonSequence.Count)
@@ -270,6 +288,7 @@ public class HackingMiniManager : MonoBehaviour
         }
         return false;
     }
+
     void SuccessGame()
     {
         currentState = GameState.Finished;
@@ -280,6 +299,7 @@ public class HackingMiniManager : MonoBehaviour
             exitButton.SetActive(true);
         OnGameFinished?.Invoke(true);
     }
+
     void TimeOutFail()
     {
         currentState = GameState.Finished;
@@ -290,6 +310,7 @@ public class HackingMiniManager : MonoBehaviour
             exitButton.SetActive(true);
         OnGameFinished?.Invoke(false);
     }
+
     void ApplyMistakePenaltyIfNeeded()
     {
         if (!useMistakePenalty) return;
@@ -298,6 +319,7 @@ public class HackingMiniManager : MonoBehaviour
         timerText.text = timer.ToString("F2");
         logText.text += $"[PENALTY -{mistakePenaltySeconds}s]\n";
     }
+
     public void LoadNewScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
