@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038fb48fd25b9d1408821f0ce56bff2d, type: 3}
   m_Name: Data
   m_EditorClassIdentifier: 
-  name: 
+  name: BallExit
+  GameIndex: 0
+  isGravityUse: 1
+  GravityScale: {x: 0, y: -19.62, z: 0}
+  Game: {fileID: 6702538504742534401, guid: 60537533a3d625b46aa5f763e3e782f3, type: 3}
+  levels:
+  - {fileID: 6702538504742534401, guid: 60537533a3d625b46aa5f763e3e782f3, type: 3}
+  - {fileID: 2733190524341392599, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}

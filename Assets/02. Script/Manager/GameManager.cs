@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     // 클리어 했는지
 
@@ -14,7 +14,10 @@ public class GameManager : MonoBehaviour
         GameCleared[index] = clear;
     }
 
-    
+    public void GravityScale(Vector3 scale)
+    {
+        Physics.gravity = scale;
+    }
 
 
     // 시간 관련
