@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using URandom = UnityEngine.Random;
 
 public enum GameState { FirstClick, Playing, Finished }
+public enum DifficultyLevel { Easy, Normal, Hard }
 
 [RequireComponent(typeof(GridLayoutGroup))]
 public class HackingMiniManager : MonoBehaviour
@@ -26,8 +28,9 @@ public class HackingMiniManager : MonoBehaviour
     [SerializeField] public Color disabledColor = new(0.2f, 0.2f, 0.2f, 1f);
 
     [Header("Game Settings")]
-    [SerializeField] private float gameTime = 60.0f;
-    [SerializeField] private int sequenceLength = 3;
+    [SerializeField] private DifficultyLevel difficulty = DifficultyLevel.Normal;
+    [HideInInspector][SerializeField] private float gameTime = 60.0f; // 🚨 인스펙터에서 숨김
+    [HideInInspector][SerializeField] private int sequenceLength = 3; // 🚨 인스펙터에서 숨김
     [SerializeField] private int gridRows = 7;
     [SerializeField] private int gridCols = 5;
     [SerializeField] private bool reshuffleChangesDaemon = true;
@@ -64,7 +67,6 @@ public class HackingMiniManager : MonoBehaviour
         InitializeGame(newDaemon: true);
     }
 
-    // 🚨 Update 함수를 사용하여 타이머를 관리합니다.
     void Update()
     {
         if (currentState == GameState.Playing)
@@ -79,13 +81,26 @@ public class HackingMiniManager : MonoBehaviour
         }
     }
 
-    void OnDestroy()
-    {
-        // Update 함수를 사용하므로 OnDestroy에서 특별히 할 일은 없습니다.
-    }
+    void OnDestroy() { }
 
     void InitializeGame(bool newDaemon)
     {
+        switch (difficulty)
+        {
+            case DifficultyLevel.Easy:
+                gameTime = 90f;
+                sequenceLength = 2;
+                break;
+            case DifficultyLevel.Normal:
+                gameTime = 60f;
+                sequenceLength = 3;
+                break;
+            case DifficultyLevel.Hard:
+                gameTime = 45f;
+                sequenceLength = 4;
+                break;
+        }
+
         gridData = new string[gridRows, gridCols];
         cells = new GridCell[gridRows, gridCols];
 
@@ -108,6 +123,34 @@ public class HackingMiniManager : MonoBehaviour
         timer = gameTime;
         timerText.text = timer.ToString("F2");
     }
+
+    public void SetDifficultyAndRestart(string difficulty)
+    {
+        switch (difficulty.ToLower())
+        {
+            case "easy":
+                gameTime = 90f;
+                sequenceLength = 2;
+                break;
+            case "normal":
+                gameTime = 60f;
+                sequenceLength = 3;
+                break;
+            case "hard":
+                gameTime = 45f;
+                sequenceLength = 4;
+                break;
+            default:
+                Debug.LogWarning("Invalid difficulty level. Setting to Normal.");
+                gameTime = 60f;
+                sequenceLength = 3;
+                break;
+        }
+
+        // 🚨 난이도를 설정한 뒤 게임을 다시 초기화합니다.
+        InitializeGame(true);
+    }
+
 
     void Reshuffle(bool changeDaemon)
     {
@@ -246,15 +289,12 @@ public class HackingMiniManager : MonoBehaviour
 
     void SuccessGame()
     {
-        // 🚨 성공 시 GameState를 Finished로 설정하는 것이 핵심입니다.
         currentState = GameState.Finished;
         infoText.text += "\n<color=green>SUCCESS!</color>";
 
-        // 클릭 무효화
         foreach (var cell in cells)
             cell.GetComponent<Button>().interactable = false;
 
-        // 종료 UI 활성화
         if (exitButton != null)
             exitButton.SetActive(true);
 
@@ -263,7 +303,6 @@ public class HackingMiniManager : MonoBehaviour
 
     void TimeOutFail()
     {
-        // 🚨 실패 시에도 GameState를 Finished로 설정합니다.
         currentState = GameState.Finished;
         infoText.text += "\n<color=red>ACCESS DENIED</color>\nReason: Time Over... 실패...";
 
@@ -285,5 +324,8 @@ public class HackingMiniManager : MonoBehaviour
         logText.text += $"[PENALTY -{mistakePenaltySeconds}s]\n";
     }
 
-    // 🚨 TimerCoroutine() 함수는 삭제합니다.
+    public void LoadNewScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }
