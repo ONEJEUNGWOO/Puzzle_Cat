@@ -1,16 +1,13 @@
-ï»¿using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public enum CellState { Normal, Highlighted, Selected, Disabled }
 
 public class GridCell : MonoBehaviour
 {
-    public int cellRow;
-    public int cellCol;
+    public int cellRow;  // ÀÌÀü row ´ë½Å »ç¿ë
+    public int cellCol;  // ÀÌÀü col ´ë½Å »ç¿ë
 
     public Button button;
     public Image image;
@@ -26,17 +23,11 @@ public class GridCell : MonoBehaviour
         currentState = CellState.Normal;
     }
 
-    // ğŸš¨ ì½”ë“œì™€ í•¨ê»˜ ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ë°›ì•„ì™€ì„œ ì´ë¯¸ì§€ì— ì ìš©í•©ë‹ˆë‹¤.
-    public void Setup(string code, int r, int c, Sprite sprite, UnityAction onClickAction)
+    public void Setup(string code, int r, int c, UnityEngine.Events.UnityAction onClickAction)
     {
         codeText.text = code;
         cellRow = r;
         cellCol = c;
-
-        if (image != null)
-        {
-            image.sprite = sprite;
-        }
 
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(onClickAction);
@@ -45,13 +36,7 @@ public class GridCell : MonoBehaviour
     public void SetState(CellState state, Color color)
     {
         currentState = state;
-
-        // ğŸš¨ ì´ë¯¸ì§€ì˜ ìƒ‰ìƒì„ ë³€ê²½í•©ë‹ˆë‹¤.
-        if (image != null)
-        {
-            image.color = color;
-        }
-
+        image.color = color;
         button.interactable = !(state == CellState.Selected || state == CellState.Disabled);
     }
 }

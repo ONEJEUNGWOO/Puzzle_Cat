@@ -12,12 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< HEAD
-  - 
-=======
   - Player
-  - InteractableItem
->>>>>>> Develop
   - 
   - 
   - 
@@ -41,7 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Ball
   - Puzzle
   m_SortingLayers:
   - name: Default
