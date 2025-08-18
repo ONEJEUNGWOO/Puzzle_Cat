@@ -6,24 +6,32 @@ using UnityEngine;
 public class CollisionDetector : MonoBehaviour
 {
     public int layer;
-    public float radius;
-    private AdditionalForce additional;
-
+    public float speed;
+    private Rigidbody rb;
+    
     private void Awake()
     {
-        additional = GetComponent<AdditionalForce>();
-
-        layer = LayerMask.NameToLayer("Puzzle");
+        rb = GetComponent<Rigidbody>();
+        Physics.gravity = new Vector3(0f, -20f, 0f);    //게임매니저에서 관리해야 함
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-            additional.enabled = !Physics.CheckSphere(transform.position, radius, 1 << layer);
+        if (!Physics.CheckSphere(transform.position, 0.5f, 1<<LayerMask.NameToLayer("Puzzle")))
+        {
+            AddForce();
+        }
+    }
+
+    private void AddForce()
+    {
+        var force = Vector3.up * 6f;
+        rb.AddForce(force);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(transform.position, 0.5f);
     }
 }
