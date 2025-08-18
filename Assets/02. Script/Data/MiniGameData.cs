@@ -8,24 +8,17 @@ public class MiniGameData : MonoBehaviour
 {
     public MiniGame games;
 
-    public bool isMain;
-
-    [SerializeField] int level;
-
-
-    private void Awake()
-    {
-        PuzzleManager.Instance.miniGameData = this;
-    }
-
+    public Transform rewardSpawnPoint;
 
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
+        PuzzleManager.Instance.PuzzleIn(games, rewardSpawnPoint);
+    }
 
-        PuzzleManager.Instance.PuzzleIn(games);
-
-        PuzzleManager.Instance.SetPuzzle(games,level);
+    private void OnTriggerExit(Collider other)
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager>
 
     public void isGameCleared(bool clear, int index)
     {
-        if (index > GameCleared.Count - 1) return;
+        if (!clear) return;
         GameCleared[index] = clear;
     }
 

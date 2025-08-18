@@ -123,6 +123,126 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &17838148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 17838149}
+  - component: {fileID: 17838153}
+  - component: {fileID: 17838152}
+  - component: {fileID: 17838151}
+  - component: {fileID: 17838150}
+  m_Layer: 0
+  m_Name: Fifth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &17838149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17838148}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.409, y: 0.32, z: -5.21}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2129193423}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &17838150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17838148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  games: {fileID: 0}
+  rewardSpawnPoint: {fileID: 798266828}
+--- !u!135 &17838151
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17838148}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &17838152
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17838148}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &17838153
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17838148}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &26465323
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,8 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   games: {fileID: 0}
-  isMain: 0
-  level: 0
+  rewardSpawnPoint: {fileID: 1024883058}
 --- !u!1 &67908693
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,8 +527,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78005660}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.6960287, y: 3.5052612, z: -1.1471281}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.6960297, y: 3.5052614, z: -1.1471281}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -437,7 +556,6 @@ GameObject:
   - component: {fileID: 96523342}
   - component: {fileID: 96523341}
   - component: {fileID: 96523344}
-  - component: {fileID: 96523345}
   m_Layer: 0
   m_Name: Forth
   m_TagString: Untagged
@@ -544,23 +662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   games: {fileID: 0}
-  isMain: 0
-  level: 0
---- !u!114 &96523345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96523339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  games: {fileID: 0}
-  isMain: 0
-  level: 0
+  rewardSpawnPoint: {fileID: 685500715}
 --- !u!4 &103721856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2735506995880913378, guid: cd8fcc5431d7f7e46be3c7c12ed32513, type: 3}
@@ -812,8 +914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   games: {fileID: 0}
-  isMain: 1
-  level: 0
+  rewardSpawnPoint: {fileID: 0}
 --- !u!1 &288368931
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,8 +1067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   games: {fileID: 0}
-  isMain: 0
-  level: 0
+  rewardSpawnPoint: {fileID: 927453133}
 --- !u!1 &460852081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5271870334909201201, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: jumpPower
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6411966234114698976, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1183,8 +1283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   games: {fileID: 11400000, guid: 433dbe1a27fe53f49b973963a14c214c, type: 2}
-  isMain: 1
-  level: 0
+  rewardSpawnPoint: {fileID: 0}
 --- !u!1 &546389115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,8 +1558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   games: {fileID: 0}
-  isMain: 0
-  level: 0
+  rewardSpawnPoint: {fileID: 639899501}
 --- !u!1 &798266827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,8 +1786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   games: {fileID: 11400000, guid: 433dbe1a27fe53f49b973963a14c214c, type: 2}
-  isMain: 0
-  level: 3
+  rewardSpawnPoint: {fileID: 646496434}
 --- !u!4 &974858589
 Transform:
   m_ObjectHideFlags: 0
@@ -1944,9 +2041,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  games: {fileID: 11400000, guid: 433dbe1a27fe53f49b973963a14c214c, type: 2}
-  isMain: 0
-  level: 1
+  games: {fileID: 11400000, guid: 875f9a14022792141b448c349f64d59e, type: 2}
+  rewardSpawnPoint: {fileID: 546389116}
 --- !u!1 &1104863727
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,8 +2419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   games: {fileID: 0}
-  isMain: 0
-  level: 0
+  rewardSpawnPoint: {fileID: 239149347}
 --- !u!1 &1300121896
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,8 +2539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   games: {fileID: 11400000, guid: 433dbe1a27fe53f49b973963a14c214c, type: 2}
-  isMain: 0
-  level: 2
+  rewardSpawnPoint: {fileID: 723570544}
 --- !u!1 &1451097665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2565,8 +2659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   games: {fileID: 0}
-  isMain: 1
-  level: 0
+  rewardSpawnPoint: {fileID: 0}
 --- !u!1 &1615350407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2954,6 +3047,7 @@ Transform:
   - {fileID: 1078517817}
   - {fileID: 934279969}
   - {fileID: 96523340}
+  - {fileID: 17838149}
   - {fileID: 771990726}
   - {fileID: 26465324}
   - {fileID: 1297035943}

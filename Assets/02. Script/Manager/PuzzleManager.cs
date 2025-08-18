@@ -9,21 +9,31 @@ public class PuzzleManager : Singleton<PuzzleManager>
 
     public MiniGame miniGame;
 
-    public MiniGameData miniGameData;
 
     public Action Reward;
 
     public event Action<MiniGame> OnPuzzleZoneEnter;
     public event Action OnpuzzleZoneExit;
 
-    private void Start()
-    {
-        miniGameData = GetComponent<MiniGameData>();
-    }
+    public Transform currentRwdTrs;
 
-    public void PuzzleIn(MiniGame data)
+
+
+    public void PuzzleIn(MiniGame data, Transform rwdTrs)
     {
+        miniGame = null;
+        currentRwdTrs = null;
         OnPuzzleZoneEnter?.Invoke(data);
+
+        if (obj != null)
+        {
+            DestroyObj();
+        }
+
+        miniGame = data;
+        currentRwdTrs = rwdTrs;
+        obj = Instantiate(data.levels, transform.position, transform.rotation, transform);
+
     }
 
     public void PuzzleExit()
@@ -31,21 +41,15 @@ public class PuzzleManager : Singleton<PuzzleManager>
         OnpuzzleZoneExit?.Invoke();
     }
 
-    public void SetPuzzle(MiniGame data, int level)
-    {
-        if (obj != null)
-        {
-            DestroyObj();
-        }
-
-        miniGame = data;
-
-        obj = Instantiate(data.levels[level], transform.position, transform.rotation, transform);
-    }
 
     public void PuzzleClear()
     {
-        GameManager.Instance.isGameCleared(true, miniGame.GameIndex);
+        if (miniGame.reward != null && currentRwdTrs != null)
+        {
+            Instantiate(miniGame.reward, currentRwdTrs.position, currentRwdTrs.rotation);
+            Debug.Log("Spawn!");
+        }
+        GameManager.Instance.isGameCleared(miniGame.isMain, miniGame.GameIndex);
         PuzzleExit();
         DestroyObj();
     }
