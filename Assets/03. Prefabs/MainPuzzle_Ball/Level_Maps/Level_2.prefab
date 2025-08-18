@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 6721881889346776558}
   - component: {fileID: 484988908432197770}
   - component: {fileID: 3284903983649095813}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Jump_Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1106,7 +1106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8781626859880683286}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Level_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
