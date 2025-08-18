@@ -12,7 +12,6 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
   - 
   - 
   - 
@@ -36,7 +35,8 @@ TagManager:
   - 
   - 
   - 
-  - Ball
+  - 
+  - 
   - Puzzle
   m_SortingLayers:
   - name: Default
