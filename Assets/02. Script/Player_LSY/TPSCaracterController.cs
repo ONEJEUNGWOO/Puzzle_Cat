@@ -61,10 +61,10 @@ public class TPSCaracterController : MonoBehaviour
 
             // 캐릭터가 바라보는 방향을 정하는 방법:
             // 1.캐릭터가 움직일 때 시선을 고정 시키는 방법:
-            //CharacterBody.forward = lookForward;
+            CharacterBody.forward = lookForward;
 
             // 2. 캐릭터가 카메라와 같은 정면을 바라보지않고 이동해야하는 방향으로 바라보는 방법:
-            CharacterBody.forward = moveDir;
+            //CharacterBody.forward = moveDir;
 
             //var angle = CharacterBody.eulerAngles;
             //for (var i = 0f; i <= 1f; i += Time.deltaTime)

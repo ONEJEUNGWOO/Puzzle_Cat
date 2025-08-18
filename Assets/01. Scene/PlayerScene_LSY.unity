@@ -253,7 +253,19 @@ MonoBehaviour:
     m_ActionId: d76c24a7-d18f-498b-be3b-ae16197e993d
     m_ActionName: KittyAction/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 24386133}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1b9149fb-48c9-4084-9a0b-2e01aacbed32
     m_ActionName: KittyAction/Jump[/Keyboard/space]
   - m_PersistentCalls:
