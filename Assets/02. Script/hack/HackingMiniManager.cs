@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
- using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 using URandom = UnityEngine.Random;
 
 public enum GameState { FirstClick, Playing, Finished }
@@ -20,6 +21,10 @@ public class HackingMiniManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI infoText;
     [SerializeField] public GameObject cellPrefab;
     [SerializeField] public GameObject exitButton;
+    // 🚨 새롭게 추가된 UI
+    [SerializeField] private GameObject startGameUI;
+    [SerializeField] private GameObject retryGameUI;
+    [SerializeField] private GameObject successUI; // 🏆 성공 UI 추가
 
     [Header("Color Settings")]
     [SerializeField] public Color normalColor = new(0.5f, 0.5f, 0.5f, 1f);
@@ -40,9 +45,10 @@ public class HackingMiniManager : MonoBehaviour
     [SerializeField] private float mistakePenaltySeconds = 5f;
     [SerializeField] private float minTimerAfterPenalty = 0f;
 
-    private readonly List<string> hexCodes = new() { "낚시대", "쥐", "실타래", "츄르", "캣닢" };
     [Header("Image Settings")]
-    [SerializeField] private List<Sprite> hexSprites; // 🚨 이미지 리스트 추가
+    [SerializeField] private List<Sprite> hexSprites;
+
+    private readonly List<string> hexCodes = new() { "낚시대", "쥐", "실타래", "츄르", "캣닢" };
 
     private GameState currentState;
     private string[,] gridData;
@@ -64,16 +70,16 @@ public class HackingMiniManager : MonoBehaviour
             return;
         }
 
-        // 🚨 이미지 리스트가 비어있는지 확인합니다.
         if (hexSprites == null || hexSprites.Count != hexCodes.Count)
         {
             Debug.LogError("Hex Sprites 리스트가 비어있거나, 개수가 올바르지 않습니다. 인스펙터에 이미지를 5개 모두 연결해주세요!");
             return;
         }
 
-        if (exitButton != null) exitButton.SetActive(false);
-
-        InitializeGame(newDaemon: true);
+        // 🚨 게임 시작 전 초기 상태 설정
+        ShowUI(startGameUI);
+        HideUI(gridPanel.gameObject, bufferText.gameObject, logText.gameObject, timerText.gameObject, infoText.gameObject, exitButton);
+        HideUI(retryGameUI, successUI); // 🏆 successUI 추가
     }
 
     void Update()
@@ -91,6 +97,38 @@ public class HackingMiniManager : MonoBehaviour
     }
 
     void OnDestroy() { }
+
+    // 🚨 게임 시작 버튼에 연결될 함수
+    public void StartGame()
+    {
+        HideUI(startGameUI);
+        ShowUI(gridPanel.gameObject, bufferText.gameObject, logText.gameObject, timerText.gameObject, infoText.gameObject);
+        InitializeGame(true);
+
+        // 🚨 게임 시작과 동시에 타이머가 흐르도록 currentState를 Playing으로 변경
+        currentState = GameState.Playing;
+    }
+
+    // 🚨 재시작 버튼에 연결될 함수
+    public void RetryGame()
+    {
+        HideUI(retryGameUI);
+        ShowUI(gridPanel.gameObject, bufferText.gameObject, logText.gameObject, timerText.gameObject, infoText.gameObject);
+        InitializeGame(true);
+
+        // 🚨 재시작과 동시에 타이머가 흐르도록 currentState를 Playing으로 변경
+        currentState = GameState.Playing;
+    }
+
+    // 🏆 성공 시 게임을 종료하는 함수
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 
     void InitializeGame(bool newDaemon)
     {
@@ -118,6 +156,7 @@ public class HackingMiniManager : MonoBehaviour
         bufferText.text = "";
         logText.text = "";
 
+        // 🚨 게임 시작 버튼을 누르기 전에는 FirstClick 상태로 유지
         currentState = GameState.FirstClick;
         lastRow = -1; lastCol = -1;
 
@@ -157,6 +196,7 @@ public class HackingMiniManager : MonoBehaviour
         }
 
         InitializeGame(true);
+        currentState = GameState.Playing;
     }
 
     void Reshuffle(bool changeDaemon)
@@ -165,7 +205,8 @@ public class HackingMiniManager : MonoBehaviour
         matchIndex = 0;
         bufferText.text = "";
 
-        currentState = GameState.FirstClick;
+        // 🚨 리셔플 시에는 게임 플레이 상태를 유지
+        currentState = GameState.Playing;
         lastRow = -1; lastCol = -1;
 
         ResetGrid();
@@ -174,8 +215,8 @@ public class HackingMiniManager : MonoBehaviour
         if (changeDaemon)
             daemonSequence = GenerateDaemon();
 
-        infoText.text = "Daemon: " + string.Join(" ", daemonSequence);
-        logText.text += "[RESHUFFLE]\n";
+        infoText.text = "아이템 순서: " + string.Join(" ", daemonSequence);
+        logText.text += "[다시 섞기]\n";
     }
 
     void ResetGrid()
@@ -200,7 +241,6 @@ public class HackingMiniManager : MonoBehaviour
                 var cell = cellObj.GetComponent<GridCell>();
                 int lr = r, lc = c;
 
-                // 🚨 스프라이트를 넘겨주는 코드로 수정
                 cell.Setup(code, lr, lc, hexSprites[hexIndex], () => OnCellClick(lr, lc));
                 cell.SetState(CellState.Normal, normalColor);
                 cells[r, c] = cell;
@@ -220,25 +260,10 @@ public class HackingMiniManager : MonoBehaviour
     {
         if (currentState == GameState.Finished) return;
         string clicked = gridData[row, col];
-        if (currentState == GameState.FirstClick)
-        {
-            if (clicked != daemonSequence[0])
-            {
-                ApplyMistakePenaltyIfNeeded();
-                Reshuffle(reshuffleChangesDaemon);
-                return;
-            }
-            SelectCell(row, col);
-            matchedSequence.Add(clicked);
-            matchIndex = 1;
-            bufferText.text = string.Join(" ", matchedSequence);
-            currentState = GameState.Playing;
-            UpdateCrossHighlights();
-            TryComplete();
-            return;
-        }
+
+        // 🚨 첫 클릭 로직을 제거하고, 클릭 시 로직만 남김
         bool inCross = (row == lastRow) || (col == lastCol);
-        if (!inCross)
+        if (matchedSequence.Count > 0 && !inCross)
         {
             ApplyMistakePenaltyIfNeeded();
             Reshuffle(reshuffleChangesDaemon);
@@ -250,11 +275,14 @@ public class HackingMiniManager : MonoBehaviour
             Reshuffle(reshuffleChangesDaemon);
             return;
         }
+
         SelectCell(row, col);
         matchedSequence.Add(clicked);
         matchIndex++;
         bufferText.text = string.Join(" ", matchedSequence);
+
         if (TryComplete()) return;
+
         UpdateCrossHighlights();
     }
 
@@ -295,9 +323,9 @@ public class HackingMiniManager : MonoBehaviour
         infoText.text += "\n<color=green>SUCCESS!</color>";
         foreach (var cell in cells)
             cell.GetComponent<Button>().interactable = false;
-        if (exitButton != null)
-            exitButton.SetActive(true);
-        OnGameFinished?.Invoke(true);
+
+        HideUI(gridPanel.gameObject, bufferText.gameObject, logText.gameObject, timerText.gameObject, infoText.gameObject);
+        ShowUI(successUI); // 🏆 성공 시 successUI를 표시하도록 수정
     }
 
     void TimeOutFail()
@@ -306,9 +334,9 @@ public class HackingMiniManager : MonoBehaviour
         infoText.text += "\n<color=red>ACCESS DENIED</color>\nReason: Time Over... 실패...";
         foreach (var cell in cells)
             cell.GetComponent<Button>().interactable = false;
-        if (exitButton != null)
-            exitButton.SetActive(true);
-        OnGameFinished?.Invoke(false);
+
+        HideUI(gridPanel.gameObject, bufferText.gameObject, logText.gameObject, timerText.gameObject, infoText.gameObject);
+        ShowUI(retryGameUI); // 🏆 실패 시 retryGameUI를 표시하도록 유지
     }
 
     void ApplyMistakePenaltyIfNeeded()
@@ -317,11 +345,34 @@ public class HackingMiniManager : MonoBehaviour
         timer -= mistakePenaltySeconds;
         if (timer < minTimerAfterPenalty) timer = minTimerAfterPenalty;
         timerText.text = timer.ToString("F2");
-        logText.text += $"[PENALTY -{mistakePenaltySeconds}s]\n";
+        logText.text += $"[벌칙 -{mistakePenaltySeconds}s]\n";
     }
 
     public void LoadNewScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    // 🚨 UI 활성화/비활성화 도우미 함수
+    private void ShowUI(params GameObject[] UIs)
+    {
+        foreach (var ui in UIs)
+        {
+            if (ui != null)
+            {
+                ui.SetActive(true);
+            }
+        }
+    }
+
+    private void HideUI(params GameObject[] UIs)
+    {
+        foreach (var ui in UIs)
+        {
+            if (ui != null)
+            {
+                ui.SetActive(false);
+            }
+        }
     }
 }
