@@ -150,13 +150,13 @@ public class PlayerController : MonoBehaviour
     {
         Ray[] rays = new Ray[4] // 4개의 레이저를 사용하여 플레이어의 발 아래를 검사합니다.
         {
-            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.001f), Vector3.down),
+            new Ray(transform.position + (transform.forward * 0.1f) + (transform.up * 0.001f), Vector3.down),
             // 플레이어의 앞쪽에서 아래로 향하는 레이
-            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.001f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.1f) + (transform.up * 0.001f), Vector3.down),
             // 플레이어의 뒤쪽에서 아래로 향하는 레이
-            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.001f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.1f) + (transform.up * 0.001f), Vector3.down),
             // 플레이어의 오른쪽에서 아래로 향하는 레이
-            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.001f), Vector3.down)
+            new Ray(transform.position + (-transform.right * 0.1f) + (transform.up * 0.001f), Vector3.down)
             // 플레이어의 왼쪽에서 아래로 향하는 레이
             // transform.up * 0.01f 는 플레이어의 발 아래에서 약간 위쪽으로 레이를 시작하여 지면을 인지하지 못하는 상황에 예외처리 입니다.
         };
@@ -164,11 +164,14 @@ public class PlayerController : MonoBehaviour
         // 4개에 레이저는 검출하기 위해 for문을 사용합니다.
         for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i], 0.01f, groundLayerMask))
+            if (Physics.Raycast(rays[i], 0.1f, groundLayerMask))
             // Physics.Raycast로 레이를 쏘아 지면에 정보를 가져옵니다, rays[i] 배열에 있는 레이들을 하나씩 가져옵니다.
             // 0.1f 는 레이의 길이로, groundLayerMask로 지정한 정보만 가져옵니다.
             {
+
+                Debug.DrawRay(rays[i].origin, rays[i].direction * 1.2f, Color.red);
                 return true; // 지면에 닿아 있으면 true를 반환합니다.
+
             }
         }
         return false;
