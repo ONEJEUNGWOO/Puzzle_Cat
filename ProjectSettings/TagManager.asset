@@ -12,7 +12,12 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< HEAD
   - 
+=======
+  - Player
+  - InteractableItem
+>>>>>>> Develop
   - 
   - 
   - 
