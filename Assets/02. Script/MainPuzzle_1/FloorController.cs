@@ -25,16 +25,16 @@ public class FloorController : MonoBehaviour
 
     private void Update()
     {
-        if (MainPuzzle_UIManager.Instance.gameClearUI.activeSelf)       //게임 클리어 하면 0,0,0 로테이션으로 정렬
+        if (MainPuzzle_UIManager.Instance.gameClearUI.activeSelf)       //게임 클리어 하면 0,0,0 로테이션으로 정렬 //TODO : 매니저 혹은 EndPoint bool값 isClear를 통해 관리 해 줄 예정입니다
 
-        RotateReSet();
+            RotateReSet();
     }
 
     private void FixedUpdate()
     {
-        if (!MainPuzzle_UIManager.Instance.gameClearUI.activeSelf)      //게임 클리어 하면 움직이지 않게
+        if (!MainPuzzle_UIManager.Instance.gameClearUI.activeSelf)      //게임 클리어 하면 움직이지 않게 //TODO : 매니저 혹은 EndPoint bool값 isClear를 통해 관리 해 줄 예정입니다
 
-        MoveFloor();
+            MoveFloor();
     }
 
     public void OnSetMoveValue(InputAction.CallbackContext context)
