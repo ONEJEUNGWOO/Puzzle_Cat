@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+<<<<<<< HEAD
 using UnityEngine.SceneManagement;
+=======
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
 using UnityEngine.UI;
 using URandom = UnityEngine.Random;
 
 public enum GameState { FirstClick, Playing, Finished }
+<<<<<<< HEAD
 public enum DifficultyLevel { Easy, Normal, Hard }
+=======
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
 
 [RequireComponent(typeof(GridLayoutGroup))]
 public class HackingMiniManager : MonoBehaviour
@@ -28,9 +34,14 @@ public class HackingMiniManager : MonoBehaviour
     [SerializeField] public Color disabledColor = new(0.2f, 0.2f, 0.2f, 1f);
 
     [Header("Game Settings")]
+<<<<<<< HEAD
     [SerializeField] private DifficultyLevel difficulty = DifficultyLevel.Normal;
     [HideInInspector][SerializeField] private float gameTime = 60.0f;
     [HideInInspector][SerializeField] private int sequenceLength = 3;
+=======
+    [SerializeField] private float gameTime = 60.0f;
+    [SerializeField] private int sequenceLength = 3;
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
     [SerializeField] private int gridRows = 7;
     [SerializeField] private int gridCols = 5;
     [SerializeField] private bool reshuffleChangesDaemon = true;
@@ -67,6 +78,10 @@ public class HackingMiniManager : MonoBehaviour
         InitializeGame(newDaemon: true);
     }
 
+<<<<<<< HEAD
+=======
+    // 🚨 Update 함수를 사용하여 타이머를 관리합니다.
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
     void Update()
     {
         if (currentState == GameState.Playing)
@@ -81,6 +96,7 @@ public class HackingMiniManager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     void OnDestroy() { }
 
     void InitializeGame(bool newDaemon)
@@ -101,6 +117,15 @@ public class HackingMiniManager : MonoBehaviour
                 break;
         }
 
+=======
+    void OnDestroy()
+    {
+        // Update 함수를 사용하므로 OnDestroy에서 특별히 할 일은 없습니다.
+    }
+
+    void InitializeGame(bool newDaemon)
+    {
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
         gridData = new string[gridRows, gridCols];
         cells = new GridCell[gridRows, gridCols];
 
@@ -124,6 +149,7 @@ public class HackingMiniManager : MonoBehaviour
         timerText.text = timer.ToString("F2");
     }
 
+<<<<<<< HEAD
     public void SetDifficultyAndRestart(string difficulty)
     {
         switch (difficulty.ToLower())
@@ -150,6 +176,8 @@ public class HackingMiniManager : MonoBehaviour
         InitializeGame(true);
     }
 
+=======
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
     void Reshuffle(bool changeDaemon)
     {
         matchedSequence.Clear();
@@ -178,6 +206,10 @@ public class HackingMiniManager : MonoBehaviour
     void GenerateGrid()
     {
         gridPanel.constraintCount = gridCols;
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
         for (int r = 0; r < gridRows; r++)
         {
             for (int c = 0; c < gridCols; c++)
@@ -194,6 +226,10 @@ public class HackingMiniManager : MonoBehaviour
             }
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
     List<string> GenerateDaemon()
     {
         var seq = new List<string>();
@@ -201,10 +237,20 @@ public class HackingMiniManager : MonoBehaviour
             seq.Add(hexCodes[URandom.Range(0, hexCodes.Count)]);
         return seq;
     }
+<<<<<<< HEAD
     void OnCellClick(int row, int col)
     {
         if (currentState == GameState.Finished) return;
         string clicked = gridData[row, col];
+=======
+
+    void OnCellClick(int row, int col)
+    {
+        if (currentState == GameState.Finished) return;
+
+        string clicked = gridData[row, col];
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
         if (currentState == GameState.FirstClick)
         {
             if (clicked != daemonSequence[0])
@@ -213,6 +259,10 @@ public class HackingMiniManager : MonoBehaviour
                 Reshuffle(reshuffleChangesDaemon);
                 return;
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
             SelectCell(row, col);
             matchedSequence.Add(clicked);
             matchIndex = 1;
@@ -222,6 +272,10 @@ public class HackingMiniManager : MonoBehaviour
             TryComplete();
             return;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
         bool inCross = (row == lastRow) || (col == lastCol);
         if (!inCross)
         {
@@ -229,25 +283,45 @@ public class HackingMiniManager : MonoBehaviour
             Reshuffle(reshuffleChangesDaemon);
             return;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
         if (clicked != daemonSequence[matchIndex])
         {
             ApplyMistakePenaltyIfNeeded();
             Reshuffle(reshuffleChangesDaemon);
             return;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
         SelectCell(row, col);
         matchedSequence.Add(clicked);
         matchIndex++;
         bufferText.text = string.Join(" ", matchedSequence);
+<<<<<<< HEAD
         if (TryComplete()) return;
         UpdateCrossHighlights();
     }
+=======
+
+        if (TryComplete()) return;
+        UpdateCrossHighlights();
+    }
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
     void SelectCell(int row, int col)
     {
         cells[row, col].SetState(CellState.Selected, selectedColor);
         logText.text += gridData[row, col] + "\n";
         lastRow = row; lastCol = col;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
     void UpdateCrossHighlights()
     {
         for (int r = 0; r < gridRows; r++)
@@ -255,12 +329,20 @@ public class HackingMiniManager : MonoBehaviour
             for (int c = 0; c < gridCols; c++)
             {
                 if (cells[r, c].currentState == CellState.Selected) continue;
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
                 bool highlight = (r == lastRow) || (c == lastCol);
                 cells[r, c].SetState(highlight ? CellState.Highlighted : CellState.Disabled,
                                      highlight ? highlightColor : disabledColor);
             }
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
     bool TryComplete()
     {
         if (matchIndex >= daemonSequence.Count)
@@ -270,6 +352,7 @@ public class HackingMiniManager : MonoBehaviour
         }
         return false;
     }
+<<<<<<< HEAD
     void SuccessGame()
     {
         currentState = GameState.Finished;
@@ -290,6 +373,41 @@ public class HackingMiniManager : MonoBehaviour
             exitButton.SetActive(true);
         OnGameFinished?.Invoke(false);
     }
+=======
+
+    void SuccessGame()
+    {
+        // 🚨 성공 시 GameState를 Finished로 설정하는 것이 핵심입니다.
+        currentState = GameState.Finished;
+        infoText.text += "\n<color=green>SUCCESS!</color>";
+
+        // 클릭 무효화
+        foreach (var cell in cells)
+            cell.GetComponent<Button>().interactable = false;
+
+        // 종료 UI 활성화
+        if (exitButton != null)
+            exitButton.SetActive(true);
+
+        OnGameFinished?.Invoke(true);
+    }
+
+    void TimeOutFail()
+    {
+        // 🚨 실패 시에도 GameState를 Finished로 설정합니다.
+        currentState = GameState.Finished;
+        infoText.text += "\n<color=red>ACCESS DENIED</color>\nReason: Time Over... 실패...";
+
+        foreach (var cell in cells)
+            cell.GetComponent<Button>().interactable = false;
+
+        if (exitButton != null)
+            exitButton.SetActive(true);
+
+        OnGameFinished?.Invoke(false);
+    }
+
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
     void ApplyMistakePenaltyIfNeeded()
     {
         if (!useMistakePenalty) return;
@@ -298,8 +416,13 @@ public class HackingMiniManager : MonoBehaviour
         timerText.text = timer.ToString("F2");
         logText.text += $"[PENALTY -{mistakePenaltySeconds}s]\n";
     }
+<<<<<<< HEAD
     public void LoadNewScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
+=======
+
+    // 🚨 TimerCoroutine() 함수는 삭제합니다.
+>>>>>>> parent of 56f9b50 ([add]HackingMiniUI)
 }
