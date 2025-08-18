@@ -444,7 +444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2865913348483186955}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -575,7 +575,19 @@ MonoBehaviour:
     m_ActionId: 1b9149fb-48c9-4084-9a0b-2e01aacbed32
     m_ActionName: KittyAction/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5271870334909201201}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7829bc61-8439-4bf2-b64d-086c0b18316c
     m_ActionName: KittyAction/Interraction[/Keyboard/f]
   - m_PersistentCalls:
@@ -639,6 +651,9 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 55
+  interactableItem:
+    serializedVersion: 2
+    m_Bits: 128
   cameraContainer: {fileID: 527296504199667262}
   lookSensitivity: 0.1
 --- !u!1 &3454763922899341398

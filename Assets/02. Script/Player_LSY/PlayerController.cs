@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     public float runSpeed; 
     public float jumpPower; // 점프할 때의 힘을 나타내는 변수입니다. 이 값은 Rigidbody 컴포넌트의 힘으로 사용됩니다.
     private Vector2 curMovementInput; 
-    public LayerMask groundLayerMask; 
+    public LayerMask groundLayerMask;
+    public LayerMask interactableItem;
 
     [Header("Look")]
     public Transform cameraContainer; 
@@ -36,7 +37,8 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-       Move();
+        Move();
+        checkInteract();
     }
     private void LateUpdate()
     {
@@ -66,7 +68,7 @@ public class PlayerController : MonoBehaviour
             _rigidbody.MovePosition(_rigidbody.position + dir * moveSpeed * Time.fixedDeltaTime);
         }
                 
-        Debug.DrawRay(cameraContainer.position, new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized, Color.red);
+        //Debug.DrawRay(cameraContainer.position, new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized, Color.red);
     }
 
     void CameraLook()
@@ -133,6 +135,29 @@ public class PlayerController : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
     }
 
+    public void OnInteraction(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            // 함수를 따로 만들어서 fixedUpdate에 넣고 밑에 로직을 반복 실행 즉 감지하게 만든다.
+            var target = isInteract();
+            if (target != null)
+            {
+                target.Interact();
+                //Debug.Log(target.InteractionText);
+            }
+            
+        }
+    }
+    private void checkInteract()
+    {
+        var target = isInteract();
+        if (target != null)
+        {
+            Debug.Log(target.InteractionText);
+        }
+    }
+
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started && isGrounded())
@@ -174,6 +199,41 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    InteractableObject isInteract()
+    {
+        //Debug.DrawRay(cameraContainer.position, kittyTransform.forward.normalized, Color.black);
+
+        Vector3 forward = kittyTransform.forward.normalized;
+
+        // 좌우 15도 회전 벡터
+        Vector3 leftDir = Quaternion.AngleAxis(-15f, Vector3.up) * forward;
+        Vector3 rightDir = Quaternion.AngleAxis(15f, Vector3.up) * forward;
+
+        Ray[] rays = new Ray[3]
+        {
+            new Ray(cameraContainer.position, forward),
+            new Ray(cameraContainer.position, leftDir),
+            new Ray(cameraContainer.position, rightDir)
+        };
+
+        for (int i = 0; i < rays.Length; i++)
+        {
+            if (Physics.Raycast(rays[i], out RaycastHit hit, 0.5f, interactableItem) && hit.collider.TryGetComponent(out InteractableObject obj))
+            // Physics.Raycast로 레이를 쏘아 interactableItem 레이어에 있는 오브젝트를 검사합니다.
+            // 2f 는 레이의 길이로, interactableItem로 지정한 정보만 가져옵니다.
+            {
+                return obj;
+            }
+        }
+
+        return null; // 현재는 상호작용 가능한 오브젝트가 발견되지 않았으므로 false를 반환합니다.
+
+        //for (int i = 0; i < rays.Length; i++)
+        //{
+        //    Debug.DrawRay(rays[i].origin, rays[i].direction * 0.5f, Color.red);
+        //    // * 3f : 레이 길이 (씬 뷰에서 보이는 길이용)
+        //}
+    }
 }
 
 
