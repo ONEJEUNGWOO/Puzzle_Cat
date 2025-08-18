@@ -9,7 +9,6 @@ public class LevelController : MonoBehaviour
     private void Awake()
     {
         Spawn(0);
-        Spawn(1);
     }
 
     void Spawn(int level)
