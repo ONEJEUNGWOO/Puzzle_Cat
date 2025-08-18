@@ -91,6 +91,16 @@ public class PlayerController : MonoBehaviour
         //kittyTransform.forward = lookForward;
     }
 
+    private void checkInteract()
+    // 상호작용 가능한 오브젝트를 검사하고, 해당 오브젝트가 있다면 InteractionText를 출력합니다.
+    {
+        var target = isInteract();
+        if (target != null)
+        {
+            Debug.Log(target.InteractionText);
+        }
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -147,14 +157,6 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log(target.InteractionText);
             }
             
-        }
-    }
-    private void checkInteract()
-    {
-        var target = isInteract();
-        if (target != null)
-        {
-            Debug.Log(target.InteractionText);
         }
     }
 
@@ -220,13 +222,13 @@ public class PlayerController : MonoBehaviour
         {
             if (Physics.Raycast(rays[i], out RaycastHit hit, 0.5f, interactableItem) && hit.collider.TryGetComponent(out InteractableObject obj))
             // Physics.Raycast로 레이를 쏘아 interactableItem 레이어에 있는 오브젝트를 검사합니다.
-            // 2f 는 레이의 길이로, interactableItem로 지정한 정보만 가져옵니다.
+            // 0.5f 는 레이의 길이로, interactableItem로 지정한 정보를 가져옵니다.
             {
                 return obj;
             }
         }
 
-        return null; // 현재는 상호작용 가능한 오브젝트가 발견되지 않았으므로 false를 반환합니다.
+        return null; // 상호작용 가능한 오브젝트가 없으면 null을 반환합니다.
 
         //for (int i = 0; i < rays.Length; i++)
         //{
