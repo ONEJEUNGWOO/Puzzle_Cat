@@ -123,27 +123,25 @@ public class HackingMiniManager : MonoBehaviour
     // 🏆 성공 시 게임을 종료하는 함수
     public void ExitGame()
     {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        PuzzleManager.Instance.PuzzleClear ();
     }
+
+
 
     void InitializeGame(bool newDaemon)
     {
         switch (difficulty)
         {
             case DifficultyLevel.Easy:
-                gameTime = 90f;
-                sequenceLength = 2;
-                break;
-            case DifficultyLevel.Normal:
                 gameTime = 60f;
                 sequenceLength = 3;
                 break;
+            case DifficultyLevel.Normal:
+                gameTime = 15f;
+                sequenceLength = 3;
+                break;
             case DifficultyLevel.Hard:
-                gameTime = 45f;
+                gameTime = 10f;
                 sequenceLength = 4;
                 break;
         }
@@ -172,26 +170,22 @@ public class HackingMiniManager : MonoBehaviour
         timerText.text = timer.ToString("F2");
     }
 
-    public void SetDifficultyAndRestart(string difficulty)
+    public void SetDifficultyAndRestart(string difficultyStr)
     {
-        switch (difficulty.ToLower())
+        switch (difficultyStr.ToLower())
         {
             case "easy":
-                gameTime = 90f;
-                sequenceLength = 2;
+                difficulty = DifficultyLevel.Easy;
                 break;
             case "normal":
-                gameTime = 60f;
-                sequenceLength = 3;
+                difficulty = DifficultyLevel.Normal;
                 break;
             case "hard":
-                gameTime = 45f;
-                sequenceLength = 4;
+                difficulty = DifficultyLevel.Hard;
                 break;
             default:
                 Debug.LogWarning("Invalid difficulty level. Setting to Normal.");
-                gameTime = 60f;
-                sequenceLength = 3;
+                difficulty = DifficultyLevel.Normal;
                 break;
         }
 
