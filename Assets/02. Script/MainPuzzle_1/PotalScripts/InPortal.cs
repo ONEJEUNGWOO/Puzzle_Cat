@@ -16,7 +16,7 @@ public class InPortal : MonoBehaviour
 
     void MovePortal(Collider collider)
     {
-        collider.gameObject.GetComponent<Rigidbody>().MovePosition(outPortal.gameObject.transform.position.normalized + collider.transform.forward.normalized);// = outPortal.gameObject.transform.position.normalized + collider.transform.forward.normalized;
+        collider.gameObject.GetComponent<Rigidbody>().MovePosition(outPortal.gameObject.transform.position + collider.transform.forward);// = outPortal.gameObject.transform.position.normalized + collider.transform.forward.normalized;
     }
 
 
