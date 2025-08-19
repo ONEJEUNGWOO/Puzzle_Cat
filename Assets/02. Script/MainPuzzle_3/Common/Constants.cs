@@ -28,4 +28,16 @@ namespace Game.Common
             laserColor = color;
         }
     }
+
+    public struct LaserRaycastInfo
+    {
+        public Vector3 raycastDirection;
+        public Color laserColor;
+
+        public LaserRaycastInfo(Vector3 dir, Color color)
+        {
+            raycastDirection = dir;
+            laserColor = color;
+        }
+    }
 }

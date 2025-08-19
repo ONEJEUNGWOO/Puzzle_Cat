@@ -67,4 +67,12 @@ public class LaserRaycaster : MonoBehaviour
         lineRenderer.positionCount = 0;
         isRayCasting = false;
     }
+
+    /// <summary>
+    /// 발사해야 할 레이저가 2개 이상일 경우 처리 방법 고민중
+    /// </summary>
+    public void CastAllLaser()
+    {
+
+    }
 }
