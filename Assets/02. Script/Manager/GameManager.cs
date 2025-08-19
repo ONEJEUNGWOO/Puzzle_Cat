@@ -18,6 +18,14 @@ public class GameManager : Singleton<GameManager>
     {
         if (!clear) return;
         GameCleared[index] = clear;
+        foreach (var amount in GameCleared)
+        {
+            if (!amount)
+            {
+                return;
+            }
+        }
+        Debug.Log("게임 클리어!");
     }
 
     private void HandlePuzzleIn(MiniGame data)
