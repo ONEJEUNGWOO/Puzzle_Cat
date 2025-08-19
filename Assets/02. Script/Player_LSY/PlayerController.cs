@@ -102,7 +102,6 @@ public class PlayerController : MonoBehaviour
         var target = isInteract();
         if (target != null)
         {
-            //Debug.Log(target.InteractionText);
             // ui를 접근해서 메서드호출
             interactionUI.Show(target.InteractionText);
         }
@@ -223,7 +222,7 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i], out RaycastHit hit, 0.5f, interactableItem) && hit.collider.TryGetComponent(out InteractableObject obj))
+            if (Physics.Raycast(rays[i], out RaycastHit hit, 0.8f, interactableItem) && hit.collider.TryGetComponent(out InteractableObject obj))
             // Physics.Raycast로 레이를 쏘아 interactableItem 레이어에 있는 오브젝트를 검사합니다.
             // 0.5f 는 레이의 길이로, interactableItem로 지정한 정보를 가져옵니다.
             {
