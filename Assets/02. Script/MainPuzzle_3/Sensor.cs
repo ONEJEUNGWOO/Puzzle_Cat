@@ -9,6 +9,8 @@ public class Sensor : MonoBehaviour, ILaserInteractable
     public Material material;
     public GameObject obstacle;
 
+    public bool isActive = false;
+
     private LaserPuzzleManager manager;
 
     private void Start()
@@ -19,14 +21,16 @@ public class Sensor : MonoBehaviour, ILaserInteractable
         obstacle = transform.parent.GetChild(1).gameObject;
 
         manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
-        manager.OnObjectChange += ResetState;
+        //manager.OnObjectChange += ResetState;
     }
 
     public void OnLaserHit(LaserHitInfo laserHitInfo)
     {
+        if (isActive) return;
         if(targetColor == laserHitInfo.laserColor)
         {
             obstacle.transform.position = new Vector3(obstacle.transform.position.x, -0.9f, obstacle.transform.position.z);
+            isActive = true;
             manager.RecalculateLaser();
         }
     }
@@ -34,5 +38,6 @@ public class Sensor : MonoBehaviour, ILaserInteractable
     private void ResetState()
     {
         obstacle.transform.position = new Vector3(obstacle.transform.position.x, 0, obstacle.transform.position.z);
+        isActive = true;
     }
 }

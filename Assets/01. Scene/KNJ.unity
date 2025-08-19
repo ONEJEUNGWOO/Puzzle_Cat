@@ -131,6 +131,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1844035481}
     m_Modifications:
+    - target: {fileID: 11713187754969942, guid: cbfd6b54c1956cf47b88c935b7084601, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459565995687778061, guid: cbfd6b54c1956cf47b88c935b7084601, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108106788006790917, guid: cbfd6b54c1956cf47b88c935b7084601, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4734577135317231323, guid: cbfd6b54c1956cf47b88c935b7084601, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -187,9 +199,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7171947769709307252, guid: cbfd6b54c1956cf47b88c935b7084601, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 8460756242011616944, guid: cbfd6b54c1956cf47b88c935b7084601, type: 3}
       propertyPath: m_Name
       value: ObstacleSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460756242011616944, guid: cbfd6b54c1956cf47b88c935b7084601, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144618728859006530, guid: cbfd6b54c1956cf47b88c935b7084601, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -248,6 +272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserEmitter
       objectReference: {fileID: 0}
+    - target: {fileID: 8972944219758995580, guid: c59322523447a84438ec11f32a1e56a8, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -301,6 +329,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 529117876085487364, guid: 3d32fe66f8fb668418f30a597f805fd8, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 1434593351693985833, guid: 3d32fe66f8fb668418f30a597f805fd8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.5
@@ -308,6 +340,14 @@ PrefabInstance:
     - target: {fileID: 1434593351693985833, guid: 3d32fe66f8fb668418f30a597f805fd8, type: 3}
       propertyPath: m_LocalPosition.z
       value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792153820073589249, guid: 3d32fe66f8fb668418f30a597f805fd8, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355903723852494895, guid: 3d32fe66f8fb668418f30a597f805fd8, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5178479072853182626, guid: 3d32fe66f8fb668418f30a597f805fd8, type: 3}
       propertyPath: m_Name
@@ -323,11 +363,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5560521932478663639, guid: 3d32fe66f8fb668418f30a597f805fd8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5560521932478663639, guid: 3d32fe66f8fb668418f30a597f805fd8, type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005581073696180344, guid: 3d32fe66f8fb668418f30a597f805fd8, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -347,6 +391,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1844035481}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.5
@@ -387,9 +447,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -409,6 +485,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1844035481}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.5
@@ -449,9 +541,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -607,6 +715,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserEmitter
       objectReference: {fileID: 0}
+    - target: {fileID: 8972944219758995580, guid: c59322523447a84438ec11f32a1e56a8, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -625,6 +737,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1844035481}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5
@@ -665,9 +793,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -682,6 +822,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1844035481}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -722,9 +878,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -744,6 +916,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 639409067}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -784,9 +972,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -887,6 +1091,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1844035481}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.5
@@ -927,9 +1147,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -965,6 +1201,10 @@ PrefabInstance:
     - target: {fileID: 1382030937296614501, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
       propertyPath: targetColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619932538209625275, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4660971417815952336, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1010,6 +1250,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserReceiver
       objectReference: {fileID: 0}
+    - target: {fileID: 6706327021703082409, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706327021703082409, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198129010617896771, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1028,6 +1280,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1844035481}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -1068,9 +1336,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1151,6 +1435,10 @@ PrefabInstance:
       propertyPath: laserColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8972944219758995580, guid: c59322523447a84438ec11f32a1e56a8, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1171,6 +1459,10 @@ PrefabInstance:
     - target: {fileID: 1382030937296614501, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
       propertyPath: targetColor.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619932538209625275, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4660971417815952336, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1215,6 +1507,18 @@ PrefabInstance:
     - target: {fileID: 6706327021703082409, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
       propertyPath: m_Name
       value: LaserReceiver (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706327021703082409, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706327021703082409, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198129010617896771, guid: 5eea551590611ea438e3c47cf68d208e, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1385,6 +1689,10 @@ PrefabInstance:
       propertyPath: laserColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8972944219758995580, guid: c59322523447a84438ec11f32a1e56a8, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1403,6 +1711,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1844035481}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5
@@ -1443,9 +1767,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1574,6 +1910,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 639409067}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.5
@@ -1614,9 +1966,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1641,6 +2005,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1844035481}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5
@@ -1681,9 +2061,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1713,6 +2105,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1844035481}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5
@@ -1753,9 +2161,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1775,6 +2195,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 639409067}
     m_Modifications:
+    - target: {fileID: 756999670050640181, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387686831070334623, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063357324882556541, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067593546373642424, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6999060755367355746, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5
@@ -1815,9 +2251,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347948776917875937, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
       propertyPath: m_Name
       value: MirrorReflector
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715883061680201492, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838437405038527929, guid: 0d7a507d1d48ff944a19107b9b0188b2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1892,6 +2340,10 @@ PrefabInstance:
     - target: {fileID: 8288480865243053157, guid: c59322523447a84438ec11f32a1e56a8, type: 3}
       propertyPath: laserColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972944219758995580, guid: c59322523447a84438ec11f32a1e56a8, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 262144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
