@@ -27,6 +27,7 @@ public class Sensor : MonoBehaviour, ILaserInteractable
         if(targetColor == laserHitInfo.laserColor)
         {
             obstacle.transform.position = new Vector3(obstacle.transform.position.x, -0.9f, obstacle.transform.position.z);
+            manager.RecalculateLaser();
         }
     }
 
