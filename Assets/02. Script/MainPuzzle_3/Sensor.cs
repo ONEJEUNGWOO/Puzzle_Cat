@@ -18,7 +18,7 @@ public class Sensor : MonoBehaviour, ILaserInteractable
 
         obstacle = transform.parent.GetChild(1).gameObject;
 
-        manager = transform.parent.parent.GetComponent<LaserPuzzleManager>();
+        manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
         manager.OnObjectChange += ResetState;
     }
 

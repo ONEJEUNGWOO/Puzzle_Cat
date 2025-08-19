@@ -25,7 +25,9 @@ public class LaserRaycaster : MonoBehaviour
     private void Start()
     {
         // 퍼즐 매니저를 찾고 매니저의 이벤트를 구독
-        manager = transform.parent.GetComponent<LaserPuzzleManager>();
+        // 이게 정말 하드코딩이란걸 알지만 싱글턴이나 동적생성을 하지 않고 매니저를 찾을 방법 중 가장 빨라서 어쩔 수 없음
+        // 이에 관해 고민을 좀 더 해봐야 할 듯
+        manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
         manager.OnObjectChange += ClearLaser;
     }
 

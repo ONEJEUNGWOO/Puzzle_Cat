@@ -21,7 +21,7 @@ public class Switch : MonoBehaviour, IInteractable
         obstacle.transform.position = isActive ? new Vector3(obstacle.transform.position.x, 0, obstacle.transform.position.z) :
                                         new Vector3(obstacle.transform.position.x, -1f, obstacle.transform.position.z);
 
-        manager = transform.parent.parent.GetComponent<LaserPuzzleManager>();
+        manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
 
     }
 

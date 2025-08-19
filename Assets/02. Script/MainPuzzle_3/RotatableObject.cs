@@ -16,7 +16,7 @@ public class RotatableObject : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        manager = transform.parent.GetComponent<LaserPuzzleManager>();
+        manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
     }
 
     public virtual void OnClick()

@@ -20,7 +20,7 @@ public class LaserReceiver : MonoBehaviour, LaserPuzzle.ILaserInteractable
 
     private void Start()
     {
-        manager = transform.parent.GetComponent<LaserPuzzleManager>();
+        manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
         manager.OnObjectChange += ResetState;
 
         targetMaterial.color = color;
