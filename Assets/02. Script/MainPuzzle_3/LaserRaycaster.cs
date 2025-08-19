@@ -14,8 +14,8 @@ public class LaserRaycaster : MonoBehaviour
     [SerializeField] public List<LaserRaycastInfo> laserRaycastInfos = new List<LaserRaycastInfo>();
 
     public bool isRayCasting = false;
-    public int canHitNum = 2;
-    public int curHitNum = 0;
+    public int canHitNum = 3; // 최대 반사 횟수
+    public int curHitNum = 0; // 현재 반사 횟수
 
     private LaserPuzzleManager manager;
 
@@ -93,7 +93,7 @@ public class LaserRaycaster : MonoBehaviour
         {
             for(int i = 0; i < laserRaycastInfos.Count; i++)
             {
-                if (curHitNum >= canHitNum) return;
+                if (curHitNum > canHitNum+1) return;
                 lineRenderers[i].positionCount = 1;
                 lineRenderers[i].SetPosition(0, laserRaycastInfos[i].originPos);
                 lineRenderers[i].startColor = laserRaycastInfos[i].laserColor;
@@ -136,13 +136,9 @@ public class LaserRaycaster : MonoBehaviour
 
     public void ClearAllLaserInfo()
     {
-        foreach (LineRenderer line in lineRenderers)
-        {
-            line.positionCount = 0;
-        }
+        ClearAllLaser();
         curHitNum = 0;
         laserRaycastInfos.Clear();
-
     }
 
     public void AddLaserInfo(LaserRaycastInfo info)

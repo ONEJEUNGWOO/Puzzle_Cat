@@ -6,12 +6,14 @@ public class LaserReflecter : RotatableObject, IInteractable, ILaserInteractable
 {
     public void OnLaserHit(LaserHitInfo laserHitInfo)
     {
+        // 반사되는 벡터 계산
         Vector3 reflectDir = Vector3.Reflect(laserHitInfo.incomingDirection, laserHitInfo.hitNormal);
         //if(raycaster != null)
         //    raycaster.CastLaser(transform.position, reflectDir, laserHitInfo.laserColor, Constants.LASER_MAX_DISTANCE);
 
         float dot = Vector3.Dot(reflectDir, laserHitInfo.incomingDirection);
-        if (dot <= -1f || dot == 0)
+        // 반사 벡터가 원 벡터와 평행하면 종료
+        if (Mathf.Abs(dot) > 0.999f)
             return;
 
         if(raycaster != null)
