@@ -123,7 +123,8 @@ public class HackingMiniManager : MonoBehaviour
     // 🏆 성공 시 게임을 종료하는 함수
     public void ExitGame()
     {
-#if UNITY_EDITOR
+#if UNITY_EDITOR // 에디터에서 실행 중인 경우 플레이 모드 종료
+       
             UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
