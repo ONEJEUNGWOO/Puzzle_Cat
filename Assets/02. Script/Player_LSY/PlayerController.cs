@@ -10,9 +10,10 @@ public class PlayerController : MonoBehaviour
     public Transform kittyTransform; 
     public float moveSpeed; 
     public float runSpeed; 
-    public float jumpPower; // 점프할 때의 힘을 나타내는 변수입니다. 이 값은 Rigidbody 컴포넌트의 힘으로 사용됩니다.
+    public float jumpPower;
     private Vector2 curMovementInput; 
-    public LayerMask groundLayerMask; 
+    public LayerMask groundLayerMask;
+    public LayerMask interactableItem; // 상호작용 가능한 오브젝트를 검사하기 위한 레이어 마스크입니다.
 
     [Header("Look")]
     public Transform cameraContainer; 
@@ -36,7 +37,8 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-       Move();
+        Move();
+        //checkInteract();
     }
     private void LateUpdate()
     {
@@ -66,7 +68,7 @@ public class PlayerController : MonoBehaviour
             _rigidbody.MovePosition(_rigidbody.position + dir * moveSpeed * Time.fixedDeltaTime);
         }
                 
-        Debug.DrawRay(cameraContainer.position, new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized, Color.red);
+        //Debug.DrawRay(cameraContainer.position, new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized, Color.red);
     }
 
     void CameraLook()
@@ -88,6 +90,17 @@ public class PlayerController : MonoBehaviour
         //Vector3 lookForward = new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized;
         //kittyTransform.forward = lookForward;
     }
+
+    //private void checkInteract()
+    //// 상호작용 가능한 오브젝트를 검사하고, 해당 오브젝트가 있다면 InteractionText를 출력합니다.
+    //{
+    //    var target = isInteract();
+    //    if (target != null)
+    //    {
+    //        Debug.Log(target.InteractionText);
+    //        // ui를 접근해서 메서드호출
+    //    }
+    //}
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -133,6 +146,21 @@ public class PlayerController : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
     }
 
+    //public void OnInteraction(InputAction.CallbackContext context)
+    //{
+    //    if (context.phase == InputActionPhase.Started)
+    //    {
+    //        // 함수를 따로 만들어서 fixedUpdate에 넣고 밑에 로직을 반복 실행 즉 감지하게 만든다.
+    //        var target = isInteract();
+    //        if (target != null)
+    //        {
+    //            target.Interact();
+    //            //Debug.Log(target.InteractionText);
+    //        }
+
+    //    }
+    //}
+
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started && isGrounded())
@@ -148,32 +176,59 @@ public class PlayerController : MonoBehaviour
 
     bool isGrounded()
     {
-        Ray[] rays = new Ray[4] // 4개의 레이저를 사용하여 플레이어의 발 아래를 검사합니다.
+        Ray[] rays = new Ray[4] 
         {
             new Ray(transform.position + (transform.forward * 0.1f) + (transform.up * 0.001f), Vector3.down),
-            // 플레이어의 앞쪽에서 아래로 향하는 레이
             new Ray(transform.position + (-transform.forward * 0.1f) + (transform.up * 0.001f), Vector3.down),
-            // 플레이어의 뒤쪽에서 아래로 향하는 레이
             new Ray(transform.position + (transform.right * 0.1f) + (transform.up * 0.001f), Vector3.down),
-            // 플레이어의 오른쪽에서 아래로 향하는 레이
             new Ray(transform.position + (-transform.right * 0.1f) + (transform.up * 0.001f), Vector3.down)
-            // 플레이어의 왼쪽에서 아래로 향하는 레이
-            // transform.up * 0.01f 는 플레이어의 발 아래에서 약간 위쪽으로 레이를 시작하여 지면을 인지하지 못하는 상황에 예외처리 입니다.
         };
 
-        // 4개에 레이저는 검출하기 위해 for문을 사용합니다.
         for (int i = 0; i < rays.Length; i++)
         {
             if (Physics.Raycast(rays[i], 0.01f, groundLayerMask))
-            // Physics.Raycast로 레이를 쏘아 지면에 정보를 가져옵니다, rays[i] 배열에 있는 레이들을 하나씩 가져옵니다.
-            // 0.1f 는 레이의 길이로, groundLayerMask로 지정한 정보만 가져옵니다.
             {
-                return true; // 지면에 닿아 있으면 true를 반환합니다.
+                return true;
             }
         }
         return false;
     }
 
+    //InteractableObject isInteract()
+    //{
+    //    //Debug.DrawRay(cameraContainer.position, kittyTransform.forward.normalized, Color.black);
+
+    //    Vector3 forward = kittyTransform.forward.normalized;
+
+    //    // 좌우 15도 회전 벡터
+    //    Vector3 leftDir = Quaternion.AngleAxis(-15f, Vector3.up) * forward;
+    //    Vector3 rightDir = Quaternion.AngleAxis(15f, Vector3.up) * forward;
+
+    //    Ray[] rays = new Ray[3]
+    //    {
+    //        new Ray(cameraContainer.position, forward),
+    //        new Ray(cameraContainer.position, leftDir),
+    //        new Ray(cameraContainer.position, rightDir)
+    //    };
+
+    //    for (int i = 0; i < rays.Length; i++)
+    //    {
+    //        if (Physics.Raycast(rays[i], out RaycastHit hit, 0.5f, interactableItem) && hit.collider.TryGetComponent(out InteractableObject obj))
+    //        // Physics.Raycast로 레이를 쏘아 interactableItem 레이어에 있는 오브젝트를 검사합니다.
+    //        // 0.5f 는 레이의 길이로, interactableItem로 지정한 정보를 가져옵니다.
+    //        {
+    //            return obj;
+    //        }
+    //    }
+
+    //    return null; // 상호작용 가능한 오브젝트가 없으면 null을 반환합니다.
+
+    //    //for (int i = 0; i < rays.Length; i++)
+    //    //{
+    //    //    Debug.DrawRay(rays[i].origin, rays[i].direction * 0.5f, Color.red);
+    //    //    // * 3f : 레이 길이 (씬 뷰에서 보이는 길이용)
+    //    //}
+    //}
 }
 
 

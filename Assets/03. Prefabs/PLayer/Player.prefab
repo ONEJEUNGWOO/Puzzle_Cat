@@ -444,7 +444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2865913348483186955}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -482,7 +482,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2865913348483186955}
   serializedVersion: 4
-  m_Mass: 20
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -575,7 +575,19 @@ MonoBehaviour:
     m_ActionId: 1b9149fb-48c9-4084-9a0b-2e01aacbed32
     m_ActionName: KittyAction/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5271870334909201201}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7829bc61-8439-4bf2-b64d-086c0b18316c
     m_ActionName: KittyAction/Interraction[/Keyboard/f]
   - m_PersistentCalls:
@@ -602,6 +614,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 89abf27e-1e69-4179-a401-fe8b9a09b9eb
     m_ActionName: KittyAction/Run[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: db367639-0e67-4d2a-9d9a-23b3505130d3
+    m_ActionName: BallPuzzle/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f7f35d0-7b71-4734-b3fa-b395393ea5dc
+    m_ActionName: BallPuzzle/UseKey[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: KittyAction
@@ -634,11 +654,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kittyTransform: {fileID: 4336273987739408816}
   moveSpeed: 3
-  runSpeed: 5
-  jumpPower: 100
+  runSpeed: 1.5
+  jumpPower: 3
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 3221225655
+  interactableItem:
+    serializedVersion: 2
+    m_Bits: 128
   cameraContainer: {fileID: 527296504199667262}
   lookSensitivity: 0.1
 --- !u!1 &3454763922899341398
