@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  games: {fileID: 0}
+  games: {fileID: 11400000, guid: 45800ec1e167ebc4d8831227fc3b9697, type: 2}
   rewardSpawnPoint: {fileID: 685500715}
 --- !u!4 &103721856 stripped
 Transform:
@@ -1282,7 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  games: {fileID: 11400000, guid: 433dbe1a27fe53f49b973963a14c214c, type: 2}
+  games: {fileID: 11400000, guid: 75ce4e32d7e707e4eb247663ce2e26a7, type: 2}
   rewardSpawnPoint: {fileID: 0}
 --- !u!1 &546389115
 GameObject:
@@ -1853,7 +1853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  games: {fileID: 11400000, guid: 433dbe1a27fe53f49b973963a14c214c, type: 2}
+  games: {fileID: 11400000, guid: 44fa2c83a65fdf94f8812c91ad552cdf, type: 2}
   rewardSpawnPoint: {fileID: 646496434}
 --- !u!4 &974858589
 Transform:
