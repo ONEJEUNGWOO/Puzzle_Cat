@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6944869727768521240}
   - component: {fileID: 5120211827246951240}
   - component: {fileID: 637107252989546435}
+  - component: {fileID: 8154946705481180107}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -116,6 +117,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8154946705481180107
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731078938959204494}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5968197571455649054
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +202,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 0}
   baseMaterial: {fileID: 2100000, guid: 6c246624af8743e48acd1de477d9eb3d, type: 2}
+  lineRenderers: []
+  laserRaycastInfos: []
+  isRayCasting: 0
+  canHitNum: 2
+  curHitNum: 0
 --- !u!120 &8046536153582181499
 LineRenderer:
   serializedVersion: 2

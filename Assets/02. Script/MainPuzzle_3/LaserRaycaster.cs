@@ -14,8 +14,11 @@ public class LaserRaycaster : MonoBehaviour
     [SerializeField] public List<LaserRaycastInfo> laserRaycastInfos = new List<LaserRaycastInfo>();
 
     public bool isRayCasting = false;
+    public int canHitNum = 2;
+    public int curHitNum = 0;
 
     private LaserPuzzleManager manager;
+
 
     private void Awake()
     {
@@ -90,6 +93,7 @@ public class LaserRaycaster : MonoBehaviour
         {
             for(int i = 0; i < laserRaycastInfos.Count; i++)
             {
+                if (curHitNum >= canHitNum) return;
                 lineRenderers[i].positionCount = 1;
                 lineRenderers[i].SetPosition(0, laserRaycastInfos[i].originPos);
                 lineRenderers[i].startColor = laserRaycastInfos[i].laserColor;
@@ -99,6 +103,8 @@ public class LaserRaycaster : MonoBehaviour
 
                 Vector3 currentPos = laserRaycastInfos[i].originPos;
                 Vector3 currentDir = laserRaycastInfos[i].raycastDirection;
+
+                curHitNum++;
 
                 if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, laserRaycastInfos[i].maxDistance))
                 {
@@ -134,7 +140,9 @@ public class LaserRaycaster : MonoBehaviour
         {
             line.positionCount = 0;
         }
+        curHitNum = 0;
         laserRaycastInfos.Clear();
+
     }
 
     public void AddLaserInfo(LaserRaycastInfo info)

@@ -10,7 +10,8 @@ public class LaserReflecter : RotatableObject, IInteractable, ILaserInteractable
         //if(raycaster != null)
         //    raycaster.CastLaser(transform.position, reflectDir, laserHitInfo.laserColor, Constants.LASER_MAX_DISTANCE);
 
-        if (Vector3.Dot(reflectDir, laserHitInfo.incomingDirection) <= -1f)
+        float dot = Vector3.Dot(reflectDir, laserHitInfo.incomingDirection);
+        if (dot <= -1f || dot == 0)
             return;
 
         if(raycaster != null)
