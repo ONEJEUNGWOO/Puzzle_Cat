@@ -36,7 +36,7 @@ public class HackingMiniManager : MonoBehaviour
     [SerializeField] private DifficultyLevel difficulty = DifficultyLevel.Normal;
     [HideInInspector][SerializeField] private float gameTime = 60.0f;
     [HideInInspector][SerializeField] private int sequenceLength = 3;
-    [SerializeField] private int gridRows = 7;
+    [SerializeField] private int gridRows = 5;
     [SerializeField] private int gridCols = 5;
     [SerializeField] private bool reshuffleChangesDaemon = true;
 
@@ -133,15 +133,15 @@ public class HackingMiniManager : MonoBehaviour
         switch (difficulty)
         {
             case DifficultyLevel.Easy:
-                gameTime = 60f;
+                gameTime = 90f;
                 sequenceLength = 3;
                 break;
             case DifficultyLevel.Normal:
-                gameTime = 15f;
-                sequenceLength = 3;
+                gameTime = 30f;
+                sequenceLength = 4;
                 break;
             case DifficultyLevel.Hard:
-                gameTime = 10f;
+                gameTime = 15f;
                 sequenceLength = 4;
                 break;
         }
