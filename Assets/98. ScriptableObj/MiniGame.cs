@@ -9,8 +9,8 @@ public class MiniGame : ScriptableObject
     /// <summary>
     /// 게임 이름
     /// </summary>
-    [Header("게임 이름")]
-    public string name;
+    [Header("메인 게임 인지")]
+    public bool isMain;
 
     /// <summary>
     /// 게임의 고유 번호
@@ -34,5 +34,8 @@ public class MiniGame : ScriptableObject
     /// 각 레벨 값들
     /// </summary>
     [Header("Levels")]
-    public List<GameObject> levels;
+    public GameObject levels;
+
+    [Header("Reward")]
+    public GameObject reward;
 }

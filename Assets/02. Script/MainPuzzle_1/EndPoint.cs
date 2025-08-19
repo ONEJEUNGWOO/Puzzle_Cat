@@ -17,7 +17,7 @@ public class EndPoint : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Ball") || isClear) return;
 
-        isClear = true;
+        PuzzleManager.Instance.PuzzleClear();
         gameClearUI.SetActive(true);
         Debug.Log("게임 클리어 UI띄우기");
     }
