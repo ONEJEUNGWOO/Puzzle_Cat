@@ -150,13 +150,13 @@ public class PlayerController : MonoBehaviour
     {
         Ray[] rays = new Ray[4] // 4개의 레이저를 사용하여 플레이어의 발 아래를 검사합니다.
         {
-            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.001f), Vector3.down),
+            new Ray(transform.position + (transform.forward * 0.1f) + (transform.up * 0.001f), Vector3.down),
             // 플레이어의 앞쪽에서 아래로 향하는 레이
-            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.001f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.1f) + (transform.up * 0.001f), Vector3.down),
             // 플레이어의 뒤쪽에서 아래로 향하는 레이
-            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.001f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.1f) + (transform.up * 0.001f), Vector3.down),
             // 플레이어의 오른쪽에서 아래로 향하는 레이
-            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.001f), Vector3.down)
+            new Ray(transform.position + (-transform.right * 0.1f) + (transform.up * 0.001f), Vector3.down)
             // 플레이어의 왼쪽에서 아래로 향하는 레이
             // transform.up * 0.01f 는 플레이어의 발 아래에서 약간 위쪽으로 레이를 시작하여 지면을 인지하지 못하는 상황에 예외처리 입니다.
         };
