@@ -25,7 +25,9 @@ public class ColorLens : MonoBehaviour, ILaserInteractable
     {
         if(raycaster != null)
         {
-            raycaster.CastLaser(transform.position, laserHitInfo.incomingDirection, color, Constants.LASER_MAX_DISTANCE);
+            LaserRaycastInfo raycastInfo = new LaserRaycastInfo(transform.position, laserHitInfo.incomingDirection, color, Constants.LASER_MAX_DISTANCE);
+            raycaster.AddLaserInfo(raycastInfo);
+            raycaster.CastAllLaser();
         }
     }
 }

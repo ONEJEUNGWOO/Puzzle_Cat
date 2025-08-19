@@ -24,7 +24,7 @@ public class RotatableObject : MonoBehaviour, IInteractable
         if (canInteract)
         {
             // 회전 동기화 문제 있음
-            transform.Rotate(new Vector3(0f, 90f, 0f));
+            transform.Rotate(new Vector3(0f, 45f, 0f));
             //Physics.SyncTransforms();
             //manager.RecalculateLaser();
             manager.RecalculateLaser();

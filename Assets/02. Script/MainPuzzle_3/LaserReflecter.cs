@@ -7,7 +7,17 @@ public class LaserReflecter : RotatableObject, IInteractable, ILaserInteractable
     public void OnLaserHit(LaserHitInfo laserHitInfo)
     {
         Vector3 reflectDir = Vector3.Reflect(laserHitInfo.incomingDirection, laserHitInfo.hitNormal);
+        //if(raycaster != null)
+        //    raycaster.CastLaser(transform.position, reflectDir, laserHitInfo.laserColor, Constants.LASER_MAX_DISTANCE);
+
+        if (Vector3.Dot(reflectDir, laserHitInfo.incomingDirection) <= -1f)
+            return;
+
         if(raycaster != null)
-            raycaster.CastLaser(transform.position, reflectDir, laserHitInfo.laserColor, Constants.LASER_MAX_DISTANCE);
+        {
+            LaserRaycastInfo raycastInfo = new LaserRaycastInfo(transform.position, reflectDir, laserHitInfo.laserColor, Constants.LASER_MAX_DISTANCE);
+            raycaster.AddLaserInfo(raycastInfo);
+            raycaster.CastAllLaser();
+        }
     }
 }

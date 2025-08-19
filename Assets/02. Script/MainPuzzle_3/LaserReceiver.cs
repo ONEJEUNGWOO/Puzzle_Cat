@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaserReceiver : MonoBehaviour, LaserPuzzle.ILaserInteractable
 {
-    public Color color;
+    public Color targetColor;
     [SerializeField] private bool isActive = false;
 
     private LaserPuzzleManager manager;
@@ -23,19 +23,19 @@ public class LaserReceiver : MonoBehaviour, LaserPuzzle.ILaserInteractable
         manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
         manager.OnObjectChange += ResetState;
 
-        targetMaterial.color = color;
+        targetMaterial.color = targetColor;
     }
 
     public void Activate()
     {
         isActive = true;
-        modelMaterial.color = color;
+        modelMaterial.color = targetColor;
         manager.CheckCompletion();
     }
 
     public void OnLaserHit(Game.Common.LaserHitInfo laserHitInfo)
     {
-        if(laserHitInfo.laserColor == color)
+        if(laserHitInfo.laserColor == targetColor)
         {
             Activate();
         }

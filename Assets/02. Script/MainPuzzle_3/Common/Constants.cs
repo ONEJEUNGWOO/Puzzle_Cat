@@ -29,15 +29,20 @@ namespace Game.Common
         }
     }
 
+    [System.Serializable]
     public struct LaserRaycastInfo
     {
+        public Vector3 originPos;
         public Vector3 raycastDirection;
         public Color laserColor;
+        public float maxDistance;
 
-        public LaserRaycastInfo(Vector3 dir, Color color)
+        public LaserRaycastInfo(Vector3 pos, Vector3 dir, Color color, float dist)
         {
+            originPos = pos;
             raycastDirection = dir;
             laserColor = color;
+            maxDistance = dist;
         }
     }
 }
