@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SubBall_1
   m_EditorClassIdentifier: 
   isMain: 0
+  GameID: Sub_Game_1
   GameIndex: 0
   isGravityUse: 1
   GravityScale: {x: 0, y: -19.62, z: 0}
