@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 038fb48fd25b9d1408821f0ce56bff2d, type: 3}
-  m_Name: SubHacking_2
+  m_Name: SubRasor_2
   m_EditorClassIdentifier: 
   isMain: 0
-  GameIndex: 4
+  GameIndex: 6
   isGravityUse: 0
   GravityScale: {x: 0, y: 0, z: 0}
-  levels: {fileID: 3945527872129300165, guid: 9319123e854f5744a9821d94b6bb89e0, type: 3}
-  reward: {fileID: 161706328045774715, guid: b42431ba28b72954c945696ca6c06559, type: 3}
+  levels: {fileID: 5103803272090124026, guid: c02f4a3dc777b5041aa657c1383aed93, type: 3}
+  reward: {fileID: 2508403722802572103, guid: 8c3fe96d558f6b74991065a9d623aadc, type: 3}
