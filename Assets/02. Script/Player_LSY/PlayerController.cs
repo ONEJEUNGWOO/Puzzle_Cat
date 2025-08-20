@@ -83,11 +83,11 @@ public class PlayerController : MonoBehaviour
 
         if (camCurXRot < 180) 
         {
-            camCurXRot = Mathf.Clamp(camCurXRot, -1f, 70f);
+            camCurXRot = Mathf.Clamp(camCurXRot, -1f, 50f);
         }
         else 
         {
-            camCurXRot = Mathf.Clamp(camCurXRot, 335f, 361f);
+            camCurXRot = Mathf.Clamp(camCurXRot, 335f, 359f);
         }
 
         textRotation.rotation = Quaternion.Euler(camCurXRot, camCurYRot, 0);
