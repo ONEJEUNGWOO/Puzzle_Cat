@@ -2,38 +2,28 @@ using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using KNJ;
 public class GameManager : Singleton<GameManager>
 {
-    // 클리어 했는지
 
-    public List<bool> isMainCleared = new List<bool>();
-    public List<bool> isSubCleared = new List<bool>();
 
     private void Start()
     {
+        LoadData();
+
         PuzzleManager.Instance.OnPuzzleZoneEnter += HandlePuzzleIn;
         PuzzleManager.Instance.OnpuzzleZoneExit += HandlePuzzleExit;
     }
-
-    public void isGameCleared(bool ismain, int index)
+   
+    public void LoadData()
     {
-        if (!ismain)
+        if (DataManager.Instance.LoadData())
         {
-            isSubCleared[index] = true;
-            return;
+            CharacterManager.Instance.Player.transform.position = DataManager.Instance.GetPlayerPositionData();
+
+            PuzzleDataManager.Instance.Init();
         }
-        else
-        {
-            isMainCleared[index] = true;
-        }
-        foreach (var amount in isMainCleared)
-        {
-            if (!amount)
-            {
-                return;
-            }
-        }
-        Debug.Log("게임 클리어!");
+
     }
 
     private void HandlePuzzleIn(MiniGame data)
@@ -67,6 +57,11 @@ public class GameManager : Singleton<GameManager>
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+
+    private void OnApplicationQuit()
+    {
+        DataManager.Instance.SaveData();
+    }
 
     // 시간 관련
 

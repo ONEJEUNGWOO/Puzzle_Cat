@@ -1,7 +1,9 @@
-using LaserPuzzle;
 using UnityEngine;
 
-public class Switch : MonoBehaviour, IInteractable
+/// <summary>
+/// 스위치를 통해 장애물을 제거 가능
+/// </summary>
+public class Switch : MonoBehaviour, LaserPuzzle.IInteractable
 {
     public bool isActive = false;
     public Color activatedColor = Color.red;
@@ -18,8 +20,8 @@ public class Switch : MonoBehaviour, IInteractable
         material.color = isActive ? activatedColor : deactivatedColor;
 
         obstacle = transform.parent.GetChild(1).gameObject;
-        obstacle.transform.position = isActive ? new Vector3(obstacle.transform.position.x, 0, obstacle.transform.position.z) :
-                                        new Vector3(obstacle.transform.position.x, -1f, obstacle.transform.position.z);
+        obstacle.transform.localPosition = isActive ? new Vector3(obstacle.transform.localPosition.x, 0, obstacle.transform.localPosition.z) :
+                                        new Vector3(obstacle.transform.localPosition.x, -0.9f, obstacle.transform.localPosition.z);
 
         manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
 
@@ -34,8 +36,8 @@ public class Switch : MonoBehaviour, IInteractable
     {
         isActive = !isActive;
         material.color = isActive ? activatedColor : deactivatedColor;
-        obstacle.transform.position = isActive ? new Vector3(obstacle.transform.position.x, 0, obstacle.transform.position.z) : 
-                                                new Vector3(obstacle.transform.position.x, -0.9f, obstacle.transform.position.z);
+        obstacle.transform.localPosition = isActive ? new Vector3(obstacle.transform.localPosition.x, 0, obstacle.transform.localPosition.z) :
+                                        new Vector3(obstacle.transform.localPosition.x, -0.9f, obstacle.transform.localPosition.z);
 
         manager.RecalculateLaser();
     }

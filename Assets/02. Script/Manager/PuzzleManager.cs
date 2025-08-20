@@ -33,7 +33,6 @@ public class PuzzleManager : Singleton<PuzzleManager>
         miniGame = data;
         currentRwdTrs = rwdTrs;
         obj = Instantiate(data.levels, transform.position, transform.rotation, transform);
-
     }
 
     public void PuzzleExit()
@@ -46,12 +45,17 @@ public class PuzzleManager : Singleton<PuzzleManager>
     {
         if (miniGame.reward != null && currentRwdTrs != null)
         {
-            Instantiate(miniGame.reward, currentRwdTrs.position, currentRwdTrs.rotation);
+            SpawnReward();
             Debug.Log("Spawn!");
         }
-        GameManager.Instance.isGameCleared(miniGame.isMain, miniGame.GameIndex);
+        PuzzleDataManager.Instance.isGameCleared(miniGame);
         PuzzleExit();
         DestroyObj();
+    }
+
+    public void SpawnReward()
+    {
+        Instantiate(miniGame.reward, currentRwdTrs.position, currentRwdTrs.rotation);
     }
 
     public void DestroyObj()
