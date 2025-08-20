@@ -97,7 +97,7 @@ public class LaserPuzzleManager : MonoBehaviour
         // 카메라 오소그래픽 해제
         cam.orthographic = false;
         Cursor.lockState = CursorLockMode.Locked;
-        // 부모 퍼즐 삭제
-        Destroy(puzzle.gameObject);
+        // 퍼즐 매니저에 퍼즐 클리어 알림
+        PuzzleManager.Instance.PuzzleClear();
     }
 }
