@@ -46,14 +46,14 @@ public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸
         PuzzleManager.Instance.OnpuzzleZoneExit += OffMiniGameUI;
 
         OffMiniGameUI();
-        SetMainGameUI();
+        //SetMainGameUI();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-                SetMainGameUI();
+            SetMainGameUI();
         }
     }
 
@@ -85,9 +85,20 @@ public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸
 
     public void SetMainGameUI() //ESC È¤Àº ¹öÆ°µî Å° ´­·¶À» ¶§ È°¼ºÈ­ ¸ÞÀÎ°ÔÀÓ °ü·Ã
     {
-        CharacterManager.Instance.Player.controller.ToggleCursor(!isSetMainGame);
+        if (!isSetMainGame)
+        {
+            canvasDic[CanvasType.MainGameUI].GetComponent<Animator>().SetTrigger("FadeIn");
+            Debug.Log("ÄÑÁü");
+            canvasDic[CanvasType.MainGameUI].gameObject.SetActive(!isSetMainGame); 
+        }
+        else
+        {
+            canvasDic[CanvasType.MainGameUI].GetComponent<Animator>().SetTrigger("FadeOut");
+            Debug.Log("²¨Áü");
+        }
+
         Cursor.lockState = CursorLockMode.Confined;
-        canvasDic[CanvasType.MainGameUI].gameObject.SetActive(!isSetMainGame);
+        CharacterManager.Instance.Player.controller.ToggleCursor(!isSetMainGame);
         isSetMainGame = !isSetMainGame;
     }
 }
