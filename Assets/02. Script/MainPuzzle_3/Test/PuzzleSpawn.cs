@@ -8,31 +8,27 @@ public class PuzzleSpawn : MonoBehaviour
     public GameObject puzzle1;
     public GameObject puzzle2;
     public GameObject puzzle3;
+    public GameObject puzzle4;
 
     public Transform spawPosition;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Instantiate(puzzle1, spawPosition);
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             Instantiate(puzzle2, spawPosition);
         }
-        if (Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             Instantiate(puzzle3, spawPosition);
         }
-        
-        if(Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            DataManager.Instance.SaveData();
-        }
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            DataManager.Instance.LoadData();
+            Instantiate(puzzle4, spawPosition);
         }
     }
 }
