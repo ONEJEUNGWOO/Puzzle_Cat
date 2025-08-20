@@ -1,3 +1,4 @@
+using KNJ;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,15 @@ public class PuzzleSpawn : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightShift))
         {
             Instantiate(puzzle3, spawPosition);
+        }
+        
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            DataManager.Instance.SaveData();
+        }
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            DataManager.Instance.LoadData();
         }
     }
 }
