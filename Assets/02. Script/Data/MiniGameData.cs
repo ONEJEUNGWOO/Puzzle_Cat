@@ -20,7 +20,10 @@ public class MiniGameData : InteractableObject
         if (PuzzleDataManager.Instance.puzzleClearData.ContainsKey(games.GameID) &&
             PuzzleDataManager.Instance.puzzleClearData[games.GameID])
         {
-            Instantiate(games.reward, rewardSpawnPoint.position, rewardSpawnPoint.rotation);
+            if (games.reward != null && rewardSpawnPoint != null)
+            {
+                Instantiate(games.reward, rewardSpawnPoint.position, rewardSpawnPoint.rotation);
+            }
             Setactive();
         }
     }
