@@ -33,7 +33,6 @@ public class PuzzleManager : Singleton<PuzzleManager>
         miniGame = data;
         currentRwdTrs = rwdTrs;
         obj = Instantiate(data.levels, transform.position, transform.rotation, transform);
-
     }
 
     public void PuzzleExit()

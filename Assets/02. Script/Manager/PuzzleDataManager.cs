@@ -34,6 +34,13 @@ public class PuzzleDataManager : Singleton<PuzzleDataManager>
     public void Init()
     {
         puzzleClearData = DataManager.Instance.GetGameClearData();
+
+        MiniGameData[] allPuzzles = FindObjectsOfType<MiniGameData>();
+
+        foreach (MiniGameData puzzle in allPuzzles)
+        {
+            puzzle.CheckClear();
+        }
     }
 
     private void CheckGameClear()
