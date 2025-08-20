@@ -32,7 +32,7 @@ public class Sensor : MonoBehaviour, LaserPuzzle.ILaserInteractable
         if (isActive) return;
         if(targetColor == laserHitInfo.laserColor)
         {
-            obstacle.transform.position = new Vector3(obstacle.transform.position.x, -0.9f, obstacle.transform.position.z);
+            obstacle.transform.localPosition = new Vector3(obstacle.transform.localPosition.x, -0.9f, obstacle.transform.localPosition.z);
             isActive = true;
             manager.RecalculateLaser();
         }

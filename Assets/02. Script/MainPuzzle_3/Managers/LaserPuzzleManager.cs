@@ -18,6 +18,7 @@ public class LaserPuzzleManager : MonoBehaviour
 
     private Transform puzzle;
     private Camera cam;
+    public GameObject clearUI;
 
     public LaserPuzzleInputManager inputManager;
 
@@ -66,7 +67,14 @@ public class LaserPuzzleManager : MonoBehaviour
         // 퍼즐 클리어
         // 클리어 처리는 여기서
         // 클리어 했다는 UI를 띄어야 하나?
-        OnClear();
+        ShowClearUI();
+    }
+
+    public void ShowClearUI()
+    {
+        clearUI.SetActive(true);
+        // 인풋 비활성화
+        inputManager.DeactivateInput();
     }
 
     private void Init()
@@ -77,19 +85,18 @@ public class LaserPuzzleManager : MonoBehaviour
         // 카메라 오소그래픽
         cam = Camera.main;
         cam.orthographic = true;
-
+        Cursor.lockState = CursorLockMode.None;
         // 인풋 매니저 등록
         inputManager = puzzle.GetComponentInChildren<LaserPuzzleInputManager>();
     }
 
-    private void OnClear()
+    public void OnClearBtn()
     {
         // 해당 퍼즐 클리어 했다는 거 알림 / 데이터 저장
-
+        clearUI.SetActive(false);
         // 카메라 오소그래픽 해제
         cam.orthographic = false;
-        // 인풋 비활성화
-        inputManager.DeactivateInput();
+        Cursor.lockState = CursorLockMode.Locked;
         // 부모 퍼즐 삭제
         Destroy(puzzle.gameObject);
     }
