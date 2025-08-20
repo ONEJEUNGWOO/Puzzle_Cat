@@ -8,15 +8,22 @@ public class BallSpawner : Singleton<BallSpawner>
     public GameObject ballPrefab;
     private GameObject ballSpawnUI;      //TODO : 매니저 혹은 EndPoint bool값 isClear를 통해 관리 해 줄 예정입니다
     private GameObject curPrefab;
+    private FloorController controller;
+    private bool isReset = false;
 
     private void Awake()
     {
         ballSpawnUI = MainPuzzle_UIManager.Instance.ballSpawnUI.gameObject;
+        controller = FindObjectOfType<FloorController>();
     }
 
     private void Update()
     {
         BallSpawnUISet();
+
+        if (curPrefab != null || isReset) return;
+        controller.RotateReSet();
+        isReset = true;
     }
 
     public void OnSpawnBall(InputAction.CallbackContext context)
@@ -25,6 +32,7 @@ public class BallSpawner : Singleton<BallSpawner>
 
         curPrefab = Instantiate(ballPrefab, transform.position, Quaternion.identity);
 
+        isReset = false;
         Debug.Log(curPrefab);
     }
 
