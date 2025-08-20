@@ -4,9 +4,12 @@ using UnityEngine;
 
 namespace Game.Common
 {
+    /// <summary>
+    /// 게임에 사용되는 상수 값을 담은 클래스
+    /// </summary>
     public static class Constants
     {
-        public const float LASER_MAX_DISTANCE = 50f;
+        public const float LASER_MAX_DISTANCE = 30f;
         public const float LASER_MAX_WIDTH = 0.2f;
     }
 
@@ -29,6 +32,9 @@ namespace Game.Common
         }
     }
 
+    /// <summary>
+    /// 발사하는 레이저 정보를 담은 구조체
+    /// </summary>
     [System.Serializable]
     public struct LaserRaycastInfo
     {

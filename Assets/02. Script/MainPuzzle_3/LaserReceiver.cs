@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 레이저가 도달해야하는 목표 지점
+/// 레이저의 색이 targetColor와 같아야 활성화됨
+/// </summary>
 public class LaserReceiver : MonoBehaviour, LaserPuzzle.ILaserInteractable
 {
     public Color targetColor;

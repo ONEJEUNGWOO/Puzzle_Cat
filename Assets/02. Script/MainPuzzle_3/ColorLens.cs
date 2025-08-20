@@ -2,6 +2,10 @@ using Game.Common;
 using LaserPuzzle;
 using UnityEngine;
 
+/// <summary>
+/// 컬러렌즈
+/// 레이저가 들어오면 레이저의 진행방향으로 컬러렌즈와 같은 색의 레이저를 발사
+/// </summary>
 public class ColorLens : MonoBehaviour, ILaserInteractable
 {
     [SerializeField] private Color color;

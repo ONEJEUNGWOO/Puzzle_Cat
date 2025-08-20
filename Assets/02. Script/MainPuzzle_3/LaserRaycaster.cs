@@ -1,24 +1,26 @@
 using Game.Common;
 using LaserPuzzle;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
+/// <summary>
+/// 레이저를 발사 가능하게 하는 스크립트
+/// 레이캐스트로 오브젝트간의 상호작용을 작동시킴
+/// 이후 라인렌더러로 레이저를 시각적으로 표시
+/// </summary>
 public class LaserRaycaster : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Material baseMaterial;
 
     [SerializeField] private LineRenderer[] lineRenderers;
-    [SerializeField] public List<LaserRaycastInfo> laserRaycastInfos = new List<LaserRaycastInfo>();
+    [SerializeField] private List<LaserRaycastInfo> laserRaycastInfos = new List<LaserRaycastInfo>();
 
     public bool isRayCasting = false;
     public int canHitNum = 3; // 최대 반사 횟수
     public int curHitNum = 0; // 현재 반사 횟수
 
     private LaserPuzzleManager manager;
-
 
     private void Awake()
     {
@@ -44,11 +46,10 @@ public class LaserRaycaster : MonoBehaviour
         manager.OnObjectChange += ClearAllLaserInfo;
     }
 
+    // Emitter용 단일 레이저 발사 함수
+    // 굳이 나눌 필요는 없긴한데 일단 혹시 몰라서 이대로 사용중
     public void CastLaser(Vector3 origin, Vector3 direction, Color color, float maxDistance)
     {
-        //if (isRayCasting) return;
-        //isRayCasting = true;
-
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, origin);
         lineRenderer.startColor = color;
@@ -77,6 +78,7 @@ public class LaserRaycaster : MonoBehaviour
         }
     }
 
+    // Emitter용 레이저 제거 함수
     public void ClearLaser()
     {
         lineRenderer.positionCount = 0;
@@ -84,7 +86,7 @@ public class LaserRaycaster : MonoBehaviour
     }
 
     /// <summary>
-    /// 발사해야 할 레이저가 2개 이상일 경우 처리 방법 고민중
+    /// 발사해야 할 레이저가 2개 이상일 경우 사용하는 함수
     /// </summary>
     public void CastAllLaser()
     {
@@ -126,6 +128,9 @@ public class LaserRaycaster : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 제거해야할 레이저가 2개 이상일 때 사용하는 함수
+    /// </summary>
     public void ClearAllLaser()
     {
         foreach (LineRenderer line in lineRenderers)
@@ -134,6 +139,7 @@ public class LaserRaycaster : MonoBehaviour
         }
     }
 
+    // 만약 레이저 인포 제거도 필요하면 사용하는 함수
     public void ClearAllLaserInfo()
     {
         ClearAllLaser();
@@ -141,6 +147,8 @@ public class LaserRaycaster : MonoBehaviour
         laserRaycastInfos.Clear();
     }
 
+    // 외부에서 레이저 정보를 등록할 때 사용하는 함수
+    // 이미 존재하면 거부
     public void AddLaserInfo(LaserRaycastInfo info)
     {
         if (laserRaycastInfos.Contains(info))
