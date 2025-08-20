@@ -69,20 +69,20 @@ public class UIManager : Singleton<UIManager>       //딕셔너리를 통해 관리하는 �
                 Debug.Log("실행은 됨?");
                 canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(true);
                 break;
-            case 1:
-                canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(true);
-                break;
-            case 2:
-                canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(true);
-                break;
+            //case 1:
+            //    canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(true);
+            //    break;
+            //case 2:
+            //    canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(true);
+            //    break;
         }
     }
 
     public void OffMiniGameUI()
     {
         canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(false);
-        canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(false);
-        canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(false);
+        //canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(false);
+        //canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(false);
     }
 
     public void SetMainGameUI() //ESC 혹은 버튼등 키 눌렀을 때 활성화 메인게임 관련
@@ -91,7 +91,6 @@ public class UIManager : Singleton<UIManager>       //딕셔너리를 통해 관리하는 �
         Cursor.lockState = CursorLockMode.Confined;
         canvasDic[CanvasType.MainGameUI].gameObject.SetActive(true);
     }
-
 
     public void OffMainGameUI()
     {
