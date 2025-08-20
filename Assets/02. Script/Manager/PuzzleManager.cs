@@ -46,12 +46,17 @@ public class PuzzleManager : Singleton<PuzzleManager>
     {
         if (miniGame.reward != null && currentRwdTrs != null)
         {
-            Instantiate(miniGame.reward, currentRwdTrs.position, currentRwdTrs.rotation);
+            SpawnReward();
             Debug.Log("Spawn!");
         }
         PuzzleDataManager.Instance.isGameCleared(miniGame);
         PuzzleExit();
         DestroyObj();
+    }
+
+    public void SpawnReward()
+    {
+        Instantiate(miniGame.reward, currentRwdTrs.position, currentRwdTrs.rotation);
     }
 
     public void DestroyObj()

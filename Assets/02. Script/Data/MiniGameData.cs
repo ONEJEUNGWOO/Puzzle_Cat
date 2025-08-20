@@ -10,9 +10,16 @@ public class MiniGameData : InteractableObject
 
     public Transform rewardSpawnPoint;
 
-    private void Awake()
+    private void Start()
     {
         InteractionText = "Press [F]";
+
+        if (PuzzleDataManager.Instance.puzzleClearData.ContainsKey(games.GameID) &&
+            PuzzleDataManager.Instance.puzzleClearData[games.GameID])
+        {
+            PuzzleManager.Instance.SpawnReward();
+            gameObject.SetActive(false);
+        }
     }
 
     public override void Interact()
@@ -20,13 +27,4 @@ public class MiniGameData : InteractableObject
         base.Interact();
         PuzzleManager.Instance.PuzzleIn(games, rewardSpawnPoint);
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (!other.CompareTag("Player")) return;
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    gameObject.SetActive(false);
-    //}
 }
