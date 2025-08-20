@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668722ff98abeb41806f0e944574746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadPositionY: -8
+  deadPositionY: -15
 --- !u!33 &2488306485562218314
 MeshFilter:
   m_ObjectHideFlags: 0

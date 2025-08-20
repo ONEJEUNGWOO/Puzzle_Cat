@@ -40,10 +40,12 @@ public class BallSpawner : Singleton<BallSpawner>
     {
         if (curPrefab != null)        //공이 준비되어 있다면 UI를 꺼라
         {
+            controller.canMove = true;
             ballSpawnUI.SetActive(false);
         }
         else if (curPrefab == null)      //공이 준비되어 있지 않다면 UI를 켜라
         {
+            controller.canMove = false;
             ballSpawnUI.SetActive(true);
         }
     }
