@@ -31,7 +31,7 @@ public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸
     public List<CanvasData> canvasList;
     private Dictionary<CanvasType, Canvas> canvasDic;
 
-    private bool isSetMainGame;
+    private bool isSetMainGame = true;
 
     private void Awake()
     {
@@ -45,37 +45,35 @@ public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸
 
         PuzzleManager.Instance.OnpuzzleZoneExit += OffMiniGameUI;
 
-        OffMainGameUI();
         OffMiniGameUI();
+        SetMainGameUI();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isSetMainGame)
                 SetMainGameUI();
-            else
-                OffMainGameUI();
         }
     }
 
-    public void SetMiniGameUI(MiniGame data)
+    public void SetMiniGameUI(MiniGame data)        //TODO ÇÏ³ª·Î ÁÙÀÌ±â 
     {
-        switch (data.GameIndex)
-        {
-            //ÄÉÀÌ½º¿¡ µû¶ó ui ÄÑÁÖ±â
-            case 0:
-                Debug.Log("½ÇÇàÀº µÊ?");
-                canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(true);
-                break;
-            //case 1:
-            //    canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(true);
-            //    break;
-            //case 2:
-            //    canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(true);
-            //    break;
-        }
+        canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(true);
+
+        //switch (data.GameIndex)
+        //{
+        //ÄÉÀÌ½º¿¡ µû¶ó ui ÄÑÁÖ±â
+        //case 0:
+        //    Debug.Log("½ÇÇàÀº µÊ?");
+        //    canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(true);
+        //    break;
+        //case 1:
+        //    canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(true);
+        //    break;
+        //case 2:
+        //    canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(true);
+        //    break;
     }
 
     public void OffMiniGameUI()
@@ -87,15 +85,9 @@ public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸
 
     public void SetMainGameUI() //ESC È¤Àº ¹öÆ°µî Å° ´­·¶À» ¶§ È°¼ºÈ­ ¸ÞÀÎ°ÔÀÓ °ü·Ã
     {
-        isSetMainGame = true;
+        CharacterManager.Instance.Player.controller.ToggleCursor(!isSetMainGame);
         Cursor.lockState = CursorLockMode.Confined;
-        canvasDic[CanvasType.MainGameUI].gameObject.SetActive(true);
-    }
-
-    public void OffMainGameUI()
-    {
-        isSetMainGame = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        canvasDic[CanvasType.MainGameUI].gameObject.SetActive(false);
+        canvasDic[CanvasType.MainGameUI].gameObject.SetActive(!isSetMainGame);
+        isSetMainGame = !isSetMainGame;
     }
 }

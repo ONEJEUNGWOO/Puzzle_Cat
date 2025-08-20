@@ -293,6 +293,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bfcc2b43-cd67-4860-a6d8-6d72a468c23c
     m_ActionName: BallPuzzle/UseKey[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4034885413851044872}
+        m_TargetAssemblyTypeName: FloorController, Assembly-CSharp
+        m_MethodName: RotateReSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8d279e1f-fe10-4625-a170-e75a8488dc8a
+    m_ActionName: BallPuzzle/Reset[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: BallPuzzle
@@ -436,7 +452,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 196469349911545912, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 4341615044241505123, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 4338450592991748999, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 4576020381820869140, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 4222569738531708415, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 2372257494019583379, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 4284279791208403591, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 5641549378904626921, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 7590327625172261092, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 5545742236938333232, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 6627299391015306314, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 2120876910259777607, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
+    - {fileID: 6946420420361174010, guid: 68a743f74b397af46af1521259f1caf3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -198,6 +198,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bfcc2b43-cd67-4860-a6d8-6d72a468c23c
     m_ActionName: BallPuzzle/UseKey[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3387760038826089423}
+        m_TargetAssemblyTypeName: FloorController, Assembly-CSharp
+        m_MethodName: RotateReSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8d279e1f-fe10-4625-a170-e75a8488dc8a
+    m_ActionName: BallPuzzle/Reset[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: BallPuzzle
@@ -363,7 +379,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5565167775713750422, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}
+    - {fileID: 164676516832976247, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}
+    - {fileID: 2088525483129248053, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}
+    - {fileID: 4794324950536507728, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}
+    - {fileID: 1384275689775949008, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}
+    - {fileID: 2595938341593153161, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}
+    - {fileID: 2778900266335026568, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}
+    - {fileID: 6710574351590907185, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}
+    - {fileID: 6088375922819095113, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}
+    - {fileID: 679314522235970488, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}
+    - {fileID: 6871407031704464690, guid: 81ea463091e14ca408e4f5b4bd24907a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
