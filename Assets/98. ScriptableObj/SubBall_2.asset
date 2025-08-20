@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SubBall_2
   m_EditorClassIdentifier: 
   isMain: 0
-  GameIndex: 1
+  GameID: Sub_Game_2
+  GameIndex: 0
   isGravityUse: 1
   GravityScale: {x: 0, y: -19.62, z: 0}
   levels: {fileID: 4888680487332209859, guid: f19c34720af5b5c4e8b1e505ec9ce883, type: 3}

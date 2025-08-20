@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 17838152}
   - component: {fileID: 17838151}
   - component: {fileID: 17838150}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fifth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ Transform:
   m_GameObject: {fileID: 17838148}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.207, y: 1.025, z: -5.21}
+  m_LocalPosition: {x: 3.207, y: 0.933, z: -5.21}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 11400000, guid: 6f262e36d2a54e34792c31700fb4be80, type: 2}
   rewardSpawnPoint: {fileID: 798266828}
 --- !u!135 &17838151
@@ -256,7 +257,7 @@ GameObject:
   - component: {fileID: 26465326}
   - component: {fileID: 26465325}
   - component: {fileID: 26465328}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Seventh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +273,7 @@ Transform:
   m_GameObject: {fileID: 26465323}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.833, y: 0.189, z: 2.295}
+  m_LocalPosition: {x: 5.833, y: 0.275, z: 2.295}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -361,6 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 0}
   rewardSpawnPoint: {fileID: 1024883058}
 --- !u!1 &67908693
@@ -556,7 +558,7 @@ GameObject:
   - component: {fileID: 96523342}
   - component: {fileID: 96523341}
   - component: {fileID: 96523344}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Forth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +574,7 @@ Transform:
   m_GameObject: {fileID: 96523339}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.108, y: 0.189, z: 3.193}
+  m_LocalPosition: {x: -3.108, y: 0.272, z: 3.193}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -661,6 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 11400000, guid: 45800ec1e167ebc4d8831227fc3b9697, type: 2}
   rewardSpawnPoint: {fileID: 685500715}
 --- !u!4 &103721856 stripped
@@ -708,7 +711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 207112420}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -808,7 +811,7 @@ GameObject:
   - component: {fileID: 263829462}
   - component: {fileID: 263829461}
   - component: {fileID: 263829464}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hacking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -824,7 +827,7 @@ Transform:
   m_GameObject: {fileID: 263829459}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.405, y: 1.75, z: -4.417}
+  m_LocalPosition: {x: -1.405, y: 1.734, z: -4.417}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -913,6 +916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 11400000, guid: 1e76761c393dd244bbbfda77f04eee1a, type: 2}
   rewardSpawnPoint: {fileID: 0}
 --- !u!1 &288368931
@@ -924,7 +928,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 288368932}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,6 +952,54 @@ Transform:
   - {fileID: 2129193423}
   m_Father: {fileID: 76523831}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &387129251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 387129253}
+  - component: {fileID: 387129252}
+  m_Layer: 0
+  m_Name: PuzzleData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &387129252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387129251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3377cf7421d10f2469314c358e5b5917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPuzzleCheck:
+  - {fileID: 11400000, guid: 1e76761c393dd244bbbfda77f04eee1a, type: 2}
+  - {fileID: 11400000, guid: 75ce4e32d7e707e4eb247663ce2e26a7, type: 2}
+  - {fileID: 11400000, guid: 6439c5c1bc959b04d9917be185d9a362, type: 2}
+--- !u!4 &387129253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387129251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.164103, y: 46.816765, z: -38.72026}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &443378081
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +1013,7 @@ GameObject:
   - component: {fileID: 443378084}
   - component: {fileID: 443378083}
   - component: {fileID: 443378086}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ninth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,7 +1029,7 @@ Transform:
   m_GameObject: {fileID: 443378081}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.137, y: 1.926, z: 3.18}
+  m_LocalPosition: {x: -3.137, y: 1.823, z: 3.18}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1066,8 +1118,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 0}
   rewardSpawnPoint: {fileID: 927453133}
+--- !u!1 &446831176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446831177}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &446831177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446831176}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.164103, y: 46.816765, z: -38.72026}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &460852081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,9 +1199,45 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4159847327492855741, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.000000063329935
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159847327492855741, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159847327492855741, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.93998265
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159847327492855741, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.34122238
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159847327492855741, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.00000002561137
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159847327492855741, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000009778887
+      objectReference: {fileID: 0}
     - target: {fileID: 5271870334909201201, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: jumpPower
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367891227984611932, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.15491523
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367891227984611932, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000023389045
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367891227984611932, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000012162481
       objectReference: {fileID: 0}
     - target: {fileID: 6411966234114698976, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1159,6 +1279,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8553881823920331386, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9816485
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553881823920331386, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.19069944
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553881823920331386, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000015714363
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553881823920331386, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000010099961
+      objectReference: {fileID: 0}
+    - target: {fileID: 8613064692846123555, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.00000002481909
+      objectReference: {fileID: 0}
+    - target: {fileID: 8613064692846123555, guid: e956175f783c164478ed1eb44b37255c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000014778863
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1177,7 +1321,7 @@ GameObject:
   - component: {fileID: 494297092}
   - component: {fileID: 494297091}
   - component: {fileID: 494297095}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BallControll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1264,7 +1408,7 @@ Transform:
   m_GameObject: {fileID: 494297090}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 1.151, z: 2.859}
+  m_LocalPosition: {x: -0.08, y: 1.05, z: 2.859}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1282,6 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 11400000, guid: 75ce4e32d7e707e4eb247663ce2e26a7, type: 2}
   rewardSpawnPoint: {fileID: 0}
 --- !u!1 &546389115
@@ -1520,7 +1665,7 @@ GameObject:
   - component: {fileID: 771990728}
   - component: {fileID: 771990727}
   - component: {fileID: 771990730}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sixth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1536,7 +1681,7 @@ Transform:
   m_GameObject: {fileID: 771990725}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.158, y: 0.189, z: -1.029}
+  m_LocalPosition: {x: 6.158, y: 0.2277, z: -1.029}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1625,6 +1770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 11400000, guid: c72809d1f3bb35946a999adf14df3fe6, type: 2}
   rewardSpawnPoint: {fileID: 639899501}
 --- !u!1 &798266827
@@ -1748,7 +1894,7 @@ GameObject:
   - component: {fileID: 934279971}
   - component: {fileID: 934279970}
   - component: {fileID: 934279973}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Third
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1764,7 +1910,7 @@ Transform:
   m_GameObject: {fileID: 934279968}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.695, y: 0.816, z: -4.752}
+  m_LocalPosition: {x: 5.695, y: 0.772, z: -4.752}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1853,6 +1999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 11400000, guid: 44fa2c83a65fdf94f8812c91ad552cdf, type: 2}
   rewardSpawnPoint: {fileID: 646496434}
 --- !u!4 &974858589
@@ -2004,7 +2151,7 @@ GameObject:
   - component: {fileID: 1078517815}
   - component: {fileID: 1078517814}
   - component: {fileID: 1078517818}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Second
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2091,7 +2238,7 @@ Transform:
   m_GameObject: {fileID: 1078517813}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.405, y: 0.189, z: -5.034}
+  m_LocalPosition: {x: -1.405, y: 0.232, z: -5.034}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2109,6 +2256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 11400000, guid: 875f9a14022792141b448c349f64d59e, type: 2}
   rewardSpawnPoint: {fileID: 546389116}
 --- !u!1 &1104863727
@@ -2381,7 +2529,7 @@ GameObject:
   - component: {fileID: 1297035945}
   - component: {fileID: 1297035944}
   - component: {fileID: 1297035947}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Eighth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2486,6 +2634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 0}
   rewardSpawnPoint: {fileID: 239149347}
 --- !u!1 &1300121896
@@ -2501,7 +2650,7 @@ GameObject:
   - component: {fileID: 1300121899}
   - component: {fileID: 1300121898}
   - component: {fileID: 1300121901}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: First
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2517,7 +2666,7 @@ Transform:
   m_GameObject: {fileID: 1300121896}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.028, y: 0.189, z: 1.556}
+  m_LocalPosition: {x: 0.028, y: 0.269, z: 1.556}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2606,6 +2755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 11400000, guid: 433dbe1a27fe53f49b973963a14c214c, type: 2}
   rewardSpawnPoint: {fileID: 723570544}
 --- !u!1 &1451097665
@@ -2621,7 +2771,7 @@ GameObject:
   - component: {fileID: 1451097667}
   - component: {fileID: 1451097666}
   - component: {fileID: 1451097670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rasor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2726,6 +2876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionText: 
   games: {fileID: 0}
   rewardSpawnPoint: {fileID: 0}
 --- !u!1 &1615350407
@@ -3215,8 +3366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0babdb0ae1548e4ab009205300f7c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMainCleared: 000000
-  isSubCleared: 000000000000000000
 --- !u!4 &2075331890
 Transform:
   m_ObjectHideFlags: 0
@@ -3241,7 +3390,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2129193423}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5461,3 +5610,5 @@ SceneRoots:
   - {fileID: 78005661}
   - {fileID: 472604001}
   - {fileID: 655781682}
+  - {fileID: 446831177}
+  - {fileID: 387129253}

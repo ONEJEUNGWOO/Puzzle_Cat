@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: MainRasor
   m_EditorClassIdentifier: 
   isMain: 1
-  GameIndex: 1
+  GameID: MainGame_3
+  GameIndex: 2
   isGravityUse: 0
   GravityScale: {x: 0, y: 0, z: 0}
   levels: {fileID: 2624147994172556135, guid: 20e07b8e806d09149b7bae3f201cd664, type: 3}

@@ -13,6 +13,12 @@ public class MiniGame : ScriptableObject
     public bool isMain;
 
     /// <summary>
+    /// 게임의 고유 아이디
+    /// </summary>
+    [Header("게임의 고유 아이디")]
+    public string GameID;
+
+    /// <summary>
     /// 게임의 고유 번호
     /// </summary>
     [Header("게임의 고유 번호")]

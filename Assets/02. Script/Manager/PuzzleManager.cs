@@ -49,7 +49,7 @@ public class PuzzleManager : Singleton<PuzzleManager>
             Instantiate(miniGame.reward, currentRwdTrs.position, currentRwdTrs.rotation);
             Debug.Log("Spawn!");
         }
-        GameManager.Instance.isGameCleared(miniGame.isMain, miniGame.GameIndex);
+        PuzzleDataManager.Instance.isGameCleared(miniGame);
         PuzzleExit();
         DestroyObj();
     }

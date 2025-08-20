@@ -4,21 +4,29 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MiniGameData : MonoBehaviour
+public class MiniGameData : InteractableObject
 {
     public MiniGame games;
 
     public Transform rewardSpawnPoint;
 
-
-    private void OnTriggerEnter(Collider other)
+    private void Awake()
     {
-        if (!other.CompareTag("Player")) return;
+        InteractionText = "Press [F]";
+    }
+
+    public override void Interact()
+    {
+        base.Interact();
         PuzzleManager.Instance.PuzzleIn(games, rewardSpawnPoint);
     }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!other.CompareTag("Player")) return;
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        gameObject.SetActive(false);
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    gameObject.SetActive(false);
+    //}
 }

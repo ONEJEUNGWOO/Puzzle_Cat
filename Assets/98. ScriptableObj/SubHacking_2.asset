@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SubHacking_2
   m_EditorClassIdentifier: 
   isMain: 0
-  GameIndex: 4
+  GameID: Sub_Game_4
+  GameIndex: 1
   isGravityUse: 0
   GravityScale: {x: 0, y: 0, z: 0}
   levels: {fileID: 3945527872129300165, guid: 9319123e854f5744a9821d94b6bb89e0, type: 3}
