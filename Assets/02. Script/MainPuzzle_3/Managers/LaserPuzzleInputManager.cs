@@ -1,9 +1,12 @@
 using LaserPuzzle;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// 레이저 퍼즐의 입력에 관한 매니저
+/// 생성과 동시에 입력을 활성화
+/// 이후 클리어 하면 비활성화를 호출(그런데 어차피 제거되면서 상관없나?)
+/// </summary>
 public class LaserPuzzleInputManager : MonoBehaviour
 {
     [SerializeField] PlayerInput input;
@@ -14,7 +17,7 @@ public class LaserPuzzleInputManager : MonoBehaviour
     {
         cam = Camera.main;
         input = GetComponent<PlayerInput>();
-        ActiveInput();
+        ActivateInput();
     }
 
     public void OnClick(InputAction.CallbackContext context)
@@ -34,12 +37,12 @@ public class LaserPuzzleInputManager : MonoBehaviour
         }
     }
 
-    public void ActiveInput()
+    public void ActivateInput()
     {
         input.ActivateInput();
     }
 
-    public void DeactiveInput()
+    public void DeactivateInput()
     {
         input.DeactivateInput();
     }

@@ -1,9 +1,13 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// 레이저 퍼즐을 전체적으로 관리하는 매니저
+/// 시작시 모든 레이저 발사기에 발사를 명령함
+/// 레이저 경로를 다시 계산하는 호출이 발생하면 이벤트에 등록된 함수를 작동시키고 경로를 재계산
+/// 퍼즐이 클리어되면 클리어 처리를 진행하고 퍼즐 제거
+/// </summary>
 public class LaserPuzzleManager : MonoBehaviour
 {
     [SerializeField] private LaserEmitter[] emitters;
@@ -12,8 +16,15 @@ public class LaserPuzzleManager : MonoBehaviour
     // 오브젝트 상태가 변했을 때 발생시킬 이벤트
     public event Action OnObjectChange;
 
+    private Transform puzzle;
+    private Camera cam;
+
+    public LaserPuzzleInputManager inputManager;
+
     private void Start()
     {
+        Init();
+
         emitters = GetComponentsInChildren<LaserEmitter>();
         receivers = GetComponentsInChildren<LaserReceiver>();
 
@@ -54,5 +65,32 @@ public class LaserPuzzleManager : MonoBehaviour
         Debug.Log("Puzzle Clear");
         // 퍼즐 클리어
         // 클리어 처리는 여기서
+        // 클리어 했다는 UI를 띄어야 하나?
+        OnClear();
+    }
+
+    private void Init()
+    {
+        // 부모 퍼즐 찾기
+        puzzle = transform.parent;
+
+        // 카메라 오소그래픽
+        cam = Camera.main;
+        cam.orthographic = true;
+
+        // 인풋 매니저 등록
+        inputManager = puzzle.GetComponentInChildren<LaserPuzzleInputManager>();
+    }
+
+    private void OnClear()
+    {
+        // 해당 퍼즐 클리어 했다는 거 알림 / 데이터 저장
+
+        // 카메라 오소그래픽 해제
+        cam.orthographic = false;
+        // 인풋 비활성화
+        inputManager.DeactivateInput();
+        // 부모 퍼즐 삭제
+        Destroy(puzzle.gameObject);
     }
 }

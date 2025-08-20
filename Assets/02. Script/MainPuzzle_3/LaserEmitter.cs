@@ -1,6 +1,8 @@
-using LaserPuzzle;
 using UnityEngine;
 
+/// <summary>
+/// 레이저 발사 장치
+/// </summary>
 public class LaserEmitter : MonoBehaviour
 {
     [SerializeField] private Color laserColor = Color.red;

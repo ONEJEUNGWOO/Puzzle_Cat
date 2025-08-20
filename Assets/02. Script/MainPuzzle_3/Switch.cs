@@ -1,7 +1,9 @@
-using LaserPuzzle;
 using UnityEngine;
 
-public class Switch : MonoBehaviour, IInteractable
+/// <summary>
+/// 스위치를 통해 장애물을 제거 가능
+/// </summary>
+public class Switch : MonoBehaviour, LaserPuzzle.IInteractable
 {
     public bool isActive = false;
     public Color activatedColor = Color.red;

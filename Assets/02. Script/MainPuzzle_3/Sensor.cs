@@ -1,8 +1,11 @@
 using Game.Common;
-using LaserPuzzle;
 using UnityEngine;
 
-public class Sensor : MonoBehaviour, ILaserInteractable
+/// <summary>
+/// 레이저를 감지하면 장애물을 제거하는 함수
+/// 기존 계획은 레이저가 감지될 때만 제거하지만, 이 경우 무한반복이 발생하여 한 번 감지하면 유지되는 것으로 변경
+/// </summary>
+public class Sensor : MonoBehaviour, LaserPuzzle.ILaserInteractable
 {
     public Color targetColor;
 
