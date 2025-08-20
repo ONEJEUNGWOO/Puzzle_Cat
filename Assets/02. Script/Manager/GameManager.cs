@@ -2,15 +2,29 @@ using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using KNJ;
 public class GameManager : Singleton<GameManager>
 {
+
+
     private void Start()
     {
+        LoadData();
+
         PuzzleManager.Instance.OnPuzzleZoneEnter += HandlePuzzleIn;
         PuzzleManager.Instance.OnpuzzleZoneExit += HandlePuzzleExit;
     }
-
    
+    public void LoadData()
+    {
+        if (DataManager.Instance.LoadData())
+        {
+            CharacterManager.Instance.Player.transform.position = DataManager.Instance.GetPlayerPositionData();
+
+            PuzzleDataManager.Instance.Init();
+        }
+
+    }
 
     private void HandlePuzzleIn(MiniGame data)
     {
@@ -43,6 +57,11 @@ public class GameManager : Singleton<GameManager>
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+
+    private void OnApplicationQuit()
+    {
+        DataManager.Instance.SaveData();
+    }
 
     // 시간 관련
 
