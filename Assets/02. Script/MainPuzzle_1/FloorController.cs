@@ -7,9 +7,7 @@ public class FloorController : MonoBehaviour
 {
     public int moveSpeed;
     private bool canMove = true;
-    private Coroutine curCoroutin;
     private Quaternion startRot;
-    private Vector3 startPos;
     private PlayerInput input;
     private InputAction ballSpawn;
     //public float maxNUm;
@@ -21,7 +19,6 @@ public class FloorController : MonoBehaviour
     private void Awake()
     {
         startRot = transform.localRotation;
-        startPos = transform.position;
 
         input = GetComponent<PlayerInput>();
 
@@ -76,18 +73,14 @@ public class FloorController : MonoBehaviour
         if (!canMove) return ;
 
         Debug.Log("?");
-        canMove = false;
-        StartCoroutine(CantMove());
         //transform.rotation = startRot;
-        transform.position = startPos;
         transform.localRotation = startRot;
-        Debug.Log(transform.localPosition);
     }
 
-    IEnumerator CantMove()
-    {
-        canMove = false;
-        yield return new WaitForSeconds(1f);
-        canMove = true;
-    }
+    //IEnumerator CantMove()
+    //{
+    //    canMove = false;
+    //    yield return new WaitForSeconds(1f);
+    //    canMove = true;
+    //}
 }
