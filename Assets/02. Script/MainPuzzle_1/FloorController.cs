@@ -73,8 +73,7 @@ public class FloorController : MonoBehaviour
         if (!canMove) return ;
 
         Debug.Log("?");
-        //transform.rotation = startRot;
-        transform.localRotation = startRot;
+        transform.rotation = startRot;
     }
 
     //IEnumerator CantMove()
