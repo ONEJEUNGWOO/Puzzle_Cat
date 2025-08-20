@@ -18,4 +18,4 @@ MonoBehaviour:
   isGravityUse: 0
   GravityScale: {x: 0, y: 0, z: 0}
   levels: {fileID: 3945527872129300165, guid: 1c6071db91cac69488534968e316678f, type: 3}
-  reward: {fileID: 0}
+  reward: {fileID: 5322020413015928883, guid: ce943eb709982874dbf3e1634cc8fd0d, type: 3}
