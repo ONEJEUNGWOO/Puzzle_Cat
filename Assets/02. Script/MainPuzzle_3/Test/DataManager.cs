@@ -53,17 +53,31 @@ namespace KNJ
             curSaveData = new SaveData();
 
             // 게임 매니저로 플레이어 위치랑 회전 정보 가져옴
-            Vector3 playerPos = CharacterManager.Instance.Player.transform.position;
-            curSaveData.playerPosition = new float[3] { playerPos.x, playerPos.y, playerPos.z };
-            Quaternion playerRot = CharacterManager.Instance.Player.transform.rotation;
-            curSaveData.playerRotation = new float[4] {playerRot.x, playerRot.y, playerRot.z, playerRot.w};
+            try
+            {
+                Vector3 playerPos = CharacterManager.Instance.Player.transform.position;
+                curSaveData.playerPosition = new float[3] { playerPos.x, playerPos.y, playerPos.z };
+                Quaternion playerRot = CharacterManager.Instance.Player.transform.rotation;
+                curSaveData.playerRotation = new float[4] { playerRot.x, playerRot.y, playerRot.z, playerRot.w };
+            }
+            catch
+            {
+                Debug.LogError("플레이어 정보 없음");
+            }
 
             // 게임 매니저에서 퍼즐 클리어 정보 가져옴 (퍼즐 고유 아이디랑 클리어 여부)
-            curSaveData.puzzleClearData = new List<GameClearData>();
-            Dictionary<string, bool> puzzleClearData = PuzzleDataManager.Instance.puzzleClearData;
-            foreach (KeyValuePair<string, bool> kvp in puzzleClearData)
+            try
             {
-                curSaveData.puzzleClearData.Add(new GameClearData(kvp.Key, kvp.Value));
+                curSaveData.puzzleClearData = new List<GameClearData>();
+                Dictionary<string, bool> puzzleClearData = PuzzleDataManager.Instance.puzzleClearData;
+                foreach (KeyValuePair<string, bool> kvp in puzzleClearData)
+                {
+                    curSaveData.puzzleClearData.Add(new GameClearData(kvp.Key, kvp.Value));
+                }
+            }
+            catch
+            {
+                Debug.LogError("퍼즐 클리어 정보 없음");
             }
 
             string json = JsonUtility.ToJson(curSaveData, true);
@@ -98,6 +112,8 @@ namespace KNJ
                 return false;
 
             }
+
+            curSaveData = data;
 
             Debug.Log("데이터 불러오기 성공");
             return true;
