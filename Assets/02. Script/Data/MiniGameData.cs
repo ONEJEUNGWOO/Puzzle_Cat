@@ -13,11 +13,14 @@ public class MiniGameData : InteractableObject
     private void Start()
     {
         InteractionText = "Press [F]";
+    }
 
+    public void CheckClear()
+    {
         if (PuzzleDataManager.Instance.puzzleClearData.ContainsKey(games.GameID) &&
             PuzzleDataManager.Instance.puzzleClearData[games.GameID])
         {
-            PuzzleManager.Instance.SpawnReward();
+            Instantiate(games.reward, rewardSpawnPoint.position, rewardSpawnPoint.rotation);
             Setactive();
         }
     }

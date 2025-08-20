@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractionText: 
-  games: {fileID: 0}
+  games: {fileID: 11400000, guid: 094e34410b9999248bdf3630a7e007b8, type: 2}
   rewardSpawnPoint: {fileID: 1024883058}
 --- !u!1 &67908693
 GameObject:
@@ -1068,7 +1068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractionText: 
-  games: {fileID: 0}
+  games: {fileID: 11400000, guid: a432ce575274b1644bc8189a695c87f9, type: 2}
   rewardSpawnPoint: {fileID: 927453133}
 --- !u!1 &446831176
 GameObject:
@@ -1174,11 +1174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4159847327492855741, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000049360096
+      value: -0.00000003678724
       objectReference: {fileID: 0}
     - target: {fileID: 4159847327492855741, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000018626451
+      value: 0.000000012805685
       objectReference: {fileID: 0}
     - target: {fileID: 5271870334909201201, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: jumpPower
@@ -1190,15 +1190,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5367891227984611932, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.15491526
+      value: 0.15491523
       objectReference: {fileID: 0}
     - target: {fileID: 5367891227984611932, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000023389045
+      value: -0.000000006811791
       objectReference: {fileID: 0}
     - target: {fileID: 5367891227984611932, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000012162481
+      value: 0.000000004274594
       objectReference: {fileID: 0}
     - target: {fileID: 6411966234114698976, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1266,11 +1266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8613064692846123555, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000002009808
+      value: -0.000000010359195
       objectReference: {fileID: 0}
     - target: {fileID: 8613064692846123555, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000012055041
+      value: 0.0000000056093645
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2553,7 +2553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractionText: 
-  games: {fileID: 0}
+  games: {fileID: 11400000, guid: 8bc6c92bc09d9f7488b2e902d4ada831, type: 2}
   rewardSpawnPoint: {fileID: 239149347}
 --- !u!1 &1300121896
 GameObject:
@@ -2868,7 +2868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractionText: 
-  games: {fileID: 0}
+  games: {fileID: 11400000, guid: 6439c5c1bc959b04d9917be185d9a362, type: 2}
   rewardSpawnPoint: {fileID: 0}
 --- !u!1 &1615350407
 GameObject:
