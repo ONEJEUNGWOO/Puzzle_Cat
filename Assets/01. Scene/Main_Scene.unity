@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  games: {fileID: 0}
+  games: {fileID: 11400000, guid: 6f262e36d2a54e34792c31700fb4be80, type: 2}
   rewardSpawnPoint: {fileID: 798266828}
 --- !u!135 &17838151
 SphereCollider:
@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  games: {fileID: 0}
+  games: {fileID: 11400000, guid: 45800ec1e167ebc4d8831227fc3b9697, type: 2}
   rewardSpawnPoint: {fileID: 685500715}
 --- !u!4 &103721856 stripped
 Transform:
@@ -1121,15 +1121,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6411966234114698976, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.23
+      value: -2.171
       objectReference: {fileID: 0}
     - target: {fileID: 6411966234114698976, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.93
+      value: 0.122
       objectReference: {fileID: 0}
     - target: {fileID: 6411966234114698976, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.334
+      value: -0.771
       objectReference: {fileID: 0}
     - target: {fileID: 6411966234114698976, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1282,7 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  games: {fileID: 11400000, guid: 433dbe1a27fe53f49b973963a14c214c, type: 2}
+  games: {fileID: 11400000, guid: 75ce4e32d7e707e4eb247663ce2e26a7, type: 2}
   rewardSpawnPoint: {fileID: 0}
 --- !u!1 &546389115
 GameObject:
@@ -1625,7 +1625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  games: {fileID: 0}
+  games: {fileID: 11400000, guid: c72809d1f3bb35946a999adf14df3fe6, type: 2}
   rewardSpawnPoint: {fileID: 639899501}
 --- !u!1 &798266827
 GameObject:
@@ -1853,7 +1853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c697612157e6dbe408903faf47fc3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  games: {fileID: 11400000, guid: 433dbe1a27fe53f49b973963a14c214c, type: 2}
+  games: {fileID: 11400000, guid: 44fa2c83a65fdf94f8812c91ad552cdf, type: 2}
   rewardSpawnPoint: {fileID: 646496434}
 --- !u!4 &974858589
 Transform:
@@ -3215,7 +3215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0babdb0ae1548e4ab009205300f7c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameCleared: 000000
+  isMainCleared: 000000
+  isSubCleared: 000000000000000000
 --- !u!4 &2075331890
 Transform:
   m_ObjectHideFlags: 0
