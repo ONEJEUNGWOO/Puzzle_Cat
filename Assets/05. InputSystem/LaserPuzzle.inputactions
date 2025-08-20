@@ -1,0 +1,54 @@
+{
+    "name": "LaserPuzzle",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "bacf28ad-7e57-4e02-bca8-a4ea70583cc5",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "a7ddd35b-c38e-4153-9741-793214e41526",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Point",
+                    "type": "Value",
+                    "id": "fd378752-dc89-48ec-b5b8-d992d61acb57",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7566b6f9-6da7-4f5b-b34b-6ecbdd5e6b73",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99dcb4ba-7d0a-4abd-903d-4a8de12d5e73",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
