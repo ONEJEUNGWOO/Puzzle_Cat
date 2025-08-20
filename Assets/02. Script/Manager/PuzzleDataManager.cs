@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using KNJ;
 
 public class PuzzleDataManager : Singleton<PuzzleDataManager>
 {
@@ -26,6 +27,13 @@ public class PuzzleDataManager : Singleton<PuzzleDataManager>
 
         CheckGameClear();
         Clear?.Invoke();
+
+        DataManager.Instance.SaveData();
+    }
+
+    public void Init()
+    {
+        puzzleClearData = DataManager.Instance.GetGameClearData();
     }
 
     private void CheckGameClear()
