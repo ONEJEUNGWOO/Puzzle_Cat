@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class PuzzleDataManager : Singleton<PuzzleDataManager>
     public Dictionary<string, bool> puzzleClearData = new Dictionary<string, bool>();
 
     public List<MiniGame> mainPuzzleCheck;
+
+    public Action Clear;
 
     public void isGameCleared(MiniGame data)
     {
@@ -22,6 +25,7 @@ public class PuzzleDataManager : Singleton<PuzzleDataManager>
         }
 
         CheckGameClear();
+        Clear?.Invoke();
     }
 
     private void CheckGameClear()
