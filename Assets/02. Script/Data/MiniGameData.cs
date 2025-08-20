@@ -18,13 +18,24 @@ public class MiniGameData : InteractableObject
             PuzzleDataManager.Instance.puzzleClearData[games.GameID])
         {
             PuzzleManager.Instance.SpawnReward();
-            gameObject.SetActive(false);
+            Setactive();
         }
+    }
+
+    public void Setactive()
+    {
+        gameObject.SetActive(false);
     }
 
     public override void Interact()
     {
         base.Interact();
         PuzzleManager.Instance.PuzzleIn(games, rewardSpawnPoint);
+        PuzzleDataManager.Instance.Clear += Setactive;
+    }
+
+    private void OnDestroy()
+    {
+        PuzzleDataManager.Instance.Clear -= Setactive;
     }
 }
