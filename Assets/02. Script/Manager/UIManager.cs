@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,7 +31,7 @@ public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸
     public List<CanvasData> canvasList;
     private Dictionary<CanvasType, Canvas> canvasDic;
 
-    private MiniGame curMiniGame;
+    private bool isSetMainGame;
 
     private void Awake()
     {
@@ -43,6 +44,20 @@ public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸
         PuzzleManager.Instance.OnPuzzleZoneEnter += SetMiniGameUI;
 
         PuzzleManager.Instance.OnpuzzleZoneExit += OffMiniGameUI;
+
+        OffMainGameUI();
+        OffMiniGameUI();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isSetMainGame)
+                SetMainGameUI();
+            else
+                OffMainGameUI();
+        }
     }
 
     public void SetMiniGameUI(MiniGame data)
@@ -51,48 +66,37 @@ public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸
         {
             //ÄÉÀÌ½º¿¡ µû¶ó ui ÄÑÁÖ±â
             case 0:
+                Debug.Log("½ÇÇàÀº µÊ?");
                 canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(true);
-                curMiniGame = data;
                 break;
             case 1:
                 canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(true);
-                curMiniGame = data;
                 break;
             case 2:
                 canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(true);
-                curMiniGame = data;
                 break;
         }
     }
 
     public void OffMiniGameUI()
     {
-        switch (curMiniGame.GameIndex)
-        {
-            //ÄÉÀÌ½º¿¡ µû¶ó ui ÄÑÁÖ±â
-            case 0:
-                canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(false);
-                curMiniGame = null;
-                break;
-            case 1:
-                canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(false);
-                curMiniGame = null;
-                break;
-            case 2:
-                canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(false);
-                curMiniGame = null;
-                break;
-        }
+        canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(false);
+        canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(false);
+        canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(false);
     }
 
     public void SetMainGameUI() //ESC È¤Àº ¹öÆ°µî Å° ´­·¶À» ¶§ È°¼ºÈ­ ¸ÞÀÎ°ÔÀÓ °ü·Ã
     {
+        isSetMainGame = true;
+        Cursor.lockState = CursorLockMode.Confined;
         canvasDic[CanvasType.MainGameUI].gameObject.SetActive(true);
     }
 
 
-    public void OffMainGameUI(MiniGame data)
+    public void OffMainGameUI()
     {
+        isSetMainGame = false;
+        Cursor.lockState = CursorLockMode.Locked;
         canvasDic[CanvasType.MainGameUI].gameObject.SetActive(false);
     }
 }
