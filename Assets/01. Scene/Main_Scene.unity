@@ -2319,8 +2319,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 1023171745}
+  sfxSource: {fileID: 0}
   defaultBGM: {fileID: 8300000, guid: 684aa52adc72d81448648633637ecb9e, type: 3}
   defaultBGMVolume: 0.5
+  walkSFX: {fileID: 8300000, guid: 26fc0f28844abc8498c22909366c94ff, type: 3}
+  runSFX: {fileID: 8300000, guid: 2b97e12793329ba438982ea5bc040c55, type: 3}
+  jumpSFX: {fileID: 8300000, guid: 01571e11872cbf74fb18409aa66e2dda, type: 3}
 --- !u!82 &1023171745
 AudioSource:
   m_ObjectHideFlags: 0
