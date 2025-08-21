@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ·¹ÀÌÀú ±¼Àı ÀåÄ¡
+/// ë ˆì´ì € êµ´ì ˆ ì¥ì¹˜
 /// </summary>
 public class LaserRefractor : MonoBehaviour, LaserPuzzle.ILaserInteractable
 {
     private LaserRaycaster raycaster;
+
+    private void Awake()
+    {
+        raycaster = GetComponent<LaserRaycaster>();
+    }
 
     public void OnLaserHit(LaserHitInfo laserHitInfo)
     {
