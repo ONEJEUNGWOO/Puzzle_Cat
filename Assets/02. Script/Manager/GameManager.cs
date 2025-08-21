@@ -77,14 +77,4 @@ public class GameManager : Singleton<GameManager>
 
         End?.Invoke();
     }
-
-
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.K))
-        {
-            GameEnd();
-        }
-
-    }
 }
