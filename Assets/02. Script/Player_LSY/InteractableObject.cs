@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
 {
-    public string InteractionText; // °¨Áö‰çÀ» ¶§ Ç¥½ÃµÉ ÅØ½ºÆ®
+    public string InteractionText;
     public virtual void Interact()
-    // »óÈ£ÀÛ¿ëÀ» Ã³¸®ÇÏ´Â ÇÔ¼ö
-    // virtual Å°¿öµå¸¦ »ç¿ëÇÏ¿© »ó¼Ó¹ŞÀº Å¬·¡½º¿¡¼­ ¿À¹ö¶óÀÌµåÇÒ ¼ö ÀÖµµ·Ï ÇÕ´Ï´Ù.
     {
-        Debug.Log("»óÈ£ÀÛ¿ë");
+        Debug.Log("ìƒí˜¸ì‘ìš©");
     }
 }
