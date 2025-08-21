@@ -1,6 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// 게임의 사운드를 관리하는 싱글톤 매니저. BGM 재생, 정지, 페이드 효과 등을 담당합니다.
+/// </summary>
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
@@ -12,7 +15,6 @@ public class SoundManager : MonoBehaviour
     public AudioClip defaultBGM;
     public float defaultBGMVolume = 0.5f;
 
-    private bool isPlayingDefaultBGM = false;
     private Coroutine currentFadeCoroutine;
 
     private void Awake()
@@ -30,16 +32,20 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        // 기본 BGM 재생
         PlayDefaultBGM();
     }
 
-    // BGM 재생 메서드 (기본)
+    /// <summary>
+    /// BGM을 즉시 재생합니다.
+    /// </summary>
+    /// <param name="clip">재생할 오디오 클립.</param>
+    /// <param name="volume">재생 볼륨.</param>
+    /// <param name="loop">반복 재생 여부.</param>
     public void PlayBGM(AudioClip clip, float volume = 0.7f, bool loop = true)
     {
         if (clip == null) return;
 
-        // 현재 페이드 코루틴 중지
+        // 즉시 BGM을 재생하므로 현재 진행 중인 페이드 코루틴을 중지합니다.
         if (currentFadeCoroutine != null)
         {
             StopCoroutine(currentFadeCoroutine);
@@ -49,95 +55,42 @@ public class SoundManager : MonoBehaviour
         bgmSource.volume = volume;
         bgmSource.loop = loop;
         bgmSource.Play();
-
-        isPlayingDefaultBGM = (clip == defaultBGM);
     }
 
-    // 기본 BGM 재생 (중복 방지)
+    /// <summary>
+    /// 기본 BGM을 재생합니다. 이미 기본 BGM이 재생 중이면 중복 재생하지 않습니다.
+    /// </summary>
+    /// <param name="volume">재생 볼륨. 기본값(-1f) 사용 시 defaultBGMVolume을 따릅니다.</param>
     public void PlayDefaultBGM(float volume = -1f)
     {
-        if (isPlayingDefaultBGM && bgmSource.isPlaying) return;
+        // 이미 기본 BGM이 재생 중이면 함수를 종료합니다.
+        if (bgmSource.clip == defaultBGM && bgmSource.isPlaying) return;
 
-        float targetVolume = volume >= 0 ? volume : defaultBGMVolume;
+        float targetVolume = (volume >= 0) ? volume : defaultBGMVolume;
         PlayBGM(defaultBGM, targetVolume);
-        isPlayingDefaultBGM = true;
     }
 
-    // 미니게임 BGM 재생
-    public void PlayMiniGameBGM(MiniGame miniGame)
+    /// <summary>
+    /// BGM을 페이드 아웃하여 정지시킵니다.
+    /// </summary>
+    /// <param name="fadeTime">페이드 아웃에 걸리는 시간.</param>
+    public Coroutine StopBGMWithFadeOut(float fadeTime)
     {
-        if (miniGame != null && miniGame.bgmClip != null)
+        if (currentFadeCoroutine != null)
         {
-            PlayBGM(miniGame.bgmClip, miniGame.bgmVolume);
-            isPlayingDefaultBGM = false;
+            StopCoroutine(currentFadeCoroutine);
         }
-        else
-        {
-            // 미니게임에 BGM이 없으면 기본 BGM 재생
-            PlayDefaultBGM();
-        }
+        currentFadeCoroutine = StartCoroutine(FadeOutBGM(fadeTime));
+        return currentFadeCoroutine;
     }
 
-    // 기본 BGM으로 복귀 (중복 방지)
-    public void ReturnToDefaultBGM()
-    {
-        PlayDefaultBGM();
-    }
-
-    // 페이드 아웃
-    public IEnumerator FadeOutBGM(float fadeTime)
-    {
-        float startVolume = bgmSource.volume;
-
-        for (float t = 0; t < fadeTime; t += Time.deltaTime)
-        {
-            bgmSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeTime);
-            yield return null;
-        }
-
-        bgmSource.volume = 0f;
-        bgmSource.Stop();
-    }
-
-    // 페이드 인
-    public IEnumerator FadeInBGM(AudioClip clip, float targetVolume, float fadeTime)
-    {
-        if (clip != null)
-        {
-            bgmSource.clip = clip;
-            bgmSource.volume = 0f;
-            bgmSource.Play();
-
-            for (float t = 0; t < fadeTime; t += Time.deltaTime)
-            {
-                bgmSource.volume = Mathf.Lerp(0f, targetVolume, t / fadeTime);
-                yield return null;
-            }
-
-            bgmSource.volume = targetVolume;
-            isPlayingDefaultBGM = (clip == defaultBGM);
-        }
-    }
-
-    // 페이드 인 (현재 클립으로)
-    public IEnumerator FadeInBGM(float targetVolume, float fadeTime)
-    {
-        if (bgmSource.clip != null)
-        {
-            bgmSource.volume = 0f;
-            bgmSource.Play();
-
-            for (float t = 0; t < fadeTime; t += Time.deltaTime)
-            {
-                bgmSource.volume = Mathf.Lerp(0f, targetVolume, t / fadeTime);
-                yield return null;
-            }
-
-            bgmSource.volume = targetVolume;
-        }
-    }
-
-    // 코루틴으로 페이드 전환
+    /// <summary>
+    /// 현재 재생 중인 BGM을 부드럽게 페이드 아웃하고 새로운 BGM을 페이드 인합니다.
+    /// </summary>
+    /// <param name="clip">새로 재생할 오디오 클립.</param>
+    /// <param name="targetVolume">새 BGM의 목표 볼륨.</param>
+    /// <param name="fadeOutTime">현재 BGM 페이드 아웃에 걸리는 시간.</param>
+    /// <param name="fadeInTime">새 BGM 페이드 인에 걸리는 시간.</param>
     public Coroutine FadeToBGM(AudioClip clip, float targetVolume, float fadeOutTime, float fadeInTime)
     {
         if (currentFadeCoroutine != null)
@@ -148,45 +101,83 @@ public class SoundManager : MonoBehaviour
         return currentFadeCoroutine;
     }
 
-    private IEnumerator FadeToBGMCoroutine(AudioClip clip, float targetVolume, float fadeOutTime, float fadeInTime)
-    {
-        // 페이드 아웃
-        if (bgmSource.isPlaying)
-        {
-            yield return FadeOutBGM(fadeOutTime);
-        }
-
-        // 새 BGM 페이드 인
-        if (clip != null)
-        {
-            yield return FadeInBGM(clip, targetVolume, fadeInTime);
-        }
-
-        currentFadeCoroutine = null;
-    }
-
-    // BGM 정지
+    /// <summary>
+    /// BGM을 정지시킵니다.
+    /// </summary>
     public void StopBGM()
     {
         bgmSource.Stop();
-        isPlayingDefaultBGM = false;
     }
 
-    // BGM 일시정지
+    /// <summary>
+    /// BGM을 일시정지합니다.
+    /// </summary>
     public void PauseBGM()
     {
         bgmSource.Pause();
     }
 
-    // BGM 재개
+    /// <summary>
+    /// BGM을 재개합니다.
+    /// </summary>
     public void ResumeBGM()
     {
         bgmSource.UnPause();
     }
 
-    // 볼륨 설정
+    /// <summary>
+    /// BGM 볼륨을 설정합니다.
+    /// </summary>
+    /// <param name="volume">설정할 볼륨 값.</param>
     public void SetBGMVolume(float volume)
     {
         bgmSource.volume = volume;
+    }
+
+    //
+    // 코루틴 메서드
+    //
+
+    private IEnumerator FadeOutBGM(float fadeTime)
+    {
+        float startVolume = bgmSource.volume;
+        for (float t = 0; t < fadeTime; t += Time.deltaTime)
+        {
+            bgmSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeTime);
+            yield return null;
+        }
+        bgmSource.volume = 0f;
+        bgmSource.Stop();
+    }
+
+    private IEnumerator FadeInBGM(AudioClip clip, float targetVolume, float fadeTime)
+    {
+        if (clip == null) yield break;
+
+        bgmSource.clip = clip;
+        bgmSource.volume = 0f;
+        bgmSource.Play();
+
+        float startVolume = 0f;
+        for (float t = 0; t < fadeTime; t += Time.deltaTime)
+        {
+            bgmSource.volume = Mathf.Lerp(startVolume, targetVolume, t / fadeTime);
+            yield return null;
+        }
+        bgmSource.volume = targetVolume;
+    }
+
+    private IEnumerator FadeToBGMCoroutine(AudioClip clip, float targetVolume, float fadeOutTime, float fadeInTime)
+    {
+        // 현재 BGM이 재생 중이면 페이드 아웃을 먼저 진행합니다.
+        if (bgmSource.isPlaying)
+        {
+            yield return FadeOutBGM(fadeOutTime);
+        }
+
+        // 새 BGM을 페이드 인합니다.
+        yield return FadeInBGM(clip, targetVolume, fadeInTime);
+
+        currentFadeCoroutine = null;
     }
 }

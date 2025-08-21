@@ -44,10 +44,6 @@ public class MiniGame : ScriptableObject
     [Header("Reward")]
     public GameObject reward;
 
-
-
-
-    //  BGM 관련 필드 추가 
     [Header("BGM")]
 
     /// <summary>
@@ -74,5 +70,4 @@ public class MiniGame : ScriptableObject
     /// </summary>
     [Tooltip("BGM 페이드 아웃 시간 (초)")]
     public float fadeOutTime = 1.0f;
-    //  BGM 관련 필드 추가 완료 
 }

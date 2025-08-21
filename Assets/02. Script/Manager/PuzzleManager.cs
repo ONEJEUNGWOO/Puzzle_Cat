@@ -30,6 +30,7 @@ public class PuzzleManager : Singleton<PuzzleManager>
         // 미니게임 BGM 시작 (페이드 효과)
         if (SoundManager.instance != null)
         {
+            // 미니게임 데이터의 BGM 정보를 사용
             SoundManager.instance.FadeToBGM(
                 data.bgmClip,
                 data.bgmVolume,
@@ -46,10 +47,13 @@ public class PuzzleManager : Singleton<PuzzleManager>
         // 기본 BGM으로 복귀 (페이드 효과)
         if (SoundManager.instance != null)
         {
+            // miniGame 데이터가 없을 경우를 대비한 방어 코드
+            float fadeOutTime = (miniGame != null) ? miniGame.fadeOutTime : 1.0f;
+
             SoundManager.instance.FadeToBGM(
                 SoundManager.instance.defaultBGM,
                 SoundManager.instance.defaultBGMVolume,
-                miniGame != null ? miniGame.fadeOutTime : 1.0f,
+                fadeOutTime,
                 1.0f
             );
         }
@@ -78,5 +82,4 @@ public class PuzzleManager : Singleton<PuzzleManager>
     {
         Destroy(obj);
     }
-
 }

@@ -1251,15 +1251,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8613064692846123555, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.16204044
+      value: -0.16204041
       objectReference: {fileID: 0}
     - target: {fileID: 8613064692846123555, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000002417444
+      value: -0.000000026762
       objectReference: {fileID: 0}
     - target: {fileID: 8613064692846123555, guid: e956175f783c164478ed1eb44b37255c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000003452468
+      value: 0.000000019849898
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2318,8 +2318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bac40760c373f4429eb4c480b21fe5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSource: {fileID: 0}
-  defaultBGM: {fileID: 0}
+  bgmSource: {fileID: 1023171745}
+  defaultBGM: {fileID: 8300000, guid: 684aa52adc72d81448648633637ecb9e, type: 3}
   defaultBGMVolume: 0.5
 --- !u!82 &1023171745
 AudioSource:
