@@ -20,13 +20,13 @@ public class CanvasData
     public Canvas canvas;
 }
 
-//[CreateAssetMenu(fileName = "UIType")]    ½ºÅ©¸³ÅÍºí ¿ÀºêÁ§Æ®·Î °ü¸® ÇÏ·Á´Ù ½ÇÆĞ
+//[CreateAssetMenu(fileName = "UIType")]    ìŠ¤í¬ë¦½í„°ë¸” ì˜¤ë¸Œì íŠ¸ë¡œ ê´€ë¦¬ í•˜ë ¤ë‹¤ ì‹¤íŒ¨
 //public class CanvasScriptable : ScriptableObject
 //{
 //    public GameObject prepab;
 //}
 
-public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸Å´ÏÀú
+public class UIManager : Singleton<UIManager>       //ë”•ì…”ë„ˆë¦¬ë¥¼ í†µí•´ ê´€ë¦¬í•˜ëŠ” ë§¤ë‹ˆì €
 {
     public List<CanvasData> canvasList;
     private Dictionary<CanvasType, Canvas> canvasDic;
@@ -57,15 +57,17 @@ public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸
         }
     }
 
-    public void SetMiniGameUI(MiniGame data)        //TODO ÇÏ³ª·Î ÁÙÀÌ±â 
+    public void SetMiniGameUI(MiniGame data)        //TODO í•˜ë‚˜ë¡œ ì¤„ì´ê¸° 
     {
+        if (data.GameIndex != 0) return;
+
         canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(true);
 
         //switch (data.GameIndex)
         //{
-        //ÄÉÀÌ½º¿¡ µû¶ó ui ÄÑÁÖ±â
+        //ì¼€ì´ìŠ¤ì— ë”°ë¼ ui ì¼œì£¼ê¸°
         //case 0:
-        //    Debug.Log("½ÇÇàÀº µÊ?");
+        //    Debug.Log("ì‹¤í–‰ì€ ë¨?");
         //    canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(true);
         //    break;
         //case 1:
@@ -83,18 +85,18 @@ public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸
         //canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(false);
     }
 
-    public void SetMainGameUI() //ESC È¤Àº ¹öÆ°µî Å° ´­·¶À» ¶§ È°¼ºÈ­ ¸ŞÀÎ°ÔÀÓ °ü·Ã
+    public void SetMainGameUI() //ESC í˜¹ì€ ë²„íŠ¼ë“± í‚¤ ëˆŒë €ì„ ë•Œ í™œì„±í™” ë©”ì¸ê²Œì„ ê´€ë ¨
     {
         if (!isSetMainGame)
         {
             canvasDic[CanvasType.MainGameUI].GetComponent<Animator>().SetTrigger("FadeIn");
-            Debug.Log("ÄÑÁü");
+            Debug.Log("ì¼œì§");
             canvasDic[CanvasType.MainGameUI].gameObject.SetActive(!isSetMainGame); 
         }
         else
         {
             canvasDic[CanvasType.MainGameUI].GetComponent<Animator>().SetTrigger("FadeOut");
-            Debug.Log("²¨Áü");
+            Debug.Log("êº¼ì§");
         }
 
         Cursor.lockState = CursorLockMode.Confined;
