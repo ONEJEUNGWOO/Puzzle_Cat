@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ·¹ÀÌÀú¸¦ ¹ß»ç °¡´ÉÇÏ°Ô ÇÏ´Â ½ºÅ©¸³Æ®
-/// ·¹ÀÌÄ³½ºÆ®·Î ¿ÀºêÁ§Æ®°£ÀÇ »óÈ£ÀÛ¿ëÀ» ÀÛµ¿½ÃÅ´
-/// ÀÌÈÄ ¶óÀÎ·»´õ·¯·Î ·¹ÀÌÀú¸¦ ½Ã°¢ÀûÀ¸·Î Ç¥½Ã
+/// ë ˆì´ì €ë¥¼ ë°œì‚¬ ê°€ëŠ¥í•˜ê²Œ í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸
+/// ë ˆì´ìºìŠ¤íŠ¸ë¡œ ì˜¤ë¸Œì íŠ¸ê°„ì˜ ìƒí˜¸ì‘ìš©ì„ ì‘ë™ì‹œí‚´
+/// ì´í›„ ë¼ì¸ë Œë”ëŸ¬ë¡œ ë ˆì´ì €ë¥¼ ì‹œê°ì ìœ¼ë¡œ í‘œì‹œ
 /// </summary>
 public class LaserRaycaster : MonoBehaviour
 {
@@ -17,19 +17,19 @@ public class LaserRaycaster : MonoBehaviour
     [SerializeField] private List<LaserRaycastInfo> laserRaycastInfos = new List<LaserRaycastInfo>();
 
     public bool isRayCasting = false;
-    public int canHitNum = 3; // ÃÖ´ë ¹İ»ç È½¼ö
-    public int curHitNum = 0; // ÇöÀç ¹İ»ç È½¼ö
+    public int canHitNum = 3; // ìµœëŒ€ ë°˜ì‚¬ íšŸìˆ˜
+    public int curHitNum = 0; // í˜„ì¬ ë°˜ì‚¬ íšŸìˆ˜
 
     private LaserPuzzleManager manager;
 
     private void Awake()
     {
-        // Emitter¿ë ¶óÀÎ·»´õ·¯
+        // Emitterìš© ë¼ì¸ë Œë”ëŸ¬
         lineRenderer = GetComponent<LineRenderer>();
         if(lineRenderer != null)
             lineRenderer.material = baseMaterial;
 
-        // LaserReflecter & ColorLens¿ë ¶óÀÎ·»´õ·¯ ÄÄÆ÷³ÍÆ®µé
+        // LaserReflecter & ColorLensìš© ë¼ì¸ë Œë”ëŸ¬ ì»´í¬ë„ŒíŠ¸ë“¤
         lineRenderers = GetComponentsInChildren<LineRenderer>();
         foreach (LineRenderer lineRenderer in lineRenderers)
         {
@@ -39,15 +39,15 @@ public class LaserRaycaster : MonoBehaviour
 
     private void Start()
     {
-        // ÆÛÁñ ¸Å´ÏÀú¸¦ Ã£°í ¸Å´ÏÀúÀÇ ÀÌº¥Æ®¸¦ ±¸µ¶
-        // ÀÌ°Ô Á¤¸» ÇÏµåÄÚµùÀÌ¶õ°É ¾ËÁö¸¸ ½Ì±ÛÅÏÀÌ³ª µ¿Àû»ı¼ºÀ» ÇÏÁö ¾Ê°í ¸Å´ÏÀú¸¦ Ã£À» ¹æ¹ı Áß °¡Àå »¡¶ó¼­ ¾îÂ¿ ¼ö ¾øÀ½
-        // ÀÌ¿¡ °üÇØ °í¹ÎÀ» Á» ´õ ÇØºÁ¾ß ÇÒ µí
+        // í¼ì¦ ë§¤ë‹ˆì €ë¥¼ ì°¾ê³  ë§¤ë‹ˆì €ì˜ ì´ë²¤íŠ¸ë¥¼ êµ¬ë…
+        // ì´ê²Œ ì •ë§ í•˜ë“œì½”ë”©ì´ë€ê±¸ ì•Œì§€ë§Œ ì‹±ê¸€í„´ì´ë‚˜ ë™ì ìƒì„±ì„ í•˜ì§€ ì•Šê³  ë§¤ë‹ˆì €ë¥¼ ì°¾ì„ ë°©ë²• ì¤‘ ê°€ì¥ ë¹¨ë¼ì„œ ì–´ì©” ìˆ˜ ì—†ìŒ
+        // ì´ì— ê´€í•´ ê³ ë¯¼ì„ ì¢€ ë” í•´ë´ì•¼ í•  ë“¯
         manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
         manager.OnObjectChange += ClearAllLaserInfo;
     }
 
-    // Emitter¿ë ´ÜÀÏ ·¹ÀÌÀú ¹ß»ç ÇÔ¼ö
-    // ±»ÀÌ ³ª´­ ÇÊ¿ä´Â ¾ø±äÇÑµ¥ ÀÏ´Ü È¤½Ã ¸ô¶ó¼­ ÀÌ´ë·Î »ç¿ëÁß
+    // Emitterìš© ë‹¨ì¼ ë ˆì´ì € ë°œì‚¬ í•¨ìˆ˜
+    // êµ³ì´ ë‚˜ëˆŒ í•„ìš”ëŠ” ì—†ê¸´í•œë° ì¼ë‹¨ í˜¹ì‹œ ëª°ë¼ì„œ ì´ëŒ€ë¡œ ì‚¬ìš©ì¤‘
     public void CastLaser(Vector3 origin, Vector3 direction, Color color, float maxDistance)
     {
         lineRenderer.positionCount = 1;
@@ -78,7 +78,7 @@ public class LaserRaycaster : MonoBehaviour
         }
     }
 
-    // Emitter¿ë ·¹ÀÌÀú Á¦°Å ÇÔ¼ö
+    // Emitterìš© ë ˆì´ì € ì œê±° í•¨ìˆ˜
     public void ClearLaser()
     {
         lineRenderer.positionCount = 0;
@@ -86,7 +86,7 @@ public class LaserRaycaster : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹ß»çÇØ¾ß ÇÒ ·¹ÀÌÀú°¡ 2°³ ÀÌ»óÀÏ °æ¿ì »ç¿ëÇÏ´Â ÇÔ¼ö
+    /// ë°œì‚¬í•´ì•¼ í•  ë ˆì´ì €ê°€ 2ê°œ ì´ìƒì¼ ê²½ìš° ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public void CastAllLaser()
     {
@@ -108,6 +108,7 @@ public class LaserRaycaster : MonoBehaviour
 
                 curHitNum++;
 
+                // ê° ë ˆì´ì € ì •ë³´ë¥¼ ë°”íƒ•ìœ¼ë¡œ Raycastë¥¼ ì‹¤í–‰ ë° ë¼ì¸ë Œë”ëŸ¬ ë Œë”ë§
                 if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, laserRaycastInfos[i].maxDistance))
                 {
                     lineRenderers[i].positionCount++;
@@ -129,7 +130,7 @@ public class LaserRaycaster : MonoBehaviour
     }
 
     /// <summary>
-    /// Á¦°ÅÇØ¾ßÇÒ ·¹ÀÌÀú°¡ 2°³ ÀÌ»óÀÏ ¶§ »ç¿ëÇÏ´Â ÇÔ¼ö
+    /// ì œê±°í•´ì•¼í•  ë ˆì´ì €ê°€ 2ê°œ ì´ìƒì¼ ë•Œ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public void ClearAllLaser()
     {
@@ -139,7 +140,7 @@ public class LaserRaycaster : MonoBehaviour
         }
     }
 
-    // ¸¸¾à ·¹ÀÌÀú ÀÎÆ÷ Á¦°Åµµ ÇÊ¿äÇÏ¸é »ç¿ëÇÏ´Â ÇÔ¼ö
+    // ë§Œì•½ ë ˆì´ì € ì¸í¬ ì œê±°ë„ í•„ìš”í•˜ë©´ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜
     public void ClearAllLaserInfo()
     {
         ClearAllLaser();
@@ -147,8 +148,8 @@ public class LaserRaycaster : MonoBehaviour
         laserRaycastInfos.Clear();
     }
 
-    // ¿ÜºÎ¿¡¼­ ·¹ÀÌÀú Á¤º¸¸¦ µî·ÏÇÒ ¶§ »ç¿ëÇÏ´Â ÇÔ¼ö
-    // ÀÌ¹Ì Á¸ÀçÇÏ¸é °ÅºÎ
+    // ì™¸ë¶€ì—ì„œ ë ˆì´ì € ì •ë³´ë¥¼ ë“±ë¡í•  ë•Œ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜
+    // ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì •ë³´ë¼ë©´ ì¢…ë£Œ
     public void AddLaserInfo(LaserRaycastInfo info)
     {
         if (laserRaycastInfos.Contains(info))
