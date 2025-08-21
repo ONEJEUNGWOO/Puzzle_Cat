@@ -384,7 +384,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940204877946782058}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.17996274, y: -0.00000003193712, z: -0.0000000094996615, w: -0.98367345}
+  m_LocalRotation: {x: 0.19069943, y: -4.0967296e-16, z: 8.001618e-16, w: 0.98164845}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1663,7 +1663,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4900589322997327124}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14411208, y: -0.000000026762, z: 0.000000019849898, w: -0.98956144}
+  m_LocalRotation: {x: 0.15491529, y: -0.000000030167104, z: 0.0000000166613, w: 0.9879278}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2017,7 +2017,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5345476670193721011}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.16204041, y: -0.000000026762, z: 0.000000019849898, w: -0.98678416}
+  m_LocalRotation: {x: 0.17281221, y: -3e-45, z: 1e-45, w: 0.98495483}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2481,8 +2481,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7699085178706921126}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.33093196, y: -0.000000059604645, z: -0.000000029802322, w: -0.94365466}
-  m_LocalPosition: {x: 0.00000014901161, y: 2.0049999, z: -2.5603678}
+  m_LocalRotation: {x: 0.23840831, y: -0.65446526, z: 0.22951563, w: 0.679823}
+  m_LocalPosition: {x: -3.956481, y: 3.23, z: 3.3587177}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2656,6 +2656,7 @@ GameObject:
   - component: {fileID: 4336273987739408816}
   - component: {fileID: 7677862367587461110}
   - component: {fileID: 5755233676102011065}
+  - component: {fileID: 8285831460974599175}
   m_Layer: 6
   m_Name: Kitty_001
   m_TagString: Untagged
@@ -2722,6 +2723,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.14545234, y: 0.28854704, z: 0.3761648}
   m_Center: {x: -0.000019844689, y: 0.14635015, z: 0.040593833}
+--- !u!114 &8285831460974599175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8746426019299676076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbddfdff63c8ba647b48f1013789fd1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8917435539535132496
 GameObject:
   m_ObjectHideFlags: 0
