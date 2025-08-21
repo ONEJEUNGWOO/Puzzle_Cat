@@ -650,5 +650,7 @@ void CameraLook()
 
 ## VI. 최종 게임 시현 영상 :
 
+https://github.com/user-attachments/assets/d9889c21-b92d-458d-b448-4a060861afcc
+
 ## 감사합니다!
 
