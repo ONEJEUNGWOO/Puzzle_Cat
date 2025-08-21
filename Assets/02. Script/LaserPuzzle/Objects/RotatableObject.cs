@@ -28,8 +28,6 @@ public class RotatableObject : MonoBehaviour, LaserPuzzle.IInteractable
             // 회전 동기화 문제 있음
             // 현재는 계산을 특정 시간 이후에 진행하여 최대한 자연스럽게 연출
             transform.Rotate(new Vector3(0f, 45f, 0f));
-            //Physics.SyncTransforms();
-            //manager.RecalculateLaser();
             manager.RecalculateLaser();
         }
     }

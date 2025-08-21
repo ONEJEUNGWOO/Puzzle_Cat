@@ -15,6 +15,7 @@ public class LaserRefractor : MonoBehaviour, LaserPuzzle.ILaserInteractable
         raycaster = GetComponent<LaserRaycaster>();
     }
 
+    // 레이저가 들어오면 이를 굴절시켜서 발사함
     public void OnLaserHit(LaserHitInfo laserHitInfo)
     {
         Vector3 refractVec = Quaternion.Euler(0f, 45f, 0f) * laserHitInfo.incomingDirection;

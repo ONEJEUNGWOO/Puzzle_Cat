@@ -2,8 +2,8 @@ using Game.Common;
 using UnityEngine;
 
 /// <summary>
-/// ·¹ÀÌÀú¸¦ °¨ÁöÇÏ¸é Àå¾Ö¹°À» Á¦°ÅÇÏ´Â ÇÔ¼ö
-/// ±âÁ¸ °èÈ¹Àº ·¹ÀÌÀú°¡ °¨ÁöµÉ ¶§¸¸ Á¦°ÅÇÏÁö¸¸, ÀÌ °æ¿ì ¹«ÇÑ¹İº¹ÀÌ ¹ß»ıÇÏ¿© ÇÑ ¹ø °¨ÁöÇÏ¸é À¯ÁöµÇ´Â °ÍÀ¸·Î º¯°æ
+/// ë ˆì´ì €ë¥¼ ê°ì§€í•˜ë©´ ì¥ì• ë¬¼ì„ ì œê±°í•˜ëŠ” í•¨ìˆ˜
+/// ê¸°ì¡´ ê³„íšì€ ë ˆì´ì €ê°€ ê°ì§€ë  ë•Œë§Œ ì œê±°í•˜ì§€ë§Œ, ì´ ê²½ìš° ë¬´í•œë°˜ë³µì´ ë°œìƒí•˜ì—¬ í•œ ë²ˆ ê°ì§€í•˜ë©´ ìœ ì§€ë˜ëŠ” ê²ƒìœ¼ë¡œ ë³€ê²½
 /// </summary>
 public class Sensor : MonoBehaviour, LaserPuzzle.ILaserInteractable
 {
@@ -24,7 +24,6 @@ public class Sensor : MonoBehaviour, LaserPuzzle.ILaserInteractable
         obstacle = transform.parent.GetChild(1).gameObject;
 
         manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
-        //manager.OnObjectChange += ResetState;
     }
 
     public void OnLaserHit(LaserHitInfo laserHitInfo)
@@ -36,11 +35,5 @@ public class Sensor : MonoBehaviour, LaserPuzzle.ILaserInteractable
             isActive = true;
             manager.RecalculateLaser();
         }
-    }
-
-    private void ResetState()
-    {
-        obstacle.transform.position = new Vector3(obstacle.transform.position.x, 0, obstacle.transform.position.z);
-        isActive = true;
     }
 }
