@@ -19,3 +19,7 @@ MonoBehaviour:
   GravityScale: {x: 0, y: 0, z: 0}
   levels: {fileID: 2624147994172556135, guid: 20e07b8e806d09149b7bae3f201cd664, type: 3}
   reward: {fileID: 1319142715392098908, guid: e8f841132c1d0d7468c889479f107d1b, type: 3}
+  bgmClip: {fileID: 8300000, guid: 263959bd598f5dc42af22c0f18607740, type: 3}
+  bgmVolume: 0.7
+  fadeInTime: 1
+  fadeOutTime: 1
