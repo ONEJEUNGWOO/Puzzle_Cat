@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -21,10 +21,9 @@ public class HackingMiniManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI infoText;
     [SerializeField] public GameObject cellPrefab;
     [SerializeField] public GameObject exitButton;
-    // 🚨 새롭게 추가된 UI
     [SerializeField] private GameObject startGameUI;
     [SerializeField] private GameObject retryGameUI;
-    [SerializeField] private GameObject successUI; // 🏆 성공 UI 추가
+    [SerializeField] private GameObject successUI; 
 
     [Header("Color Settings")]
     [SerializeField] public Color normalColor = new(0.5f, 0.5f, 0.5f, 1f);
@@ -76,10 +75,10 @@ public class HackingMiniManager : MonoBehaviour
             return;
         }
 
-        // 🚨 게임 시작 전 초기 상태 설정
+        //  게임 시작 전 초기 상태 설정
         ShowUI(startGameUI);
         HideUI(gridPanel.gameObject, bufferText.gameObject, logText.gameObject, timerText.gameObject, infoText.gameObject, exitButton);
-        HideUI(retryGameUI, successUI); // 🏆 successUI 추가
+        HideUI(retryGameUI, successUI);
     }
 
     void Update()
@@ -98,29 +97,29 @@ public class HackingMiniManager : MonoBehaviour
 
     void OnDestroy() { }
 
-    // 🚨 게임 시작 버튼에 연결될 함수
+    //  게임 시작 버튼에 연결될 함수
     public void StartGame()
     {
         HideUI(startGameUI);
         ShowUI(gridPanel.gameObject, bufferText.gameObject, logText.gameObject, timerText.gameObject, infoText.gameObject);
         InitializeGame(true);
 
-        // 🚨 게임 시작과 동시에 타이머가 흐르도록 currentState를 Playing으로 변경
+        //  게임 시작과 동시에 타이머가 흐르도록 currentState를 Playing으로 변경
         currentState = GameState.Playing;
     }
 
-    // 🚨 재시작 버튼에 연결될 함수
+    //  재시작 버튼에 연결될 함수
     public void RetryGame()
     {
         HideUI(retryGameUI);
         ShowUI(gridPanel.gameObject, bufferText.gameObject, logText.gameObject, timerText.gameObject, infoText.gameObject);
         InitializeGame(true);
 
-        // 🚨 재시작과 동시에 타이머가 흐르도록 currentState를 Playing으로 변경
+        //  재시작과 동시에 타이머가 흐르도록 currentState를 Playing으로 변경
         currentState = GameState.Playing;
     }
 
-    // 🏆 성공 시 게임을 종료하는 함수
+    //  성공 시 게임을 종료하는 함수
     public void ExitGame()
     {
         PuzzleManager.Instance.PuzzleClear ();
@@ -154,7 +153,7 @@ public class HackingMiniManager : MonoBehaviour
         bufferText.text = "";
         logText.text = "";
 
-        // 🚨 게임 시작 버튼을 누르기 전에는 FirstClick 상태로 유지
+        //  게임 시작 버튼을 누르기 전에는 FirstClick 상태로 유지
         currentState = GameState.FirstClick;
         lastRow = -1; lastCol = -1;
 
@@ -199,7 +198,7 @@ public class HackingMiniManager : MonoBehaviour
         matchIndex = 0;
         bufferText.text = "";
 
-        // 🚨 리셔플 시에는 게임 플레이 상태를 유지
+        //  리셔플 시에는 게임 플레이 상태를 유지
         currentState = GameState.Playing;
         lastRow = -1; lastCol = -1;
 
@@ -255,7 +254,7 @@ public class HackingMiniManager : MonoBehaviour
         if (currentState == GameState.Finished) return;
         string clicked = gridData[row, col];
 
-        // 🚨 첫 클릭 로직을 제거하고, 클릭 시 로직만 남김
+        //  첫 클릭 로직을 제거하고, 클릭 시 로직만 남김
         bool inCross = (row == lastRow) || (col == lastCol);
         if (matchedSequence.Count > 0 && !inCross)
         {
@@ -319,7 +318,7 @@ public class HackingMiniManager : MonoBehaviour
             cell.GetComponent<Button>().interactable = false;
 
         HideUI(gridPanel.gameObject, bufferText.gameObject, logText.gameObject, timerText.gameObject, infoText.gameObject);
-        ShowUI(successUI); // 🏆 성공 시 successUI를 표시하도록 수정
+        ShowUI(successUI); //  성공 시 successUI를 표시하도록 수정
     }
 
     void TimeOutFail()
@@ -330,7 +329,7 @@ public class HackingMiniManager : MonoBehaviour
             cell.GetComponent<Button>().interactable = false;
 
         HideUI(gridPanel.gameObject, bufferText.gameObject, logText.gameObject, timerText.gameObject, infoText.gameObject);
-        ShowUI(retryGameUI); // 🏆 실패 시 retryGameUI를 표시하도록 유지
+        ShowUI(retryGameUI); //  실패 시 retryGameUI를 표시하도록 유지
     }
 
     void ApplyMistakePenaltyIfNeeded()
@@ -347,7 +346,7 @@ public class HackingMiniManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    // 🚨 UI 활성화/비활성화 도우미 함수
+    //  UI 활성화/비활성화 도우미 함수
     private void ShowUI(params GameObject[] UIs)
     {
         foreach (var ui in UIs)
