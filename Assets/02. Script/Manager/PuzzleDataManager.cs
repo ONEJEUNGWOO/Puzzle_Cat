@@ -1,8 +1,9 @@
+using KNJ;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using KNJ;
+using UnityEngine.InputSystem;
 
 public class PuzzleDataManager : Singleton<PuzzleDataManager>
 {
@@ -55,7 +56,8 @@ public class PuzzleDataManager : Singleton<PuzzleDataManager>
             }
         }
 
-        Debug.Log("¿£µù¾À");
+        Debug.Log("ì—”ë”©ì”¬");
+        GameManager.Instance.GameEnd();
     }
 
 }

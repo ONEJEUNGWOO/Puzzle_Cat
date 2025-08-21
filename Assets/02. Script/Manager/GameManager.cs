@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using KNJ;
+using System;
 public class GameManager : Singleton<GameManager>
 {
-
+    public Action End;
 
     private void Start()
     {
@@ -63,7 +64,27 @@ public class GameManager : Singleton<GameManager>
         DataManager.Instance.SaveData();
     }
 
-    // 시간 관련
+    public void GameEnd()
+    {
+        PlayerInput input = CharacterManager.Instance.Player.GetComponent<PlayerInput>();
+
+        if (input != null)
+        {
+            input.SwitchCurrentActionMap("BallPuzzle");
+        }
+
+        Cursor.lockState = CursorLockMode.None;
+
+        End?.Invoke();
+    }
 
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.K))
+        {
+            GameEnd();
+        }
+
+    }
 }
