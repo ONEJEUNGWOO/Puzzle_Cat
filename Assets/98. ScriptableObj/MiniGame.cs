@@ -2,46 +2,77 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Game", order = 1)]
 public class MiniGame : ScriptableObject
 {
     /// <summary>
-    /// °ÔÀÓ ÀÌ¸§
+    /// ê²Œì„ ì´ë¦„
     /// </summary>
-    [Header("¸ŞÀÎ °ÔÀÓ ÀÎÁö")]
+    [Header("ë©”ì¸ ê²Œì„ ì¸ì§€")]
     public bool isMain;
 
     /// <summary>
-    /// °ÔÀÓÀÇ °íÀ¯ ¾ÆÀÌµğ
+    /// ê²Œì„ì˜ ê³ ìœ  ì•„ì´ë””
     /// </summary>
-    [Header("°ÔÀÓÀÇ °íÀ¯ ¾ÆÀÌµğ")]
+    [Header("ê²Œì„ì˜ ê³ ìœ  ì•„ì´ë””")]
     public string GameID;
 
     /// <summary>
-    /// °ÔÀÓÀÇ °íÀ¯ ¹øÈ£
+    /// ê²Œì„ì˜ ê³ ìœ  ë²ˆí˜¸
     /// </summary>
-    [Header("°ÔÀÓÀÇ °íÀ¯ ¹øÈ£")]
+    [Header("ê²Œì„ì˜ ê³ ìœ  ë²ˆí˜¸")]
     public int GameIndex;
 
     /// <summary>
-    /// Áß·ÂÀÇ ¿µÇâÀÌ ÇÊ¿äÇÑÁö
+    /// ì¤‘ë ¥ì˜ ì˜í–¥ì´ í•„ìš”í•œì§€
     /// </summary>
-    [Header("Áß·ÂÀ» »ç¿ëÇÏ´ÂÁö")]
+    [Header("ì¤‘ë ¥ì„ ì‚¬ìš©í•˜ëŠ”ì§€")]
     public bool isGravityUse;
 
     /// <summary>
-    /// ÇÊ¿äÇÑ °íÄ¥ Áß·ÂÀÇ ¾ç
+    /// í•„ìš”í•œ ê³ ì¹  ì¤‘ë ¥ì˜ ì–‘
     /// </summary>
-    [Header("Áß·ÂÀÇ °ª")]
+    [Header("ì¤‘ë ¥ì˜ ê°’")]
     public Vector3 GravityScale;
 
     /// <summary>
-    /// °¢ ·¹º§ °ªµé
+    /// ê° ë ˆë²¨ ê°’ë“¤
     /// </summary>
     [Header("Levels")]
     public GameObject levels;
 
     [Header("Reward")]
     public GameObject reward;
+
+
+
+
+    //  BGM ê´€ë ¨ í•„ë“œ ì¶”ê°€ 
+    [Header("BGM")]
+
+    /// <summary>
+    /// ë¯¸ë‹ˆê²Œì„ ì „ìš© BGM
+    /// </summary>
+    [Tooltip("ì´ ë¯¸ë‹ˆê²Œì„ì—ì„œ ì‚¬ìš©í•  BGM")]
+    public AudioClip bgmClip;
+
+    /// <summary>
+    /// BGM ë³¼ë¥¨ (0.0 ~ 1.0)
+    /// </summary>
+    [Tooltip("BGM ë³¼ë¥¨ (0.0 ~ 1.0)")]
+    [Range(0f, 1f)]
+    public float bgmVolume = 0.7f;
+
+    /// <summary>
+    /// BGM í˜ì´ë“œ ì¸ ì‹œê°„ (ì´ˆ)
+    /// </summary>
+    [Tooltip("BGM í˜ì´ë“œ ì¸ ì‹œê°„ (ì´ˆ)")]
+    public float fadeInTime = 1.0f;
+
+    /// <summary>
+    /// BGM í˜ì´ë“œ ì•„ì›ƒ ì‹œê°„ (ì´ˆ)
+    /// </summary>
+    [Tooltip("BGM í˜ì´ë“œ ì•„ì›ƒ ì‹œê°„ (ì´ˆ)")]
+    public float fadeOutTime = 1.0f;
+    //  BGM ê´€ë ¨ í•„ë“œ ì¶”ê°€ ì™„ë£Œ 
 }
