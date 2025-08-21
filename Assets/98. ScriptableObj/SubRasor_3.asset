@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 038fb48fd25b9d1408821f0ce56bff2d, type: 3}
-  m_Name: SubBall_5
+  m_Name: SubRasor_3
   m_EditorClassIdentifier: 
   isMain: 0
   GameID: Sub_Game_5
-  GameIndex: 0
+  GameIndex: 2
   isGravityUse: 0
   GravityScale: {x: 0, y: 0, z: 0}
-  levels: {fileID: 840072170539502957, guid: 3cbe5e5c75dc66042926ad8943abbc96, type: 3}
+  levels: {fileID: 41613269134313940, guid: 5e98bf637cf3e2e42b37a95a3bbd52e4, type: 3}
   reward: {fileID: 5276888761785264982, guid: ee15f810c2ed2e64eaa2d3f39634e9bd, type: 3}
