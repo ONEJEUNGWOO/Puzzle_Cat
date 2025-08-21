@@ -3,30 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class MainUIController : MonoBehaviour
 {
     public Slider bgmSlider;
     public Slider sfxSlider;
     public int fadeNum;
 
-
-    public float bgmAudioTest;
-    public float sfxAudioTest;
-
-    private void Awake()
-    {
-        bgmAudioTest = bgmSlider.value;
-        sfxAudioTest = sfxSlider.value;
-    }
+    public float bgmAudio;
+    public float sfxAudio;
 
     public void ONChangerBGM()
     {
-        bgmAudioTest = bgmSlider.value;
+        SoundManager.instance.SetBGMVolume(bgmSlider.value);
     }
 
     public void ONChangerSFX()
     {
-        sfxAudioTest = sfxSlider.value;
+        SoundManager.instance.SetSFXVolume(sfxSlider.value);
     }
 
     public void ONGameExit()
@@ -34,7 +28,7 @@ public class MainUIController : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit(); // æÓ«√∏Æƒ…¿Ãº« ¡æ∑·
+        Application.Quit(); // Ïñ¥ÌîåÎ¶¨ÏºÄÏù¥ÏÖò Ï¢ÖÎ£å
 #endif
     }
 
