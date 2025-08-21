@@ -31,7 +31,7 @@ public class UIManager : Singleton<UIManager>       //µñ¼Å³Ê¸®¸¦ ÅëÇØ °ü¸®ÇÏ´Â ¸
     public List<CanvasData> canvasList;
     private Dictionary<CanvasType, Canvas> canvasDic;
 
-    private bool isSetMainGame = true;
+    private bool isSetMainGame = false;
 
     private void Awake()
     {
