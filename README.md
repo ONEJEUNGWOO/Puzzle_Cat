@@ -147,13 +147,145 @@ if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, laserRaycastInfo
 </details>
 
 <details>
-<summary>기능 이름 :</summary> 
+<summary>PuzzleManager :</summary> 
+각 각 포인트에서 퍼즐로 진입하게 되는 시점과 데이터를 받아오는 과정, 그리고 그 데이터에 따른 퍼즐을 생성하고 퍼즐을 클리어 하게 되면 현재 퍼즐이 파괴되면서 클리어 한 상태로 만드는 과정을 제일 열심히 만들었습니다.
+
+1. 퍼즐 진입 하는 시점 :
+   - 클래스에서 InteractableObject를 상속받아서 override로 메서드를 실행해줍니다.
+   - 그러면 현재 오브젝트가 가지고있는 ScriptableObject의 정보를 PuzzleManager에 넘겨줍니다.
+   ```csharp
+   public MiniGame games;
+
+   public Transform rewardSpawnPoint;
+
+   public override void Interact()
+   {
+       base.Interact();
+       PuzzleManager.Instance.PuzzleIn(games, rewardSpawnPoint);
+       PuzzleDataManager.Instance.Clear += Setactive;
+   }
+
+   ```
+   - 그리고 만약에 클리어 하게되면 현재 interact 된 오브젝트를 setactive(false) 해주기 위해서 Delegate를 등록해주었습니다.
+     
+2. 퍼즐 데이터 넘어온 뒤 :
+   - PuzzleManager 에서 퍼즐의 데이터와 보상이 생성될 위치를 받습니다.
+   ```csharp
+     public void PuzzleIn(MiniGame data, Transform rwdTrs)
+   ```
+   - 그리고 현재 puzzleManager가 들고있는 데이터를 한번 null로 초기화를 해주고
+   ```csharp
+   miniGame = null;
+   currentRwdTrs = null;
+   ```
+   - 게임에서 플레이어 혹은 전체적으로 바뀌어야 되는 정보를 게임매니저에서 세팅해줍니다
+   ```csharp
+   OnPuzzleZoneEnter?.Invoke(data);
+   ```
+    
+3. 게임 매니저에서 OnPuzzleZoneEnter에 델리게이트를 사용 : 
+   - 현재 플레이어의 상태를 바꾸어주는 메서드를 등록해놓았습니다.
+   ```csharp
+   private void HandlePuzzleIn(MiniGame data)
+   {
+       if (data.isGravityUse)
+       {
+           Physics.gravity = data.GravityScale;
+       }
+
+       PlayerInput input = CharacterManager.Instance.Player.GetComponent<PlayerInput>();
+
+       if (input != null)
+       {
+           input.SwitchCurrentActionMap("BallPuzzle");
+       }
+
+       Cursor.lockState = CursorLockMode.None;
+   }  
+   ```
+   - 그리고 만약에 이전에 있던 퍼즐 오브젝트가 있으면 파괴해주는 방어 코드입니다.
+    ```csharp
+    if (obj != null)
+    {
+        DestroyObj();
+    }
+    ```
+   - 그리고 나서 매니저가 들고있는 정보에 받아온 정보를 넣어주고 생성해줍니다.
+    ```csharp
+    miniGame = data;
+    currentRwdTrs = rwdTrs;
+    obj = Instantiate(data.levels, transform.position, transform.rotation, transform);
+    ```
+   - 그리고 각 퍼즐에서 클리어 조건을 달성하면 퍼즐 매니저에서 PuzzleClear 메서드를 실행해줍니다.
+   - 그러면 현재 들어있는 데이터에서 보상이 있는지 확인하고 있으면 보상을 생성해줍니다.
+    ```csharp
+    if (miniGame.reward != null && currentRwdTrs != null)
+    {
+      SpawnReward();
+      Debug.Log("Spawn!");
+    }
+    ```
+   - 그리고 나서 게임을 클리어 했다는 정보를 현재 데이터를 넘겨서 관리를 해줍니다.  
+    ```csharp
+    PuzzleDataManager.Instance.isGameCleared(miniGame);
+    ```
+   - 퍼즐이 종료된 후 게임의 상태를 다시 원래대로 돌려줍니다.
+    ```csharp
+    PuzzleExit();
+    ```
+
+4. 이런식으로 최대한 각자 자기 할일만 할수있게 만들어놓았습니다.
   
-1. 123
+</details>
+
+<details>
+<summary>BallSpawner,FloorController,EndPoint :</summary> 
+  
+1. E키를 통해 공을 생성하고 WASD를 통해 공이 닿아있는 바닥을 움직여 EndPoint에 도착 시 게임이 클리어 되는 구조 입니다. 추가적인 기능으로 순간이동,회전하는 장애물 등이 구현 되어 있습니다.
+   ```csharp
+      public void OnSpawnBall(InputAction.CallbackContext context)    //공의 프리팹을 스폰하는 메서드 입니다.
+      {
+          if (context.phase != InputActionPhase.Started || curPrefab != null) return;
+
+          curPrefab = Instantiate(ballPrefab, transform.position, Quaternion.identity);
+
+          isReset = false;
+          Debug.Log(curPrefab);
+      }
+   ```
     
-2. 123
+2. 프리팹을 생성하고 과정에서 캐싱 및 중복생성 방지하는 기능을 실행합니다.
+   ```csharp
+      public void OnSetMoveValue(InputAction.CallbackContext context)	//인풋 시스템을 통해 받아온 벡터를 로테이션에 맞는 값으로 변경 및 적용해주는 메서드 입니다.
+      {
+          if (!canMove) return;
+
+          if (context.phase == InputActionPhase.Performed )
+          {
+              curMovementInput = context.ReadValue<Vector2>();
+              changeZValue = new Vector3(-curMovementInput.x, 0, -curMovementInput.y);
+          }
+          else if (context.phase == InputActionPhase.Canceled)
+          {
+              curMovementInput = Vector2.zero;
+              changeZValue = Vector3.zero;
+          }
+      }
+   ```
     
-3. 123
+3. Vector2로 입력받은 값을 필요한 Vector3로 변경해 사용하기 위한 기능을 실행합니다.
+   ```csharp
+      private void OnCollisionEnter(Collision collision)	//충돌이 있다면 충돌한 물체를 확인 후 공이라면 게임 클리어를 실행하는 메서드 입니다.
+      {
+          if (!collision.gameObject.CompareTag("Ball") || isClear) return;
+
+          PuzzleManager.Instance.PuzzleClear();
+          //gameClearUI.SetActive(true);
+          //Debug.Log("게임 클리어 UI띄우기");
+      }
+   ```
+
+4. Collider를 통해 충돌을 감지 후 충돌체의 정보에 따라 게임 클리어 기능을 실행합니다.
   
 </details>
 
@@ -362,24 +494,102 @@ void CameraLook()
 </details>
 
 <details>
-<summary>트러불 슈팅 이름 :</summary> 
+<summary>확장성을 고려한 퍼즐 데이터 구조 리팩토링 :</summary> 
   
-1. 123
-    
-2. 123
-    
-3. 123
+1. 문제 상황 (The Problem) : 
+   - 프로젝트 초기에는 게임 클리어 여부를 관리하기 위해 GameManager에 List<bool> isMainCleared 와 List<bool> isSubCleared를 두고, 각 퍼즐의 인덱스(index)를 이용해 클리어 상태를 저장하는 방식을 사용했습니다.
+   - 이 방식은 초기 구현은 간단했지만, 프로젝트 규모가 커지면서 다음과 같은 심각한 문제점들이 예측되었습니다.
+   - 불안정성: 기획 변경으로 퍼즐의 순서가 바뀌거나 중간에 새로운 퍼즐이 추가될 경우, 모든 인덱스가 꼬여 데이터가 엉뚱하게 기록될 위험이 매우 컸습니다.
+   - 낮은 확장성: 메인/서브 외에 '히든' 퍼즐 같은 새로운 타입이 추가될 때마다 GameManager에 새로운 List<bool>를 추가해야 하는, 비효율적이고 지저분한 구조였습니다.
+   - 세이브/로드의 어려움: 나중에 JSON으로 게임 진행 상황을 저장하고 불러와야 할 때, 인덱스 기반의 List 구조는 데이터를 안전하게 관리하고 복원하기에 너무 복잡하고 위험했습니다.
+       
+2. 해결 과정 (The Solution) : 
+   - 이러한 문제들을 근본적으로 해결하기 위해, '순서'에 의존하는 방식에서 벗어나 각 데이터가 '고유한 이름'을 갖는, 보다 견고한 '데이터베이스' 구조로 시스템 전체를 리팩토링했습니다.
+   - 고유 ID 부여: 모든 퍼즐 정보가 담긴 MiniGame 스크립터블 오브젝트에, index 대신 절대 중복되지 않는 string GameID (예: "gravity_maze_01")를 부여했습니다. 이는 데이터베이스의 'Primary Key'와 같은 역할을 합니다.
+   - Dictionary 기반 데이터베이스 구축: GameManager가 가지고 있던 여러 List<bool>를, PuzzleDataManager라는 전문 관리자를 새로 만들어 그 안의 Dictionary<string, bool> puzzleClearData 하나로 통합했습니다.
+   - Dictionary를 사용함으로써, 퍼즐의 클리어 여부를 GameID(Key)를 통해 O(1) 시간 복잡도로 매우 빠르고 안전하게 조회하고 수정할 수 있게 되었습니다.
+   - ID 기반 보고 체계 확립: 이제 퍼즐을 클리어하면, PuzzleManager는 PuzzleDataManager에게 index가 아닌 GameID를 전달하여 "ID가 OOO인 퍼즐이 클리어됐다"고 보고합니다. 그럼 PuzzleDataManager는 puzzleClearData[GameID] = true; 와 같이 해당 ID의 값을 수정합니다.
+   - 게임 클리어 조건 분리: 전체 게임 클리어 조건은, PuzzleDataManager가 List<MiniGame> mainPuzzleCheck 라는 '필수 클리어 목표' 리스트를 따로 들고 있도록 설계했습니다. 이 리스트에 등록된 모든 퍼즐의 GameID가 데이터베이스에서 true인지 확인하는 방식으로, '전체 데이터 관리'와 '게임 클리어 조건'의 책임을 명확하게 분리했습니다.
+     
+3. 결과 및 깨달음 (The Outcome) : 
+   - List<bool>에서 Dictionary<string, bool>와 string ID를 사용하는 구조로 변경함으로써, 다음과 같은 개선을 이룰 수 있었습니다.
+   - 견고함: 퍼즐의 순서나 개수가 변경되어도 데이터가 꼬일 걱정이 없는 안정적인 시스템을 구축했습니다.
+   - 확장성: 새로운 종류의 퍼즐이 추가되어도, 기존 코드를 거의 수정할 필요 없이 데이터만 추가하면 되므로 확장성이 크게 향상되었습니다.
+   - 유지보수성: 퍼즐 데이터와 관련된 모든 책임이 PuzzleDataManager 한 곳에 모여있어, 코드 추적 및 수정이 매우 용이해졌습니다.
+   - 세이브/로드 최적화: Dictionary 구조는 JSON으로 직렬화하기에 매우 이상적인 형태이므로, 추후 세이브/로드 기능을 구현할 때의 복잡성을 크게 줄였습니다.
   
 </details>
 
 <details>
-<summary>트러불 슈팅 이름 :</summary> 
+<summary>플레이어 점프 불가 현상 :</summary> 
   
-1. 123
+1. 문제 현상: Rigidbody가 부착된 움직이는 발판 위에서 플레이어의 점프가 작동하지 않았다. 발판의 Rigidbody를 제거하거나 Is Kinematic을 활성화하면 점프가 되는 기이한 현상이 발생했다.
     
-2. 123
+2. 디버깅 과정 (가설 검증) :
+    - 처음에는 OnCollisionEnter의 작동 조건이나, Raycast가 Rigidbody가 있는 오브젝트를 통과하는 물리 엔진의 특이사항 등 복잡한 원인을 의심했다.
+    - 하지만 발판의 Rigidbody를 제거했을 때 점프가 된다는 점에서, 두 Rigidbody 간의 상호작용에 문제가 있음을 직감했다.
+    - Is Kinematic을 켰을 때도 점프가 되는 것을 보고, '힘(Force)' 계산에 영향을 미치는 핵심적인 변수 값에 문제가 있을 것이라는 촉이 발동했다.
+    - 근본 원인: 플레이어의 Rigidbody에 설정된 **Mass(질량) 값이 비정상적으로 높은 20으로 설정되어 있었다. ForceMode.Impulse는 질량의 영향을 받기 때문에, Mass가 1인 발판 위에서 점프하려고 할 때 플레이어의 무게 때문에 힘이 거의 상쇄되어 점프가 되지 않았던 것이다.
+  
+</details>
+
+<details>
+<summary>터널링 문제 :</summary> 
+  
+1. 문제 정의: 연산 속도 보다 빠른 속도로 충돌이 일어날 경우 충돌 감지를 하지 못하는 문제가 발생했습니다. 그로 인해 공이 바닥을 통과하는 현상등이 있었습니다.
     
-3. 123
+2. 사실 수집: 공이 통과하는 상황을 찾기 위해 여러 상황을 확인 해 본 결과 속도가 빠를 경우 통과한다는 점을 파악했습니다.
+    
+3. 원인 추론: RIgidbody interpolate,Collision Detection을 수정 > 통과하는 속도의 최저값이 높아짐 > 하지만 여전히 뚫림현상 존재 > Collider 크기를 키우기 > 정상 작동 하지만 다른 방법이 필요해 보였습니다.
+
+4. 조치: 속도로 공을 쳐내는 것이 아닌 물리 힘을 적용 시켜 공이 스스로 포물선을 그릴 수 있도록 수정 하였습니다
+
+5. 결과: 정상적으로 작동되는 것을 확인 했습니다
+  
+</details>
+
+<details>
+<summary>Rigidbody 충돌 문제 :</summary> 
+  
+1. 문제 정의: 바닥 로테이션 정렬 도중 자식들의 로테이션 값이 변경 되어 정렬이 제대로 되지 않는 문제가 발생했습니다.
+    
+2. 사실 수집: 바닥이 이동중에만 자식의 로테이션이 현재 위지로 고정되는 것을 확인 했습니다.
+    
+3. 원인 추론: 스크립트 내부에서 자식의 로테이션 정보는 전혀 없었기 때문에 외부의 문제라고 판단 > 리지드 바디가 문제인 것이 확인 > 이동중 갑자기 값을 변경 하려 함 > 자식들 끼리 리지드바디 충돌이 일어나는 것으로 추측하였습니다.
+
+4. 조치: 자식들의 리지드 바디를 제거해 주었습니다.
+
+5. 결과: 자식들의 로테이션이 변하는 과정이 사라졌습니다. 정상적으로 작동되는 것을 확인 했습니다.
+  
+</details>
+
+<details>
+<summary>UI애니메이션 이벤트 등록 문제 :</summary> 
+  
+1. 문제 정의: UI매니저의 메서드를 등록하려 하였지만 각자 UI에는 UI매니저 컴퍼넌트가 존재하지 않아 이벤트 등록이 불가능 했습니다.
+    
+2. 사실 수집: 현재 메서드가 UI매니저의 역할이 맞는지 확인 > UI매니저의 역할이라 판단 했습니다.
+    
+3. 원인 추론: UI매니저가 아닌 UI스스로 관리를 한다면 책임분리원칙이 지켜지지 않는다고 판단하였습니다.
+
+4. 조치: 프록시 스크립트를 통해 UI매니저의 메서드를 호출 하고 이벤트에 연결을 시켜줄 스크립트를 작성 하였습니다.
+
+5. 결과: 책임 분리가 가능 하였고 이벤트 등록도 정상적으로 작동되는 것을 확인 했습니다.
+  
+</details>
+
+<details>
+<summary>UI매니저 하위 UI관리시 캐싱 문제 :</summary> 
+  
+1. 문제 정의: 하위 UI들을 캐싱 하는 과정에서 하나 하나 전부 캐싱 할 경우 확장성 및 휴먼이슈 등이 발생 할 가능성이 너무 높았습니다.
+    
+2. 사실 수집: 현재와 같이 인스펙터창에서 연결을 하나하나 해 줄 경우 씬이동 혹은 누락등의 문제가 발생 할 수 있음 > 리스트로 관리를 하면 확장성이 좋아 질 것으로 판단 > 리스트의 관리를 딕셔너리를 통해 한다면 더 편하게 사용이 가능 할 것 같았습니다.
+    
+3. 원인 추론: 현재 전부 하나하나 변수를 정해 캐싱을 하는 과정에서 누락이 발생 할 수 있고 확장성이 좋지 않아졌습니다. 그 과정을 리스트와 딕셔너리를 통해 관리 한다면 더욱 객체지향적인 코드가 될 것 같습니다.
+
+4. 조치:  리스트로 캐싱을 해 준 후 딕셔너리로 리스트를 관리해 주었습니다.
+
+5. 결과: 확장성이 좋아 졌고 관리를 하는것이 훨씬 수월해 졌습니다.
   
 </details>
 
@@ -437,8 +647,6 @@ void CameraLook()
   ```
 
  </details>
-
- 
 
 ## VI. 최종 게임 시현 영상 :
 
