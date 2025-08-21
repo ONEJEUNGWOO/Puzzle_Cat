@@ -18,7 +18,7 @@
 
 집 안 곳곳에서 기다리는 기발한 퍼즐과 도전 과제를 해결하며, 고양이만의 모험을 즐겨보세요.
 
-### 특징:
+## 특징:
 
 1. 주변의 **다양한 오브젝트와 상호작용**하여 새로운 퍼즐에 진입하세요.
 2. 퍼즐을 클리어하면 **서로 다른 크기의 박스**를 보상으로 획득할 수 있습니다.
@@ -30,15 +30,33 @@
 5. 최종적으로, 집 안에 숨겨진 **세 개의 메인 퍼즐 진입 포인트(고양이 발 모양 코인)** 를 모두 모아, 집사가 돌아올 때 당당히 맞이하세요!
 ##
 
-**참고 이미지 :**
-    
-<img width="400" height="250" alt="Interaction" src="https://github.com/user-attachments/assets/7a3e9fad-21cb-4778-b640-e66ad41cfaa8" />
+## 참고 이미지 :
 
-상호작용 시 UI 출력
-    
-![Wall](https://github.com/user-attachments/assets/163b25d1-fab3-4f46-99e5-7df1b2aa8b97)
+<details>
+<summary>펼쳐보기</summary>
 
-Cinemachine을 활용한 장애물 충돌 기능
+ ![123](https://github.com/user-attachments/assets/e28698ee-b9f7-41c7-9d71-bf1a90a980e7)
+
+ Esc 클릭 시 UI 팝업
+
+ ![123](https://github.com/user-attachments/assets/e53e44af-1095-4fea-8845-2b4edb760407)
+
+ 공굴리기 퍼즐
+
+ ![사펑 퍼즐](https://github.com/user-attachments/assets/35dc4a0c-0876-4267-88f1-311e095a84a8)
+
+ 해킹 퍼즐
+
+ ![레이저 퍼즐](https://github.com/user-attachments/assets/0ccda290-3ea6-4cb5-91fd-7aa7d0750698)
+
+ 레이저 퍼즐
+    
+ ![Wall](https://github.com/user-attachments/assets/163b25d1-fab3-4f46-99e5-7df1b2aa8b97)
+
+ Cinemachine을 활용한 장애물 충돌 기능  
+  
+</details>
+
 ##
     
 ### 필수 기능 :  (구현 완료)
@@ -83,49 +101,53 @@ Cinemachine을 활용한 장애물 충돌 기능
 <details>
 <summary>펼쳐보기</summary> 
   
-1. **퍼즐 디자인** (난이도: ★★★☆☆) ✅
-   - 다양한 퍼즐을 게임에 디자인하고 구현하여 게임의 핵심 플레이를 제공합니다.
-   - 퍼즐의 난이도와 다양성을 고려하여 설계합니다.
+1. **고급 퍼즐 요소** (난이도: ★★★★☆) ✅
+   - 퍼즐의 난이도를 높이기 위해 고급 퍼즐 요소를 도입합니다.
+   - 복합적인 논리나 물리학 요소를 활용한 퍼즐을 추가합니다.
 
 </details>
 
 ## II. 게임 핵심 기능 구현 설명 :
 
 <details>
-<summary>플레이어 이동 과 팔로잉 카메라 구현 :</summary> 
+<summary>LaserRaycaster :</summary> 
   
-1. 123
-    
-2. 123
-    
-3. 123
+1. 레이저를 발사할 수 있는 오브젝트들이 갖는 컴포넌트로, 외부에서 발사 할 레이저의 정보를 리스트에 등록하면 해당 리스트를 바탕으로 레이저를 발사함
+
+```csharp
+// 외부에서 레이저 정보를 등록할 때 사용하는 함수, 이미 등록된 정보라면 종료
+public void AddLaserInfo(LaserRaycastInfo info)
+{
+    if (laserRaycastInfos.Contains(info))
+        return;
+    else
+        laserRaycastInfos.Add(info);
+}
+```
+
+2. 레이저를 발사 할 방향으로 레이캐스트를 하여 레이저를 렌더링하고, 만약 레이캐스트에 감지된 대상이 레이저와 상호작용이 가능한 오브젝트라면 해당 오브젝트의 기능을 실행한다.
+
+```csharp
+// 각 레이저 정보를 바탕으로 Raycast를 실행 및 라인렌더러 렌더링
+if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, laserRaycastInfos[i].maxDistance))
+{
+    lineRenderers[i].positionCount++;
+    lineRenderers[i].SetPosition(lineRenderers[i].positionCount - 1, hit.point);
+
+    ILaserInteractable interactable = hit.collider.transform.parent.GetComponent<ILaserInteractable>();
+    if (interactable != null)
+    {
+        interactable.OnLaserHit(new LaserHitInfo(hit.point, currentDir, hit.normal, laserRaycastInfos[i].laserColor));
+    }
+}
+```
+
+3. 기존의 설계 구조에서는 레이저를 한 개만 발사하는 것을 고려하여 라인렌더러를 한 개만 가지고 구성했으나, 특정 상황에서는 2개 이상의 레이저를 구분하여 발사할 필요가 있어서 자식 오브젝트로 라인렌더러를 여러개 가질 수 있게 구조를 변경함
   
 </details>
 
 <details>
-<summary>플레이어 이동 과 팔로잉 카메라 구현 :</summary> 
-  
-1. 123
-    
-2. 123
-    
-3. 123
-  
-</details>
-
-<details>
-<summary>플레이어 이동 과 팔로잉 카메라 구현 :</summary> 
-  
-1. 123
-    
-2. 123
-    
-3. 123
-  
-</details>
-
-<details>
-<summary>플레이어 이동 과 팔로잉 카메라 구현 :</summary> 
+<summary>기능 이름 :</summary> 
   
 1. 123
     
@@ -295,7 +317,52 @@ void CameraLook()
 ## III. 트러블 슈팅 :
 
 <details>
-<summary>플레이어 이동 과 팔로잉 카메라 구현 :</summary> 
+<summary>센서 과연산 문제 :</summary> 
+  
+1. 문제 정의: 특정 상황에서 게임이 거의 멈춰서 작동이 되지 않는 문제가 발생함
+    
+2. 사실 수집: 원인을 찾기 위해 해당 퍼즐의 일부 요소를 비활성화하여 문제가 발생하는 부분을 탐색함, 이후 센서와 반사판이 존재 할 때 문제가 발생하는 것을 확인
+    
+3. 원인 추론: 센서는 센서에 레이저가 감지되면 장애물 오브젝트를 이동시키고 그에 따른 레이저를 다시 계산함 → 그 결과 센서가 감지하던 레이저도 다시 계산하고 감지하면서 무한 루프에 빠지는 것으로 추정
+
+4. 조치: 센서의 작동 방식을 레이저가 한 번이라도 감지되면 활성화 상태를 유지하는 것으로 수정함
+
+5. 결과: 정상적으로 작동되는 것을 확인
+  
+</details>
+
+<details>
+<summary>반사판 스택 오버플로우 :</summary> 
+  
+1. 문제 정의: 특정 상황에서 스택 오버플로우가 발생
+    
+2. 사실 수집: 해당 문제는 두 레이저가 서로 반대에서 2개 이상의 같은 반사판에 레이저를 발사하게 되면 발생하는 것을 확인
+    
+3. 원인 추론: 반사판은 레이저가 감지되면 해당 레이저 정보를 리스트에 등록하고 현재 발사하는 레이저를 모두 지우고 리스트의 레이저 정보를 바탕으로 다시 생성하는 로직임 → 레이저가 한개일 때는 문제가 없으나, 2개가 반대방향으로 발사하면 서로 레이저 정보 등록과 생성을 반복하게 되면서 발생한 것으로 추정
+   
+4. 조치: 레이저 정보 최대 등록 횟수를 지정
+   
+5. 결과: 스택 오버플로우가 발생하지 않는 것을 확인
+  
+</details>
+
+<details>
+<summary>레이저 계산 작동 기준 오류 :</summary> 
+  
+1. 문제 정의: 오브젝트의 위치나 회전을 변경한 이후 레이저가 이전의 정보를 기준으로 계산되는 문제가 발생
+    
+2. 사실 수집: 브레이크 포인트를 걸었을 때, 회전을 변경하는 부분이 수행되었으나 실제 값은 변하지 않은 것을 확인
+    
+3. 원인 추론: 레이저의 계산과 실제 트랜스폼의 변환 시점이 달라서 발생한 것으로 추론
+
+4. 조치: Physics.SyncTransforms()을 사용 → 잘 작동하지만 부하가 크다는 말을 듣고 일단 보류, 코루틴을 통해 0.02초 후에 계산하도록 수정
+
+5. 결과: 육안으로 레이저가 사라지는 것이 보이지 않게 잘 작동하는 것을 확인
+  
+</details>
+
+<details>
+<summary>트러불 슈팅 이름 :</summary> 
   
 1. 123
     
@@ -306,40 +373,7 @@ void CameraLook()
 </details>
 
 <details>
-<summary>플레이어 이동 과 팔로잉 카메라 구현 :</summary> 
-  
-1. 123
-    
-2. 123
-    
-3. 123
-  
-</details>
-
-<details>
-<summary>플레이어 이동 과 팔로잉 카메라 구현 :</summary> 
-  
-1. 123
-    
-2. 123
-    
-3. 123
-  
-</details>
-
-<details>
-<summary>플레이어 이동 과 팔로잉 카메라 구현 :</summary> 
-  
-1. 123
-    
-2. 123
-    
-3. 123
-  
-</details>
-
-<details>
-<summary>플레이어 이동 과 팔로잉 카메라 구현 :</summary> 
+<summary>트러불 슈팅 이름 :</summary> 
   
 1. 123
     
@@ -368,10 +402,43 @@ void CameraLook()
 
 ## IV. 클래스 다이어그램 :
 
-<img width="674" height="611" alt="image 6" src="https://github.com/user-attachments/assets/82df2de1-96c9-4e2d-b35a-ea1c79d79988" />
+ <details>
+ <summary>펼쳐보기</summary> 
+  
+  <img width="674" height="611" alt="image 6" src="https://github.com/user-attachments/assets/82df2de1-96c9-4e2d-b35a-ea1c79d79988" />
 
+ </details>
 
 ## V. 와이어 프래임:
+
+ <details>
+ <summary>펼쳐보기</summary> 
+  
+  ```csharp
+ [게임 시작]
+   │
+   ▼
+[메인 월드]
+   │
+   ├─▶ [빨간 공 상호작용] → [퍼즐 시작] → [성공: 박스 획득] 
+   │                                   └─ [실패: 재도전]
+   │
+   ├─▶ [박스 사용 → 높은 곳 이동]
+   │
+   └─▶ [메인 퍼즐 #1] 
+   └─▶ [메인 퍼즐 #2] 
+   └─▶ [메인 퍼즐 #3]
+           │
+           ▼
+    [3개 클리어 완료]
+           │
+           ▼
+       [엔딩 화면]
+  ```
+
+ </details>
+
+ 
 
 ## VI. 최종 게임 시현 영상 :
 
