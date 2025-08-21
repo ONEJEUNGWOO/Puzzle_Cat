@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta; 
     private Vector3 cameraAngle;
 
+    [HideInInspector]
+    public bool canLook = true;
+
     [Header("UI")]
     public InteractionUI interactionUI;
 
@@ -46,7 +49,10 @@ public class PlayerController : MonoBehaviour
     }
     private void LateUpdate()
     {
-        CameraLook();
+        if (canLook)
+        {
+            CameraLook();
+        }
     }
 
     void Move()
@@ -237,6 +243,12 @@ public class PlayerController : MonoBehaviour
         //    Debug.DrawRay(rays[i].origin, rays[i].direction * 0.5f, Color.red);
         //    // * 3f : 레이 길이 (씬 뷰에서 보이는 길이용)
         //}
+    }
+
+    public void ToggleCursor(bool toggle)
+    {
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
     }
 }
 

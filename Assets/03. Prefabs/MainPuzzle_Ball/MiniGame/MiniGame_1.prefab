@@ -92,7 +92,19 @@ MonoBehaviour:
     m_ActionId: bfcc2b43-cd67-4860-a6d8-6d72a468c23c
     m_ActionName: BallPuzzle/UseKey[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1594527444120304269}
+        m_TargetAssemblyTypeName: FloorController, Assembly-CSharp
+        m_MethodName: RotateReSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 8d279e1f-fe10-4625-a170-e75a8488dc8a
     m_ActionName: BallPuzzle/Reset[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
@@ -502,7 +514,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level_1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5836541049017138254, guid: ed87e1901de840548ba06d4d73bfd5a6, type: 3}
+    - {fileID: 2950797805844488240, guid: ed87e1901de840548ba06d4d73bfd5a6, type: 3}
+    - {fileID: 8589350339782400680, guid: ed87e1901de840548ba06d4d73bfd5a6, type: 3}
+    - {fileID: 8186534419151704275, guid: ed87e1901de840548ba06d4d73bfd5a6, type: 3}
+    - {fileID: 3400687606038598033, guid: ed87e1901de840548ba06d4d73bfd5a6, type: 3}
+    - {fileID: 937957572683829101, guid: ed87e1901de840548ba06d4d73bfd5a6, type: 3}
+    - {fileID: 7975008694565952867, guid: ed87e1901de840548ba06d4d73bfd5a6, type: 3}
+    - {fileID: 5793496843950632828, guid: ed87e1901de840548ba06d4d73bfd5a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

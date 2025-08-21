@@ -7,6 +7,7 @@ public class MainUIController : MonoBehaviour
 {
     public Slider bgmSlider;
     public Slider sfxSlider;
+    public int fadeNum;
 
 
     public float bgmAudioTest;
@@ -35,5 +36,10 @@ public class MainUIController : MonoBehaviour
 #else
         Application.Quit(); // 어플리케이션 종료
 #endif
+    }
+
+    public void OnSetMainGameUI()
+    {
+        gameObject.SetActive(false);
     }
 }

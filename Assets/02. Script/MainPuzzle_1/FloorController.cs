@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class FloorController : MonoBehaviour
 {
     public int moveSpeed;
-    private bool canMove = true;
+    public bool canMove = true;
     private Quaternion startRot;
     private PlayerInput input;
     private InputAction ballSpawn;
@@ -26,13 +26,6 @@ public class FloorController : MonoBehaviour
 
         ballSpawn.performed += BallSpawner.Instance.OnSpawnBall;
     }
-
-    //private void Update()
-    //{
-    //    if (MainPuzzle_UIManager.Instance.gameClearUI.activeSelf)       //게임 클리어 하면 0,0,0 로테이션으로 정렬 //TODO : 매니저 혹은 EndPoint bool값 isClear를 통해 관리 해 줄 예정입니다
-
-    //        RotateReSet();
-    //}
 
     private void FixedUpdate()
     {
@@ -70,10 +63,8 @@ public class FloorController : MonoBehaviour
 
     public void RotateReSet()
     {
-        if (!canMove) return ;
-
         Debug.Log("?");
-        transform.rotation = startRot;
+        transform.localRotation = startRot;
     }
 
     //IEnumerator CantMove()

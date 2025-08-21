@@ -31,7 +31,7 @@ public class UIManager : Singleton<UIManager>       //딕셔너리를 통해 관리하는 �
     public List<CanvasData> canvasList;
     private Dictionary<CanvasType, Canvas> canvasDic;
 
-    private bool isSetMainGame;
+    private bool isSetMainGame = true;
 
     private void Awake()
     {
@@ -45,58 +45,60 @@ public class UIManager : Singleton<UIManager>       //딕셔너리를 통해 관리하는 �
 
         PuzzleManager.Instance.OnpuzzleZoneExit += OffMiniGameUI;
 
-        OffMainGameUI();
         OffMiniGameUI();
+        //SetMainGameUI();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isSetMainGame)
-                SetMainGameUI();
-            else
-                OffMainGameUI();
+            SetMainGameUI();
         }
     }
 
-    public void SetMiniGameUI(MiniGame data)
+    public void SetMiniGameUI(MiniGame data)        //TODO 하나로 줄이기 
     {
-        switch (data.GameIndex)
-        {
-            //케이스에 따라 ui 켜주기
-            case 0:
-                Debug.Log("실행은 됨?");
-                canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(true);
-                break;
-            case 1:
-                canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(true);
-                break;
-            case 2:
-                canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(true);
-                break;
-        }
+        canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(true);
+
+        //switch (data.GameIndex)
+        //{
+        //케이스에 따라 ui 켜주기
+        //case 0:
+        //    Debug.Log("실행은 됨?");
+        //    canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(true);
+        //    break;
+        //case 1:
+        //    canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(true);
+        //    break;
+        //case 2:
+        //    canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(true);
+        //    break;
     }
 
     public void OffMiniGameUI()
     {
         canvasDic[CanvasType.MiniGame_Ball].gameObject.SetActive(false);
-        canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(false);
-        canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(false);
+        //canvasDic[CanvasType.MiniGame_Hacking].gameObject.SetActive(false);
+        //canvasDic[CanvasType.MiniGame_Laser].gameObject.SetActive(false);
     }
 
     public void SetMainGameUI() //ESC 혹은 버튼등 키 눌렀을 때 활성화 메인게임 관련
     {
-        isSetMainGame = true;
+        if (!isSetMainGame)
+        {
+            canvasDic[CanvasType.MainGameUI].GetComponent<Animator>().SetTrigger("FadeIn");
+            Debug.Log("켜짐");
+            canvasDic[CanvasType.MainGameUI].gameObject.SetActive(!isSetMainGame); 
+        }
+        else
+        {
+            canvasDic[CanvasType.MainGameUI].GetComponent<Animator>().SetTrigger("FadeOut");
+            Debug.Log("꺼짐");
+        }
+
         Cursor.lockState = CursorLockMode.Confined;
-        canvasDic[CanvasType.MainGameUI].gameObject.SetActive(true);
-    }
-
-
-    public void OffMainGameUI()
-    {
-        isSetMainGame = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        canvasDic[CanvasType.MainGameUI].gameObject.SetActive(false);
+        CharacterManager.Instance.Player.controller.ToggleCursor(!isSetMainGame);
+        isSetMainGame = !isSetMainGame;
     }
 }
