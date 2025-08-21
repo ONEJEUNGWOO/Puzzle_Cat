@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Ω∫¿ßƒ°∏¶ ≈Î«ÿ ¿Âæ÷π∞¿ª ¡¶∞≈ ∞°¥…
+/// Ïä§ÏúÑÏπòÎ•º ÌÜµÌï¥ Ïû•Ïï†Î¨ºÏùÑ Ï†úÍ±∞ Í∞ÄÎä•
 /// </summary>
 public class Switch : MonoBehaviour, LaserPuzzle.IInteractable
 {
@@ -12,6 +12,9 @@ public class Switch : MonoBehaviour, LaserPuzzle.IInteractable
     public Material material;
     public GameObject obstacle;
 
+    public Transform activePos;
+    public Transform deactivePos;
+
     private LaserPuzzleManager manager;
 
     private void Start()
@@ -20,10 +23,18 @@ public class Switch : MonoBehaviour, LaserPuzzle.IInteractable
         material.color = isActive ? activatedColor : deactivatedColor;
 
         obstacle = transform.parent.GetChild(1).gameObject;
-        obstacle.transform.localPosition = isActive ? new Vector3(obstacle.transform.localPosition.x, 0, obstacle.transform.localPosition.z) :
-                                        new Vector3(obstacle.transform.localPosition.x, -0.9f, obstacle.transform.localPosition.z);
+        if(activePos == null || deactivePos == null )
+        {
+            obstacle.transform.localPosition = isActive ? new Vector3(obstacle.transform.localPosition.x, 0, obstacle.transform.localPosition.z) :
+                                new Vector3(obstacle.transform.localPosition.x, -0.9f, obstacle.transform.localPosition.z);
+        }
+        else
+        {
+            obstacle.transform.localPosition = isActive ? activePos.localPosition : deactivePos.localPosition;
+        }
 
-        manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
+
+            manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
 
     }
 
@@ -36,8 +47,15 @@ public class Switch : MonoBehaviour, LaserPuzzle.IInteractable
     {
         isActive = !isActive;
         material.color = isActive ? activatedColor : deactivatedColor;
-        obstacle.transform.localPosition = isActive ? new Vector3(obstacle.transform.localPosition.x, 0, obstacle.transform.localPosition.z) :
-                                        new Vector3(obstacle.transform.localPosition.x, -0.9f, obstacle.transform.localPosition.z);
+        if(activePos == null || deactivePos == null)
+        {
+            obstacle.transform.localPosition = isActive ? new Vector3(obstacle.transform.localPosition.x, 0, obstacle.transform.localPosition.z) :
+                                new Vector3(obstacle.transform.localPosition.x, -0.9f, obstacle.transform.localPosition.z);
+        }
+        else
+        {
+            obstacle.transform.localPosition = isActive ? activePos.localPosition : deactivePos.localPosition;
+        }
 
         manager.RecalculateLaser();
     }
