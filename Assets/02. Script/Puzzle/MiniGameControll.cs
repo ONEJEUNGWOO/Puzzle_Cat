@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MiniGameData : InteractableObject
+public class MiniGameControll : InteractableObject
 {
     public MiniGame games;
 
