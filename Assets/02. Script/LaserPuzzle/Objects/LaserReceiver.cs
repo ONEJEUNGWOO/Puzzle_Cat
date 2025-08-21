@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ·¹ÀÌÀú°¡ µµ´ŞÇØ¾ßÇÏ´Â ¸ñÇ¥ ÁöÁ¡
-/// ·¹ÀÌÀúÀÇ »öÀÌ targetColor¿Í °°¾Æ¾ß È°¼ºÈ­µÊ
+/// ë ˆì´ì €ê°€ ë„ë‹¬í•´ì•¼í•˜ëŠ” ëª©í‘œ ì§€ì 
+/// ë ˆì´ì €ì˜ ìƒ‰ì´ targetColorì™€ ê°™ì•„ì•¼ í™œì„±í™”ë¨
 /// </summary>
 public class LaserReceiver : MonoBehaviour, LaserPuzzle.ILaserInteractable
 {
@@ -27,6 +27,7 @@ public class LaserReceiver : MonoBehaviour, LaserPuzzle.ILaserInteractable
         manager = transform.parent.GetComponentInParent<LaserPuzzleManager>();
         manager.OnObjectChange += ResetState;
 
+        targetColor.a = 1;
         targetMaterial.color = targetColor;
     }
 

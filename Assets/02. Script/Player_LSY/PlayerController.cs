@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public float jumpPower;
     private Vector2 curMovementInput; 
     public LayerMask groundLayerMask;
-    public LayerMask interactableItem; // 상호작용 가능한 오브젝트를 검사하기 위한 레이어 마스크입니다.
+    public LayerMask interactableItem;
 
     [Header("Look")]
     public Transform cameraContainer; 
@@ -66,19 +66,15 @@ public class PlayerController : MonoBehaviour
         {
             Quaternion targetRotation = Quaternion.LookRotation(dir);
 
-            // 서서히 회전 (slerp는 부드럽게, especially 뒤돌 때 자연스러움)
             kittyTransform.rotation = Quaternion.Slerp
             (
                 kittyTransform.rotation,
                 targetRotation,
                 5f * Time.deltaTime
-            // 숫자 조정 가능 (작을수록 느리고, 클수록 빠름)
             );
 
             _rigidbody.MovePosition(_rigidbody.position + dir * moveSpeed * Time.fixedDeltaTime);
         }
-                
-        //Debug.DrawRay(cameraContainer.position, new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized, Color.red);
     }
 
     void CameraLook()
@@ -98,17 +94,13 @@ public class PlayerController : MonoBehaviour
 
         textRotation.rotation = Quaternion.Euler(camCurXRot, camCurYRot, 0);
         cameraContainer.rotation = Quaternion.Euler(camCurXRot, camCurYRot, 0);
-        //Vector3 lookForward = new Vector3(cameraContainer.forward.x, 0f, cameraContainer.forward.z).normalized;
-        //kittyTransform.forward = lookForward;
     }
 
     private void checkInteract()
-    //상호작용 가능한 오브젝트를 검사하고, 해당 오브젝트가 있다면 InteractionText를 출력합니다.
     {
         var target = isInteract();
         if (target != null)
         {
-            // ui를 접근해서 메서드호출
             interactionUI.Show(target.InteractionText);
         }
         else
@@ -125,20 +117,18 @@ public class PlayerController : MonoBehaviour
             curMovementInput = context.ReadValue<Vector2>();
             if (curMovementInput.y < 0)
             {
-                //animator.SetFloat("speed", -1f);
-                animator.speed = 0.5f; // 뒤로 걷는 속도는 0.5로 설정
+                animator.speed = 0.5f;
             }
             else
             {
-                //animator.SetFloat("speed", 1f);
-                animator.speed = 1f; // 앞으로 걷는 속도는 1로 설정
+                animator.speed = 1f;
             }
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             animator.SetBool("isWalking", false);
             curMovementInput = Vector2.zero;
-            animator.speed = 1f; // 걷기 애니메이션 속도를 기본값으로 되돌립니다.
+            animator.speed = 1f;
         }
     }
 
@@ -165,12 +155,10 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            // 함수를 따로 만들어서 fixedUpdate에 넣고 밑에 로직을 반복 실행 즉 감지하게 만든다.
             var target = isInteract();
             if (target != null)
             {
                 target.Interact();
-                //Debug.Log(target.InteractionText);
             }
 
         }
@@ -211,11 +199,8 @@ public class PlayerController : MonoBehaviour
 
     InteractableObject isInteract()
     {
-        //Debug.DrawRay(cameraContainer.position, kittyTransform.forward.normalized, Color.black);
-
         Vector3 forward = kittyTransform.forward.normalized;
 
-        // 좌우 15도 회전 벡터
         Vector3 leftDir = Quaternion.AngleAxis(-15f, Vector3.up) * forward;
         Vector3 rightDir = Quaternion.AngleAxis(15f, Vector3.up) * forward;
 
@@ -229,20 +214,12 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < rays.Length; i++)
         {
             if (Physics.Raycast(rays[i], out RaycastHit hit, 0.8f, interactableItem) && hit.collider.TryGetComponent(out InteractableObject obj))
-            // Physics.Raycast로 레이를 쏘아 interactableItem 레이어에 있는 오브젝트를 검사합니다.
-            // 0.5f 는 레이의 길이로, interactableItem로 지정한 정보를 가져옵니다.
             {
                 return obj;
             }
         }
 
-        return null; // 상호작용 가능한 오브젝트가 없으면 null을 반환합니다.
-
-        //for (int i = 0; i < rays.Length; i++)
-        //{
-        //    Debug.DrawRay(rays[i].origin, rays[i].direction * 0.5f, Color.red);
-        //    // * 3f : 레이 길이 (씬 뷰에서 보이는 길이용)
-        //}
+        return null;
     }
 
     public void ToggleCursor(bool toggle)

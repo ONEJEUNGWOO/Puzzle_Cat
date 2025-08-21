@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MiniGameData : InteractableObject
+public class GameControll : InteractableObject
 {
     public MiniGame games;
     public Transform rewardSpawnPoint;
