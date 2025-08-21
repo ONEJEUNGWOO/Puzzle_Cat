@@ -1,19 +1,31 @@
 using System.Collections;
 using UnityEngine;
 
-
-/// 게임의 사운드를 관리하는 싱글톤 매니저. BGM 재생, 정지, 페이드 효과 등을 담당합니다.
-
+// 게임의 사운드를 관리하는 싱글톤 매니저. BGM + SFX 관리
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
+    [Header("Volume Settings")]
+    [Range(0f, 1f)]
+    public float masterVolume = 1f;
+    [Range(0f, 1f)]
+    public float bgmVolume = 1f;
+    [Range(0f, 1f)]
+    public float sfxVolume = 1f;
+
     [Header("Audio Sources")]
     public AudioSource bgmSource;
+    public AudioSource sfxSource;
 
     [Header("Default BGM")]
     public AudioClip defaultBGM;
     public float defaultBGMVolume = 0.5f;
+
+    [Header("SFX Clips")]
+    public AudioClip walkSFX;
+    public AudioClip runSFX;
+    public AudioClip jumpSFX;
 
     private Coroutine currentFadeCoroutine;
 
@@ -32,94 +44,124 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
+        // 볼륨 초기 설정 적용
+        ApplyVolumeSettings();
         PlayDefaultBGM();
     }
 
-  
-    /// BGM을 즉시 재생합니다.
+    /// 현재 볼륨 설정을 AudioSource에 적용
+    private void ApplyVolumeSettings()
+    {
+        // BGM 볼륨 = 마스터 볼륨 × BGM 볼륨
+        if (bgmSource != null)
+        {
+            bgmSource.volume = masterVolume * bgmVolume;
+        }
+    }
 
+    /// 마스터 볼륨 설정
+    public void SetMasterVolume(float volume)
+    {
+        masterVolume = Mathf.Clamp01(volume);
+        ApplyVolumeSettings();
+    }
+
+    /// BGM 볼륨 설정
+    public void SetBGMVolume(float volume)
+    {
+        bgmVolume = Mathf.Clamp01(volume);
+        ApplyVolumeSettings();
+    }
+
+    /// SFX 볼륨 설정
+    public void SetSFXVolume(float volume)
+    {
+        sfxVolume = Mathf.Clamp01(volume);
+    }
+
+    /// BGM 재생 (최종 볼륨 = 마스터 × BGM × 입력 볼륨)
     public void PlayBGM(AudioClip clip, float volume = 0.7f, bool loop = true)
     {
         if (clip == null) return;
 
-        // 즉시 BGM을 재생하므로 현재 진행 중인 페이드 코루틴을 중지합니다.
         if (currentFadeCoroutine != null)
-        {
             StopCoroutine(currentFadeCoroutine);
-        }
 
         bgmSource.clip = clip;
-        bgmSource.volume = volume;
+        bgmSource.volume = masterVolume * bgmVolume * volume;
         bgmSource.loop = loop;
         bgmSource.Play();
     }
 
-    /// 기본 BGM을 재생합니다. 이미 기본 BGM이 재생 중이면 중복 재생하지 않습니다.
-
- 
     public void PlayDefaultBGM(float volume = -1f)
     {
-        // 이미 기본 BGM이 재생 중이면 함수를 종료합니다.
         if (bgmSource.clip == defaultBGM && bgmSource.isPlaying) return;
-
         float targetVolume = (volume >= 0) ? volume : defaultBGMVolume;
         PlayBGM(defaultBGM, targetVolume);
     }
 
-
-    /// BGM을 페이드 아웃하여 정지시킵니다.
-
     public Coroutine StopBGMWithFadeOut(float fadeTime)
     {
         if (currentFadeCoroutine != null)
-        {
             StopCoroutine(currentFadeCoroutine);
-        }
+
         currentFadeCoroutine = StartCoroutine(FadeOutBGM(fadeTime));
         return currentFadeCoroutine;
     }
 
-    /// 현재 재생 중인 BGM을 부드럽게 페이드 아웃하고 새로운 BGM을 페이드 인합니다.
-
     public Coroutine FadeToBGM(AudioClip clip, float targetVolume, float fadeOutTime, float fadeInTime)
     {
         if (currentFadeCoroutine != null)
-        {
             StopCoroutine(currentFadeCoroutine);
-        }
+
         currentFadeCoroutine = StartCoroutine(FadeToBGMCoroutine(clip, targetVolume, fadeOutTime, fadeInTime));
         return currentFadeCoroutine;
     }
 
+    public void StopBGM() => bgmSource.Stop();
+    public void PauseBGM() => bgmSource.Pause();
+    public void ResumeBGM() => bgmSource.UnPause();
 
-    /// BGM을 정지시킵니다.
-
-    public void StopBGM()
+    // SFX 관련 메서드
+    /// SFX 재생 (최종 볼륨 = 마스터 × SFX × 입력 볼륨)
+    public void PlaySFX(AudioClip clip, float volume = 1f)
     {
-        bgmSource.Stop();
+        if (clip != null && sfxSource != null)
+        {
+            float finalVolume = masterVolume * sfxVolume * volume;
+            sfxSource.PlayOneShot(clip, finalVolume);
+        }
     }
 
-    /// BGM을 일시정지합니다.
-    public void PauseBGM()
+    /// 미리 지정한 효과음 이름으로 호출
+    public void PlaySFXByName(string name)
     {
-        bgmSource.Pause();
+        switch (name)
+        {
+            case "walk": PlaySFX(walkSFX); break;
+            case "run": PlaySFX(runSFX); break;
+            case "jump": PlaySFX(jumpSFX); break;
+            default:
+                Debug.LogWarning($"SFX '{name}' not found!");
+                break;
+        }
     }
 
-    /// BGM을 재개합니다.
-    public void ResumeBGM()
+    /// 특정 볼륨으로 SFX 재생
+    public void PlaySFXByName(string name, float volume)
     {
-        bgmSource.UnPause();
+        switch (name)
+        {
+            case "walk": PlaySFX(walkSFX, volume); break;
+            case "run": PlaySFX(runSFX, volume); break;
+            case "jump": PlaySFX(jumpSFX, volume); break;
+            default:
+                Debug.LogWarning($"SFX '{name}' not found!");
+                break;
+        }
     }
 
-    /// BGM 볼륨을 설정합니다.
-
-    public void SetBGMVolume(float volume)
-    {
-        bgmSource.volume = volume;
-    }
-
-    // 코루틴 메서드
-
+    // 코루틴 메서드들
     private IEnumerator FadeOutBGM(float fadeTime)
     {
         float startVolume = bgmSource.volume;
@@ -140,26 +182,46 @@ public class SoundManager : MonoBehaviour
         bgmSource.volume = 0f;
         bgmSource.Play();
 
-        float startVolume = 0f;
+        float finalTargetVolume = masterVolume * bgmVolume * targetVolume;
+
         for (float t = 0; t < fadeTime; t += Time.deltaTime)
         {
-            bgmSource.volume = Mathf.Lerp(startVolume, targetVolume, t / fadeTime);
+            bgmSource.volume = Mathf.Lerp(0f, finalTargetVolume, t / fadeTime);
             yield return null;
         }
-        bgmSource.volume = targetVolume;
+        bgmSource.volume = finalTargetVolume;
     }
 
     private IEnumerator FadeToBGMCoroutine(AudioClip clip, float targetVolume, float fadeOutTime, float fadeInTime)
     {
-        // 현재 BGM이 재생 중이면 페이드 아웃을 먼저 진행합니다.
         if (bgmSource.isPlaying)
-        {
             yield return FadeOutBGM(fadeOutTime);
-        }
 
-        // 새 BGM을 페이드 인합니다.
         yield return FadeInBGM(clip, targetVolume, fadeInTime);
-
         currentFadeCoroutine = null;
+    }
+
+    /// 모든 사운드 일시정지
+    public void PauseAll()
+    {
+        PauseBGM();
+        if (sfxSource != null)
+            sfxSource.Pause();
+    }
+
+    /// 모든 사운드 재개
+    public void ResumeAll()
+    {
+        ResumeBGM();
+        if (sfxSource != null)
+            sfxSource.UnPause();
+    }
+
+    /// 모든 사운드 정지
+    public void StopAll()
+    {
+        StopBGM();
+        if (sfxSource != null)
+            sfxSource.Stop();
     }
 }
