@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038fb48fd25b9d1408821f0ce56bff2d, type: 3}
+  m_Name: SubHacking_2
+  m_EditorClassIdentifier: 
+  isMain: 0
+  GameID: Sub_Game_4
+  GameIndex: 1
+  isGravityUse: 0
+  GravityScale: {x: 0, y: 0, z: 0}
+  levels: {fileID: 3945527872129300165, guid: 9319123e854f5744a9821d94b6bb89e0, type: 3}
+  reward: {fileID: 161706328045774715, guid: b42431ba28b72954c945696ca6c06559, type: 3}
+  bgmClip: {fileID: 8300000, guid: cea990eef856a1c40b5ac90edca9c441, type: 3}
+  bgmVolume: 0.7
+  fadeInTime: 1
+  fadeOutTime: 1

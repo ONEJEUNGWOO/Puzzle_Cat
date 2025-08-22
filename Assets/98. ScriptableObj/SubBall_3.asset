@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038fb48fd25b9d1408821f0ce56bff2d, type: 3}
+  m_Name: SubBall_3
+  m_EditorClassIdentifier: 
+  isMain: 0
+  GameID: Sub_Game_3
+  GameIndex: 0
+  isGravityUse: 0
+  GravityScale: {x: 0, y: 0, z: 0}
+  levels: {fileID: 5990434716082277114, guid: 3bd912831eec337409d2f4537baa626c, type: 3}
+  reward: {fileID: 3643288086251604378, guid: 0a3c3cefc65d5a74680fdf1f02c2f846, type: 3}
+  bgmClip: {fileID: 8300000, guid: ece273d320ccf5a49a034227b9a38412, type: 3}
+  bgmVolume: 0.7
+  fadeInTime: 1
+  fadeOutTime: 1

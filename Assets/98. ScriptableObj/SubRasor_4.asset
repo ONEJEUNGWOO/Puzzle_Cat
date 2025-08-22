@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038fb48fd25b9d1408821f0ce56bff2d, type: 3}
+  m_Name: SubRasor_4
+  m_EditorClassIdentifier: 
+  isMain: 0
+  GameID: Sub_Game_4
+  GameIndex: 2
+  isGravityUse: 0
+  GravityScale: {x: 0, y: 0, z: 0}
+  levels: {fileID: 2624147994172556135, guid: 20e07b8e806d09149b7bae3f201cd664, type: 3}
+  reward: {fileID: 1319142715392098908, guid: e8f841132c1d0d7468c889479f107d1b, type: 3}
+  bgmClip: {fileID: 8300000, guid: 263959bd598f5dc42af22c0f18607740, type: 3}
+  bgmVolume: 0.7
+  fadeInTime: 1
+  fadeOutTime: 1

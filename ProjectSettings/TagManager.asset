@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ball
   layers:
   - Default
   - TransparentFX
@@ -11,6 +12,8 @@ TagManager:
   - 
   - Water
   - UI
+  - Player
+  - InteractableItem
   - 
   - 
   - 
@@ -33,10 +36,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ball
+  - Puzzle
   m_SortingLayers:
   - name: Default
     uniqueID: 0
