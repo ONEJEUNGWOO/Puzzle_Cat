@@ -2,6 +2,8 @@
 
 안녕하세요 Unity 11기 14조 입니다.  저희팀은 3D 퍼즐 플랫폼 게임을 구현했습니다.
 
+[다운로드 링크](https://drive.google.com/file/d/10aD5AhFeXklBuu-DQd-2jfgLu0N2GgdI/view?usp=drive_link)
+
 ### **팀원 목록 :**
 
 | 이름 | 태그 | 😺  역할 분담 |
